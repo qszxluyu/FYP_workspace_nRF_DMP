@@ -182,9 +182,15 @@ int main(void)
 		mpu_setup();
 
 		printf("\r\nMPU setup complete! \r\n");	
+	
+		accel_values_t acc_values;
+		//uint32_t sample_number = 0;
+		uint32_t err_code;
 
     while (true)
     {
+				
+				/*
         uint8_t cr;
         while (app_uart_get(&cr) != NRF_SUCCESS);
         while (app_uart_put(cr) != NRF_SUCCESS);
@@ -198,6 +204,16 @@ int main(void)
                 // Do nothing.
             }
         }
+				*/
+			
+			  // Read accelerometer sensor values
+        err_code = mpu_read_accel(&acc_values);
+        APP_ERROR_CHECK(err_code);
+        // Clear terminal and print values
+        //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
+				printf("X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
+				nrf_gpio_pin_toggle(LED_1);
+        nrf_delay_ms(50);
     }
 		
 		
