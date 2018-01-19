@@ -459,7 +459,7 @@ Device\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8
 ARM Macro Assembler    Page 8 
 
 
-.15.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1
+.15.2\Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1
 " --predefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SETA 1" --predefi
 ne="NRF52840_XXAA SETA 1" --predefine="BOARD_PCA10056 SETA 1" --predefine="BSP_
 DEFINES_ONLY SETA 1" --predefine="CONFIG_GPIO_AS_PINRESET SETA 1" --predefine="

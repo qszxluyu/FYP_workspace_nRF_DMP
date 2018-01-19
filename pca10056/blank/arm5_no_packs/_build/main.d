@@ -2,6 +2,7 @@
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\uart\app_uart.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
 .\_build\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\compiler_abstraction.h
@@ -39,10 +40,10 @@
 .\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_twim.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\nrf_log.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\util\sdk_common.h
-.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\util\sdk_os.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\util\sdk_macros.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_internal.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h
+.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

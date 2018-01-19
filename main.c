@@ -50,6 +50,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include "app_uart.h"
 #include "app_error.h"
 #include "nrf_delay.h"
@@ -59,6 +60,9 @@
 #include "nrf_drv_twi.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
+#include "boards.h"
+
+#include "math.h"
 
 //#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
 
@@ -166,9 +170,31 @@ void mpu_setup(void)
     mpu_config_t p_mpu_config = MPU_DEFAULT_CONFIG(); // Load default values
     p_mpu_config.smplrt_div = 19;   // Change sampelrate. Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV). 19 gives a sample rate of 50Hz
     p_mpu_config.accel_config.afs_sel = AFS_16G; // Set accelerometer full scale range
-		p_mpu_config.gyro_config.fs_sel = GFS_2000DPS; //Set gyroscope full scale range 
+		p_mpu_config.gyro_config.fs_sel = GFS_1000DPS; //Set gyroscope full scale range 
     ret_code = mpu_config(&p_mpu_config); // Configure the MPU with above values
     APP_ERROR_CHECK(ret_code); // Check for errors in return value 
+}
+
+void magn_setup()
+{
+		ret_code_t ret_code;
+		
+		
+		//Enable bypass mode
+		mpu_int_pin_cfg_t bypass_config;
+		bypass_config.i2c_bypass_en = 1;
+		ret_code = mpu_int_cfg_pin(&bypass_config); // Set bypass mode
+		APP_ERROR_CHECK(ret_code); // Check for errors in return value
+		
+	
+		// Setup and configure the MPU Magnetometer
+		mpu_magn_config_t p_mpu_magn_config;
+		p_mpu_magn_config.resolution = OUTPUT_RESOLUTION_16bit; // Set output resolution
+		p_mpu_magn_config.mode = CONTINUOUS_MEASUREMENT_100Hz_MODE;	//Set measurement mode
+		
+		ret_code = mpu_magnetometer_init(&p_mpu_magn_config);
+		APP_ERROR_CHECK(ret_code); // Check for errors in return value
+
 }
 
 /**
@@ -184,9 +210,18 @@ int main(void)
 
 		printf("\r\nMPU setup complete! \r\n");	
 	
+		magn_setup();
+	
 		//variables carry out the reading from MPU9250
 		accel_values_t acc_values;
 		gyro_values_t gyro_values;
+		magn_values_t magn_values;
+	
+		const uint8_t MAG_DATA_SIZE = 10;
+		uint8_t magn_data[MAG_DATA_SIZE];
+		memset(magn_data, 0, MAG_DATA_SIZE);
+		
+		//mpu_magn_read_status_t magn_read_status;
 	
 		//uint32_t sample_number = 0;
 		uint32_t err_code;
@@ -194,7 +229,30 @@ int main(void)
     while (true)
     {
 				
-				/*
+			  // Read accelerometer sensor values
+        err_code = mpu_read_accel(&acc_values);
+        APP_ERROR_CHECK(err_code);
+			
+				// Read gyroscope sensor values
+				err_code = mpu_read_gyro(&gyro_values);
+				APP_ERROR_CHECK(err_code);
+				
+				// Read Magnetometer sensor values
+				err_code = mpu_read_magnetometer(&magn_values, NULL);
+				APP_ERROR_CHECK(err_code);
+				
+        // Clear terminal and print values
+        //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
+				printf("Accel Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
+				
+				printf("Gyro Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
+				
+				printf("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
+				
+				nrf_gpio_pin_toggle(LED_1);
+        nrf_delay_ms(50);
+				
+								/*
         uint8_t cr;
         while (app_uart_get(&cr) != NRF_SUCCESS);
         while (app_uart_put(cr) != NRF_SUCCESS);
@@ -209,24 +267,6 @@ int main(void)
             }
         }
 				*/
-			
-			  // Read accelerometer sensor values
-        err_code = mpu_read_accel(&acc_values);
-        APP_ERROR_CHECK(err_code);
-			
-				// Read gyroscope sensor values
-				err_code = mpu_read_gyro(&gyro_values);
-				APP_ERROR_CHECK(err_code);
-				
-        // Clear terminal and print values
-        //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
-				printf("Accel Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
-				nrf_gpio_pin_toggle(LED_1);
-				
-				printf("Gyro Data: X: %04d ; Y: %04d ; Z: %04d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
-				nrf_gpio_pin_toggle(LED_2);
-				
-        nrf_delay_ms(50);
     }
 		
 		
