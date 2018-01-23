@@ -180,13 +180,13 @@ void magn_setup()
 {
 		ret_code_t ret_code;
 		
-		/*
+		
 		//Enable bypass mode
 		mpu_int_pin_cfg_t bypass_config;
 		bypass_config.i2c_bypass_en = 1;
 		ret_code = mpu_int_cfg_pin(&bypass_config); // Set bypass mode
 		APP_ERROR_CHECK(ret_code); // Check for errors in return value
-		*/
+		
 	
 		// Setup and configure the MPU Magnetometer
 		mpu_magn_config_t p_mpu_magn_config;
