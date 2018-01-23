@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52840_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52840_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Mon Jan 22 19:58:57 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Tue Jan 23 13:44:23 2018
 <BR><P>
 <H3>Maximum Stack Usage =        232 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -465,7 +465,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printf6.o(i.__0printf$6)
 </UL>
-<P><STRONG><a name="[66]"></a>magn_setup</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, main.o(i.magn_setup))
+<P><STRONG><a name="[66]"></a>magn_setup</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, main.o(i.magn_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = magn_setup &rArr; mpu_magnetometer_init &rArr; nrf_drv_mpu_read_registers &rArr; nrf_drv_twi_tx &rArr; nrf_drv_twi_xfer &rArr; twim_xfer &rArr; nrf_twim_event_clear
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_mpu_write_magnetometer_register

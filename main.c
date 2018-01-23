@@ -197,7 +197,7 @@ void magn_setup()
 		ret_code = mpu_magnetometer_init(&p_mpu_magn_config);
 		APP_ERROR_CHECK(ret_code); // Check for errors in return value
 	
-		ret_code = nrf_drv_mpu_write_magnetometer_register(0x0A, 1);	//writing to the control register
+		ret_code = nrf_drv_mpu_write_magnetometer_register(0x0A, 6);	//writing to the control register
 		APP_ERROR_CHECK(ret_code);	
 		
 		uint8_t TempReading;
@@ -209,6 +209,10 @@ void magn_setup()
 		APP_ERROR_CHECK(ret_code);
 		printf("Vaule read from control register: %d \n", TempReading);
 
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x03, &TempReading, 8);
+		APP_ERROR_CHECK(ret_code);
+		printf("Vaule read from HXL 0x03 register: %d \n", TempReading);
+		
 }
 
 /**
