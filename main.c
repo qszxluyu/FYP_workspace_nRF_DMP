@@ -181,11 +181,12 @@ void magn_setup()
 		
 		
 		//Enable bypass mode
+	/*
 		mpu_int_pin_cfg_t bypass_config;
 		bypass_config.i2c_bypass_en = 1;
 		ret_code = mpu_int_cfg_pin(&bypass_config); // Set bypass mode
 		APP_ERROR_CHECK(ret_code); // Check for errors in return value
-		
+	*/	
 	
 		// Setup and configure the MPU Magnetometer
 		mpu_magn_config_t p_mpu_magn_config;
@@ -216,14 +217,9 @@ int main(void)
 		accel_values_t acc_values;
 		gyro_values_t gyro_values;
 		magn_values_t magn_values;
+
 	
-		const uint8_t MAG_DATA_SIZE = 10;
-		uint8_t magn_data[MAG_DATA_SIZE];
-		memset(magn_data, 0, MAG_DATA_SIZE);
-		
-		//mpu_magn_read_status_t magn_read_status;
-	
-		//uint32_t sample_number = 0;
+
 		uint32_t err_code;
 
     while (true)
