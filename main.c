@@ -179,6 +179,8 @@ void mpu_setup(void)
 void magn_setup()
 {
 		ret_code_t ret_code;
+	
+		uint8_t TempReading;
 		
 		
 		//Enable bypass mode
@@ -189,30 +191,43 @@ void magn_setup()
 		
 	
 		// Setup and configure the MPU Magnetometer
-		mpu_magn_config_t p_mpu_magn_config;
+	
+		//mpu_magn_config_t p_mpu_magn_config;
 		
-		p_mpu_magn_config.resolution = OUTPUT_RESOLUTION_16bit; // Set output resolution
-		p_mpu_magn_config.mode = CONTINUOUS_MEASUREMENT_100Hz_MODE;	//Set measurement mode
+		//p_mpu_magn_config.resolution = OUTPUT_RESOLUTION_14bit; // Set output resolution
+		//p_mpu_magn_config.mode = CONTINUOUS_MEASUREMENT_100Hz_MODE;	//Set measurement mode
 		
-		ret_code = mpu_magnetometer_init(&p_mpu_magn_config);
-		APP_ERROR_CHECK(ret_code); // Check for errors in return value
+		//ret_code = mpu_magnetometer_init(&p_mpu_magn_config);
+		//APP_ERROR_CHECK(ret_code); // Check for errors in return value
 	
 		ret_code = nrf_drv_mpu_write_magnetometer_register(0x0A, 6);	//writing to the control register
 		APP_ERROR_CHECK(ret_code);	
 		
-		uint8_t TempReading;
-		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x00, &TempReading, 8);
+		
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x00, &TempReading, 1);
 		APP_ERROR_CHECK(ret_code);
 		printf("Device ID: %d \n", TempReading);
 
-		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x0A, &TempReading, 8);
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x0A, &TempReading, 1);
 		APP_ERROR_CHECK(ret_code);
 		printf("Vaule read from control register: %d \n", TempReading);
 
-		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x03, &TempReading, 8);
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x03, &TempReading, 1);
 		APP_ERROR_CHECK(ret_code);
+		uint8_t status_2_reg;
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(MPU_AK89XX_REG_ST2, &status_2_reg, 1);
 		printf("Vaule read from HXL 0x03 register: %d \n", TempReading);
 		
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x03, &TempReading, 1);
+		APP_ERROR_CHECK(ret_code);
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(MPU_AK89XX_REG_ST2, &status_2_reg, 1);
+		printf("Vaule read from HXL 0x03 register: %d \n", TempReading);
+
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(0x03, &TempReading, 1);
+		APP_ERROR_CHECK(ret_code);
+		ret_code = nrf_drv_mpu_read_magnetometer_registers(MPU_AK89XX_REG_ST2, &status_2_reg, 1);
+		printf("Vaule read from HXL 0x03 register: %d \n", TempReading);
+
 }
 
 /**
@@ -244,7 +259,7 @@ int main(void)
 		//uint32_t sample_number = 0;
 		uint32_t err_code;
 
-    //while (true)
+    while (true)
     {
 				
 			  // Read accelerometer sensor values

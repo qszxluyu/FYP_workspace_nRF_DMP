@@ -3,6 +3,7 @@
 ".\_build\nrf_drv_twi.o"
 ".\_build\nrf_drv_mpu_twi.o"
 ".\_build\app_mpu.o"
+"..\..\..\libmpllib.lib"
 ".\_build\boards.o"
 ".\_build\nrf_drv_common.o"
 ".\_build\nrf_drv_uart.o"
