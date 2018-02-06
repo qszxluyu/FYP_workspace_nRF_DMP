@@ -1003,7 +1003,7 @@ Image Symbol Table
     tx_buf                                   0x2000011c   Data        1024  main.o(.bss)
     .bss                                     0x2000051c   Section       40  nrf_drv_twi.o(.bss)
     m_cb                                     0x2000051c   Data          40  nrf_drv_twi.o(.bss)
-    .bss                                     0x20000544   Section       14  nrf_drv_mpu_twi.o(.bss)
+    .bss                                     0x20000544   Section       16  nrf_drv_mpu_twi.o(.bss)
     .bss                                     0x20000554   Section       32  nrf_drv_uart.o(.bss)
     m_cb                                     0x20000554   Data          32  nrf_drv_uart.o(.bss)
     .bss                                     0x20000574   Section       32  app_uart_fifo.o(.bss)
@@ -1186,7 +1186,7 @@ Image Symbol Table
     Region$$Table$$Limit                     0x000020cc   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000014   Data           4  retarget.o(.data)
     SystemCoreClock                          0x20000018   Data           4  system_nrf52840.o(.data)
-    twi_tx_buffer                            0x20000544   Data          14  nrf_drv_mpu_twi.o(.bss)
+    twi_tx_buffer                            0x20000544   Data          16  nrf_drv_mpu_twi.o(.bss)
     __initial_sp                             0x20002598   Data           0  arm_startup_nrf52840.o(STACK)
 
 
@@ -1338,8 +1338,7 @@ Memory Map of the image
     0x20000018   0x00000004   Data   RW         1577    .data               system_nrf52840.o
     0x2000001c   0x00000500   Zero   RW           10    .bss                main.o
     0x2000051c   0x00000028   Zero   RW          233    .bss                nrf_drv_twi.o
-    0x20000544   0x0000000e   Zero   RW          423    .bss                nrf_drv_mpu_twi.o
-    0x20000552   0x00000002   PAD
+    0x20000544   0x00000010   Zero   RW          423    .bss                nrf_drv_mpu_twi.o
     0x20000554   0x00000020   Zero   RW          793    .bss                nrf_drv_uart.o
     0x20000574   0x00000020   Zero   RW         1143    .bss                app_uart_fifo.o
     0x20000594   0x00000004   PAD
@@ -1362,7 +1361,7 @@ Image component sizes
        194         18          8          0          0       8890   boards.o
        770        282         28          0       1280      55166   main.o
         56          0          0          0          0      27575   nrf_drv_common.o
-       520         68         24          2         14      13254   nrf_drv_mpu_twi.o
+       520         68         24          2         16      13254   nrf_drv_mpu_twi.o
       1616         48         12          0         40      37480   nrf_drv_twi.o
       2186         74          0          0         32      42365   nrf_drv_uart.o
         14          0          0          4          0       2934   retarget.o
@@ -1371,7 +1370,7 @@ Image component sizes
     ----------------------------------------------------------------------
       6712        596        648         28       9596     243661   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        18          0          0          2          6          0   (incl. Padding)
+        18          0          0          2          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
