@@ -71,6 +71,102 @@
 #endif //PERIPHERAL_RESOURCE_SHARING_ENABLED
 // </e>
 
+//=====new=====//
+
+// <e> CLOCK_ENABLED - nrf_drv_clock - CLOCK peripheral driver configuration
+//==========================================================
+#ifndef CLOCK_ENABLED
+#define CLOCK_ENABLED 1
+#endif
+#if  CLOCK_ENABLED
+
+// <o> CLOCK_CONFIG_XTAL_FREQ - HF XTAL Frequency
+ 
+// <0=> Default (64 MHz)
+
+#ifndef CLOCK_CONFIG_XTAL_FREQ
+#define CLOCK_CONFIG_XTAL_FREQ 0
+#endif
+
+// <o> CLOCK_CONFIG_LF_SRC - LF Clock Source
+ 
+// <0=> RC
+// <1=> XTAL
+// <2=> Synth
+
+#ifndef CLOCK_CONFIG_LF_SRC
+#define CLOCK_CONFIG_LF_SRC 0
+#endif
+
+// <o> CLOCK_CONFIG_IRQ_PRIORITY - Interrupt priority
+ 
+// <0=> 0 (highest) 
+// <1=>	1
+// <2=>	2
+// <3=> 3
+// <4=> 4(except nRF51 family)
+// <5=> 5(except nRF51 family)
+// <6=> 6(except nRF51 family)
+// <7=> 7(except nRF51 family)
+
+#ifndef CLOCK_CONFIG_IRQ_PRIORITY
+#define CLOCK_CONFIG_IRQ_PRIORITY 0
+#endif
+
+// <q> CLOCK_CONFIG_LOG_ENABLED - Enables logging in the module
+
+#ifndef CLOCK_CONFIG_LOG_ENABLED
+#define CLOCK_CONFIG_LOG_ENABLED 0
+#endif
+
+// <o> CLOCK_CONFIG_LOG_LEVEL - Default Severity level
+ 
+// <0=> Off 
+// <1=>	Error
+// <2=>	Warning
+// <3=> Info
+// <4=> Debug
+
+#ifndef CLOCK_CONFIG_LOG_LEVEL
+#define CLOCK_CONFIG_LOG_LEVEL 0
+#endif
+
+// <o> CLOCK_CONFIG_INFO_COLOR - ANSI escape code prefix
+ 
+// <0=> Default 
+// <1=> Black 
+// <2=> Red 
+// <3=> Green 
+// <4=> Yellow 
+// <5=> Blue 
+// <6=> Magenta 
+// <7=> Cyan 
+// <8=> White 
+
+#ifndef CLOCK_CONFIG_INFO_COLOR
+#define CLOCK_CONFIG_INFO_COLOR 0
+#endif
+
+// <o> CLOCK_CONFIG_DEBUG_COLOR - ANSI escape code prefix
+ 
+// <0=> Default 
+// <1=> Black 
+// <2=> Red 
+// <3=> Green 
+// <4=> Yellow 
+// <5=> Blue 
+// <6=> Magenta 
+// <7=> Cyan 
+// <8=> White 
+
+#ifndef CLOCK_CONFIG_DEBUG_COLOR
+#define CLOCK_CONFIG_DEBUG_COLOR 0
+#endif
+
+#endif //CLOCK_ENABLED
+// </e>
+
+//=======new end here========//
 
 // <e> TWIS_ENABLED - nrf_drv_twis - TWIS peripheral driver
 //==========================================================
@@ -557,6 +653,80 @@
 #ifndef RETARGET_ENABLED
 #define RETARGET_ENABLED 1
 #endif
+
+
+
+
+// <e> APP_TIMER_ENABLED - app_timer - Application Timer
+//==========================================================
+#ifndef APP_TIMER_ENABLED
+#define APP_TIMER_ENABLED 1
+#endif
+#if  APP_TIMER_ENABLED
+
+// <o> APP_TIMER_CONFIG_RTC_FREQUENCY - Configure RTC prescaler
+ 
+// <0=> 32768 Hz 
+// <1=>	16384 Hz
+// <3=>	8192 Hz
+// <7=> 4096 Hz
+// <15=> 2048 Hz
+// <31=> 1024 Hz
+
+#ifndef APP_TIMER_CONFIG_RTC_FREQUENCY
+#define APP_TIMER_CONFIG_RTC_FREQUENCY 0
+#endif
+
+// <o> APP_TIMER_CONFIG_IRQ_PRIORITY - Interrupt priority
+ 
+// <0=> 0 (highest) 
+// <1=>	1
+// <2=>	2
+// <3=> 3
+// <4=> 4(except nRF51 family)
+// <5=> 5(except nRF51 family)
+// <6=> 6(except nRF51 family)
+// <7=> 7(except nRF51 family)
+
+#ifndef APP_TIMER_CONFIG_IRQ_PRIORITY
+#define APP_TIMER_CONFIG_IRQ_PRIORITY 0
+#endif
+
+// <o> APP_TIMER_CONFIG_OP_QUEUE_SIZE - Capacity of timer requests queue
+
+#ifndef APP_TIMER_CONFIG_OP_QUEUE_SIZE
+#define APP_TIMER_CONFIG_OP_QUEUE_SIZE 3
+#endif
+
+// <q> APP_TIMER_CONFIG_USE_SCHEDULER - Enable scheduling app_timer events to app_scheduler
+
+#ifndef APP_TIMER_CONFIG_USE_SCHEDULER
+#define APP_TIMER_CONFIG_USE_SCHEDULER 0
+#endif
+
+// <q> APP_TIMER_WITH_PROFILER - Enable app_timer profiling
+
+#ifndef APP_TIMER_WITH_PROFILER
+#define APP_TIMER_WITH_PROFILER 0
+#endif
+
+// <q> APP_TIMER_KEEPS_RTC_ACTIVE - Enable RTC always on
+
+#ifndef APP_TIMER_KEEPS_RTC_ACTIVE
+#define APP_TIMER_KEEPS_RTC_ACTIVE 0
+#endif
+
+// <o> APP_TIMER_CONFIG_SWI_NUMBER - Configure SWI instance used
+ 
+// <0=> 0 
+// <1=>	1
+
+#ifndef APP_TIMER_CONFIG_SWI_NUMBER
+#define APP_TIMER_CONFIG_SWI_NUMBER 0
+#endif
+
+#endif //APP_TIMER_ENABLED
+// </e>
 
 // </h> 
 //==========================================================

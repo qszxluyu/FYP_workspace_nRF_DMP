@@ -62,13 +62,21 @@
 #include "nrf_log_ctrl.h"
 #include "boards.h"
 
+
 #include "math.h"
+
+#include "inv_mpu.h"
+#include "app_timer.h"
+#include "nrf_drv_clock.h"
 
 //#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
 
 #define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
 #define UART_TX_BUF_SIZE 1024                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
+
+// General application timer settings.
+APP_TIMER_DEF(timer1);
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -198,19 +206,86 @@ void magn_setup()
 
 }
 
+// Function starting the internal LFCLK oscillator.
+// This is needed by RTC1 which is used by the application timer
+// (When SoftDevice is enabled the LFCLK is always running and this is not needed).
+static void lfclk_request(void)
+{
+    uint32_t err_code = nrf_drv_clock_init();
+    APP_ERROR_CHECK(err_code);
+    nrf_drv_clock_lfclk_request(NULL);
+}
+
+uint32_t millis(void)
+{
+  return(app_timer_cnt_get() / 32.768);
+}
+
+// Timeout handler for the repeated timer
+static void timer_a_handler(void * p_context)
+{
+    //nrf_gpio_pin_toggle(LED_2);
+		//do nothing
+}
+
+// Create timers
+static void create_timers()
+{   
+    uint32_t err_code;
+
+    // Create timers
+    err_code = app_timer_create(&timer1,
+                                APP_TIMER_MODE_REPEATED,
+                                timer_a_handler);
+    APP_ERROR_CHECK(err_code);
+}
+
 /**
  * @brief Function for main application entry.
  */
+
+static void mpu_twi_read(unsigned char slave_addr,
+												 unsigned char reg_addr,
+												 unsigned char length,
+												 unsigned char *data)
+{
+	//need implemetation
+};
+
+static void mpu_twi_write(unsigned char slave_addr,
+													unsigned char reg_addr,
+													unsigned char length,
+													unsigned char const *data)
+{
+	//need implemetation
+};
+	
 int main(void)
 {		
+		uint32_t err_code;
+	
+    // Request LF clock.
+    lfclk_request();
+		// Initialize the application timer module.
+   	err_code = app_timer_init();
+		APP_ERROR_CHECK(err_code);
+	
+		create_timers();
+	
+		err_code = app_timer_start(timer1, APP_TIMER_TICKS(216000), NULL);
+		APP_ERROR_CHECK(err_code);		
+	
+		//set up uart
 		uart_config();
 		
-		printf("\r\nTest1: MPU twi communication \r\n");
-	
+		//printf("\r\nTest1: MPU twi communication \r\n");
+		
+		//set up mpu acc & gyro
 		mpu_setup();
 
-		printf("\r\nMPU setup complete! \r\n");	
-	
+		//printf("\r\nMPU setup complete! \r\n");	
+		
+		//set up mpu magn
 		magn_setup();
 	
 		//variables carry out the reading from MPU9250
@@ -218,9 +293,7 @@ int main(void)
 		gyro_values_t gyro_values;
 		magn_values_t magn_values;
 
-	
 
-		uint32_t err_code;
 
     while (true)
     {
@@ -247,6 +320,8 @@ int main(void)
 				
 				nrf_gpio_pin_toggle(LED_1);
         nrf_delay_ms(50);
+				
+				//app_timer_pause();
 				
 								/*
         uint8_t cr;

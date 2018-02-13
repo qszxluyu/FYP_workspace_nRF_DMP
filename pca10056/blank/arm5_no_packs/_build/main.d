@@ -47,3 +47,8 @@
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu.h
+.\_build\main.o: ..\..\..\..\..\..\components\libraries\timer\app_timer.h
+.\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\clock\nrf_drv_clock.h
+.\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_clock.h
+.\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\common\nrf_drv_common.h
