@@ -69,11 +69,14 @@
 #include "app_timer.h"
 #include "nrf_drv_clock.h"
 
+#include "nrf_drv_inv_dmp.h"
+
 //#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
 
 #define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
 #define UART_TX_BUF_SIZE 1024                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
+
 
 // General application timer settings.
 APP_TIMER_DEF(timer1);
@@ -216,11 +219,6 @@ static void lfclk_request(void)
     nrf_drv_clock_lfclk_request(NULL);
 }
 
-uint32_t millis(void)
-{
-  return(app_timer_cnt_get() / 32.768);
-}
-
 // Timeout handler for the repeated timer
 static void timer_a_handler(void * p_context)
 {
@@ -242,38 +240,16 @@ static void create_timers()
 
 /**
  * @brief Function for main application entry.
- */
-
-static void mpu_twi_read(unsigned char slave_addr,
-												 unsigned char reg_addr,
-												 unsigned char length,
-												 unsigned char *data)
-{
-	//need implemetation
-};
-
-static void mpu_twi_write(unsigned char slave_addr,
-													unsigned char reg_addr,
-													unsigned char length,
-													unsigned char const *data)
-{
-	//need implemetation
-};
-	
+ */	
 int main(void)
 {		
 		uint32_t err_code;
+		//variables carry out the reading from MPU9250
+		accel_values_t acc_values;
+		gyro_values_t gyro_values;
+		magn_values_t magn_values;
 	
-    // Request LF clock.
-    lfclk_request();
-		// Initialize the application timer module.
-   	err_code = app_timer_init();
-		APP_ERROR_CHECK(err_code);
-	
-		create_timers();
-	
-		err_code = app_timer_start(timer1, APP_TIMER_TICKS(216000), NULL);
-		APP_ERROR_CHECK(err_code);		
+		unsigned long timestamp;
 	
 		//set up uart
 		uart_config();
@@ -288,12 +264,17 @@ int main(void)
 		//set up mpu magn
 		magn_setup();
 	
-		//variables carry out the reading from MPU9250
-		accel_values_t acc_values;
-		gyro_values_t gyro_values;
-		magn_values_t magn_values;
-
-
+		// Request LF clock.
+    lfclk_request();
+		// Initialize the application timer module.
+   	err_code = app_timer_init();
+		APP_ERROR_CHECK(err_code);
+	
+		create_timers();
+	
+		err_code = app_timer_start(timer1, APP_TIMER_TICKS(216000), NULL);
+		APP_ERROR_CHECK(err_code);		
+	
 
     while (true)
     {
@@ -309,6 +290,8 @@ int main(void)
 				// Read Magnetometer sensor values
 				err_code = mpu_read_magnetometer(&magn_values, NULL);
 				APP_ERROR_CHECK(err_code);
+			
+				millis(&timestamp);
 				
         // Clear terminal and print values
         //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
@@ -317,6 +300,8 @@ int main(void)
 				printf("Gyro Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
 				
 				printf("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
+				
+				printf("Timestamp: T: %ld ;  \n ", timestamp);
 				
 				nrf_gpio_pin_toggle(LED_1);
         nrf_delay_ms(50);

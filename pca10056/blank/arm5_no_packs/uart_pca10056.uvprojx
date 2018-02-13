@@ -409,6 +409,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu.c</FilePath>
             </File>
+            <File>
+              <FileName>nrf_drv_inv_dmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\nrf_drv_inv_dmp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -525,6 +530,9 @@
               <FilePath>..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>inv_Motion_Driver</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

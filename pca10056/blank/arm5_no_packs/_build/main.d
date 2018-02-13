@@ -52,3 +52,4 @@
 .\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\clock\nrf_drv_clock.h
 .\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_clock.h
 .\_build\main.o: ..\..\..\..\..\..\components\drivers_nrf\common\nrf_drv_common.h
+.\_build\main.o: ..\..\..\nrf_drv_inv_dmp.h

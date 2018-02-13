@@ -4,6 +4,7 @@
 ".\_build\nrf_drv_mpu_twi.o"
 ".\_build\app_mpu.o"
 ".\_build\inv_mpu.o"
+".\_build\nrf_drv_inv_dmp.o"
 ".\_build\boards.o"
 ".\_build\nrf_drv_clock.o"
 ".\_build\nrf_drv_common.o"
