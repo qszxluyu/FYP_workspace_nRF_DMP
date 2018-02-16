@@ -55,6 +55,16 @@ uint32_t nrf_drv_mpu_read_registers(uint8_t reg, uint8_t * p_data, uint32_t leng
 uint32_t nrf_drv_mpu_read_magnetometer_registers(uint8_t reg, uint8_t * p_data, uint32_t length);
 uint32_t nrf_drv_mpu_write_magnetometer_register(uint8_t reg, uint8_t data);
 
+uint32_t mpu_twi_read_test(uint8_t slave_addr,
+											uint8_t reg_addr,
+											uint32_t length,
+											uint8_t *data);
+											
+uint32_t mpu_twi_write_test(uint8_t slave_addr,
+													uint8_t reg_addr,
+													uint32_t length,
+													uint8_t data);
+
 #endif /* NRF_DRV_MPU__ */
 
 /**

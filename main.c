@@ -65,6 +65,7 @@
 
 #include "math.h"
 
+#include "nrf_drv_mpu.h"
 #include "inv_mpu.h"
 #include "app_timer.h"
 #include "nrf_drv_clock.h"
@@ -76,6 +77,9 @@
 #define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
 #define UART_TX_BUF_SIZE 1024                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
+
+#define MPU_ADDRESS     			0x68 
+#define MPU_AK89XX_MAGN_ADDRESS     0x0C
 
 
 // General application timer settings.
@@ -189,15 +193,6 @@ void mpu_setup(void)
 void magn_setup()
 {
 		ret_code_t ret_code;
-		
-		
-		//Enable bypass mode
-	/*
-		mpu_int_pin_cfg_t bypass_config;
-		bypass_config.i2c_bypass_en = 1;
-		ret_code = mpu_int_cfg_pin(&bypass_config); // Set bypass mode
-		APP_ERROR_CHECK(ret_code); // Check for errors in return value
-	*/	
 	
 		// Setup and configure the MPU Magnetometer
 		mpu_magn_config_t p_mpu_magn_config;
@@ -248,6 +243,8 @@ int main(void)
 		accel_values_t acc_values;
 		gyro_values_t gyro_values;
 		magn_values_t magn_values;
+		
+		uint8_t TempReading;
 	
 		unsigned long timestamp;
 	
@@ -263,6 +260,10 @@ int main(void)
 		
 		//set up mpu magn
 		magn_setup();
+		
+		err_code=mpu_twi_read_test(0x68, 0x75, 1, &TempReading);
+		APP_ERROR_CHECK(err_code);
+		printf("Device ID: %d \n", TempReading);
 	
 		// Request LF clock.
     lfclk_request();
@@ -272,11 +273,10 @@ int main(void)
 	
 		create_timers();
 	
-		err_code = app_timer_start(timer1, APP_TIMER_TICKS(216000), NULL);
+		err_code = app_timer_start(timer1, APP_TIMER_TICKS(360000), NULL);
 		APP_ERROR_CHECK(err_code);		
-	
-
-    while (true)
+    
+		while (true)
     {
 				
 			  // Read accelerometer sensor values
@@ -304,7 +304,7 @@ int main(void)
 				printf("Timestamp: T: %ld ;  \n ", timestamp);
 				
 				nrf_gpio_pin_toggle(LED_1);
-        nrf_delay_ms(50);
+        nrf_delay_ms(100);
 				
 				//app_timer_pause();
 				

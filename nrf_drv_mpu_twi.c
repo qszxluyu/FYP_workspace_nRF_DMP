@@ -225,6 +225,53 @@ uint32_t nrf_drv_mpu_write_magnetometer_register(uint8_t reg, uint8_t data)
     return err_code;
 }
 
+uint32_t mpu_twi_read_test(uint8_t slave_addr,
+											uint8_t reg_addr,
+											uint32_t length,
+											uint8_t *data)
+{
+	  uint32_t err_code;
+		uint32_t timeout = MPU_TWI_TIMEOUT;
+	
+	  err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, &reg_addr, 1, false);
+		if(err_code != NRF_SUCCESS) return err_code;
+
+    while((!twi_tx_done) && --timeout);
+    if(!timeout) return NRF_ERROR_TIMEOUT;
+    twi_tx_done = false;	
+	
+	  err_code = nrf_drv_twi_rx(&m_twi_instance, slave_addr, data, length);
+    if(err_code != NRF_SUCCESS) return err_code;
+		
+		timeout = MPU_TWI_TIMEOUT;
+    while((!twi_rx_done) && --timeout);
+    if(!timeout) return NRF_ERROR_TIMEOUT;
+    twi_rx_done = false;
+	
+		return err_code;
+}
+
+uint32_t mpu_twi_write_test(uint8_t slave_addr,
+													uint8_t reg_addr,
+													uint32_t length,
+													uint8_t data)
+{
+		uint32_t err_code;
+		uint32_t timeout = MPU_TWI_TIMEOUT;
+	
+    uint8_t packet[2] = {reg_addr, data};
+
+    err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, packet, 2, false);
+    if(err_code != NRF_SUCCESS) return err_code;
+
+    while((!twi_tx_done) && --timeout);
+    if(!timeout) return NRF_ERROR_TIMEOUT;
+
+    twi_tx_done = false;
+		
+		return err_code;
+}
+
 #endif // (defined(MPU9150) || defined(MPU9255)) && (TWI_COUNT >= 1) // Magnetometer only works with TWI so check if TWI is enabled
 
 
