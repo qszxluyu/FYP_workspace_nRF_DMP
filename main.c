@@ -53,6 +53,8 @@
 #include <string.h>
 #include "app_uart.h"
 #include "app_error.h"
+#include "app_timer.h"
+#include "nrf_drv_clock.h"
 #include "nrf_delay.h"
 #include "nrf.h"
 #include "bsp.h"
@@ -61,14 +63,15 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "boards.h"
-
+#include "nrf_drv_mpu.h"
 
 #include "math.h"
 
-#include "nrf_drv_mpu.h"
+#include "dmpkey.h"
+#include "dmpmap.h"
 #include "inv_mpu.h"
-#include "app_timer.h"
-#include "nrf_drv_clock.h"
+#include "inv_mpu_dmp_motion_driver.h"
+#include "eMPL_outputs.h"
 
 #include "nrf_drv_inv_dmp.h"
 

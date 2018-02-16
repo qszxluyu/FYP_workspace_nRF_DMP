@@ -75,6 +75,11 @@ uint32_t i2c_write_porting(unsigned char slave_addr,
 													unsigned char length,
 													unsigned char *data);
 													
+uint32_t mpu_twi_write_test(uint8_t slave_addr,
+													uint8_t reg_addr,
+													uint32_t length,
+													unsigned char *data);
+													
 #endif /* NRF_DRV_MPU__ */
 
 /**

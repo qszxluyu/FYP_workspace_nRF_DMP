@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52840_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52840_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Fri Feb 16 15:48:54 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Fri Feb 16 18:25:46 2018
 <BR><P>
 <H3>Maximum Stack Usage =        232 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -832,13 +832,13 @@ Global Symbols
 <P><STRONG><a name="[67]"></a>nrf_drv_uart_tx</STRONG> (Thumb, 262 bytes, Stack size 32 bytes, nrf_drv_uart.o(i.nrf_drv_uart_tx))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = nrf_drv_uart_tx &rArr; tx_byte &rArr; nrf_uart_event_clear
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_byte
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx_in_progress
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_byte
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uarte_event_clear
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uarte_event_check
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uart_event_clear
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uart_event_check
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_is_in_RAM
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx_in_progress
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_put
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_event_handler
@@ -1097,21 +1097,21 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[a6]"></a>nrf_uart_event_check</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, nrf_drv_uart.o(i.nrf_uart_event_check))
-<BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uart
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
 </UL>
 
 <P><STRONG><a name="[79]"></a>nrf_uart_event_clear</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, nrf_drv_uart.o(i.nrf_uart_event_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nrf_uart_event_clear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tx_byte
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_enable
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_byte
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uart
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interrupts_enable
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
 </UL>
 
 <P><STRONG><a name="[b3]"></a>nrf_uart_int_enable_check</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, nrf_drv_uart.o(i.nrf_uart_int_enable_check))
@@ -1119,18 +1119,18 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[a8]"></a>nrf_uarte_event_check</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, nrf_drv_uart.o(i.nrf_uarte_event_check))
-<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uarte
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
 </UL>
 
 <P><STRONG><a name="[78]"></a>nrf_uarte_event_clear</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, nrf_drv_uart.o(i.nrf_uarte_event_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nrf_uarte_event_clear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uarte
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interrupts_enable
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
 </UL>
 
 <P><STRONG><a name="[a7]"></a>rx_byte</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, nrf_drv_uart.o(i.rx_byte))
@@ -1154,8 +1154,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uart_event_clear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uart
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_enable
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_enable
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_rx_for_uart
 </UL>
 
 <P><STRONG><a name="[a9]"></a>tx_byte</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, nrf_drv_uart.o(i.tx_byte))
@@ -1163,8 +1163,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uart_event_clear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_tx
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_handler
 </UL>
 
 <P><STRONG><a name="[b5]"></a>tx_done_event</STRONG> (Thumb, 28 bytes, Stack size 24 bytes, nrf_drv_uart.o(i.tx_done_event))
@@ -1316,9 +1316,9 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> app_uart_fifo.o(i.app_uart_init)
 </UL>
 <P><STRONG><a name="[4b]"></a>_printf_core</STRONG> (Thumb, 748 bytes, Stack size 96 bytes, printf6.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<BR><BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$6
 </UL>
