@@ -251,15 +251,15 @@ uint32_t mpu_twi_read_test(uint8_t slave_addr,
 		return err_code;
 }
 
-uint32_t mpu_twi_write_test(uint8_t slave_addr,
+uint32_t mpu_twi_write_single_test(uint8_t slave_addr,
 													uint8_t reg_addr,
 													uint32_t length,
-													uint8_t data)
+													uint8_t *data)
 {
 		uint32_t err_code;
 		uint32_t timeout = MPU_TWI_TIMEOUT;
 	
-    uint8_t packet[2] = {reg_addr, data};
+    uint8_t packet[2] = {reg_addr, *data};
 
     err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, packet, 2, false);
     if(err_code != NRF_SUCCESS) return err_code;
@@ -271,6 +271,30 @@ uint32_t mpu_twi_write_test(uint8_t slave_addr,
 		
 		return err_code;
 }
+
+uint32_t i2c_read_porting(unsigned char slave_addr,
+													unsigned char reg_addr,
+													unsigned char length,
+													unsigned char *data)
+{
+		uint32_t err_code;
+		uint8_t *pdata;
+		pdata=(uint8_t*)data;
+		err_code=mpu_twi_read_test((uint8_t)slave_addr, (uint8_t)reg_addr, (uint32_t)length, pdata);
+		return err_code;
+}
+
+uint32_t i2c_write_porting(unsigned char slave_addr,
+													unsigned char reg_addr,
+													unsigned char length,
+													unsigned char *data)
+{
+		uint32_t err_code;
+		uint8_t *pdata;
+		pdata=(uint8_t*)data;
+		err_code=mpu_twi_write_single_test((uint8_t)slave_addr, (uint8_t)reg_addr, (uint32_t)length, pdata);
+		return err_code;	
+}														
 
 #endif // (defined(MPU9150) || defined(MPU9255)) && (TWI_COUNT >= 1) // Magnetometer only works with TWI so check if TWI is enabled
 

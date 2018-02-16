@@ -60,11 +60,21 @@ uint32_t mpu_twi_read_test(uint8_t slave_addr,
 											uint32_t length,
 											uint8_t *data);
 											
-uint32_t mpu_twi_write_test(uint8_t slave_addr,
+uint32_t mpu_twi_write_single_test(uint8_t slave_addr,
 													uint8_t reg_addr,
 													uint32_t length,
-													uint8_t data);
+													uint8_t *data);
 
+uint32_t i2c_read_porting(unsigned char slave_addr,
+													unsigned char reg_addr,
+													unsigned char length,
+													unsigned char *data);
+
+uint32_t i2c_write_porting(unsigned char slave_addr,
+													unsigned char reg_addr,
+													unsigned char length,
+													unsigned char *data);
+													
 #endif /* NRF_DRV_MPU__ */
 
 /**
