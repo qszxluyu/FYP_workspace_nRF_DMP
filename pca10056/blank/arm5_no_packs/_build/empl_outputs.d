@@ -1,0 +1,13 @@
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\eMPL-hal\eMPL_outputs.c
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\eMPL-hal\eMPL_outputs.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
+.\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+.\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\mllite\ml_math_func.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\driver\include\mlmath.h
+.\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\mllite\start_manager.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\mllite\data_builder.h
+.\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\mllite\results_holder.h

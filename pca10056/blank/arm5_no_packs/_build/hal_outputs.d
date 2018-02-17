@@ -1,0 +1,17 @@
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\hal_outputs.c
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\hal_outputs.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\driver\include\log.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\ml_math_func.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\driver\include\mlmath.h
+.\_build\hal_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\start_manager.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\data_builder.h
+.\_build\hal_outputs.o: ..\..\..\eMD-6.0\core\mllite\results_holder.h

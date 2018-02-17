@@ -1,0 +1,14 @@
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\mllite\storage_manager.c
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\mllite\storage_manager.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\driver\include\log.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\mllite\ml_math_func.h
+.\_build\storage_manager.o: ..\..\..\eMD-6.0\core\driver\include\mlmath.h
+.\_build\storage_manager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
