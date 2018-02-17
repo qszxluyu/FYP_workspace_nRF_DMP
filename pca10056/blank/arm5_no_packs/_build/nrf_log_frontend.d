@@ -22,3 +22,14 @@
 .\_build\nrf_log_frontend.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf51_to_nrf52840.h
 .\_build\nrf_log_frontend.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf52_to_nrf52840.h
 .\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\util\sdk_macros.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\util\nrf_assert.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\util\app_error.h
+.\_build\nrf_log_frontend.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\log\nrf_log.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\strerror\nrf_strerror.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_internal.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_backend.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
+.\_build\nrf_log_frontend.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h

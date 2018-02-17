@@ -38,6 +38,7 @@
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.h
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\log\nrf_log.h
+.\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\strerror\nrf_strerror.h
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_internal.h
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
 .\_build\nrf_drv_twi.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h

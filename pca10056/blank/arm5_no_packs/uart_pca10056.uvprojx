@@ -335,7 +335,7 @@
               <MiscControls>--reduce_paths</MiscControls>
               <Define>BOARD_PCA10056 BSP_DEFINES_ONLY CONFIG_GPIO_AS_PINRESET NRF52840_XXAA MPU9255 MPU_USES_TWI MPU9250</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\config\uart_pca10056;..\..\..\config;..\..\..\..\..\..\components;..\..\..\..\..\..\components\boards;..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\components\libraries\bsp;..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\components\libraries\log;..\..\..\..\..\..\components\libraries\log\src;..\..\..\..\..\..\components\libraries\strerror;..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\components\toolchain;..\..\..;..\..\..\..\..\..\external\segger_rtt;..\config;..\..\..\..\..\..\components\libraries\twi;..\..\..\..\..\..\examples\peripheral\test_mpu_uart;..\..\..\..\..\..\components\libraries\experimental_log;..\..\..\..\..\..\components\libraries\experimental_log\src;..\..\..\..\..\..\components\libraries\experimental_memobj;..\..\..\..\..\..\components\libraries\experimental_section_vars;..\..\..\..\..\..\components\drivers_nrf\twi_master;..\..\..\eMD-6.0\core\driver\eMPL;..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\components\drivers_nrf\clock;..\..\..\eMD-6.0\core\eMPL-hal;..\..\..\eMD-6.0\core\driver\include</IncludePath>
+              <IncludePath>..\..\..\config\uart_pca10056;..\..\..\config;..\..\..\..\..\..\components;..\..\..\..\..\..\components\boards;..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\components\libraries\bsp;..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\components\libraries\log;..\..\..\..\..\..\components\libraries\log\src;..\..\..\..\..\..\components\libraries\strerror;..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\components\toolchain;..\..\..;..\..\..\..\..\..\external\segger_rtt;..\config;..\..\..\..\..\..\components\libraries\twi;..\..\..\..\..\..\examples\peripheral\test_mpu_uart;..\..\..\..\..\..\components\libraries\experimental_log;..\..\..\..\..\..\components\libraries\experimental_log\src;..\..\..\..\..\..\components\libraries\experimental_memobj;..\..\..\..\..\..\components\libraries\experimental_section_vars;..\..\..\..\..\..\components\drivers_nrf\twi_master;..\..\..\eMD-6.0\core\driver\eMPL;..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\components\drivers_nrf\clock;..\..\..\eMD-6.0\core\eMPL-hal;..\..\..\eMD-6.0\core\driver\include;..\..\..\eMD-6.0\core\mllite;..\..\..\eMD-6.0\core\mpl</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -405,19 +405,14 @@
               <FilePath>..\..\..\app_mpu.c</FilePath>
             </File>
             <File>
-              <FileName>inv_mpu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu.c</FilePath>
-            </File>
-            <File>
               <FileName>nrf_drv_inv_dmp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\nrf_drv_inv_dmp.c</FilePath>
             </File>
             <File>
-              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
+              <FileName>libmpllib.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\..\..\libmpllib.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -537,7 +532,79 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>inv_Motion_Driver</GroupName>
+          <GroupName>mllite</GroupName>
+          <Files>
+            <File>
+              <FileName>data_builder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\data_builder.c</FilePath>
+            </File>
+            <File>
+              <FileName>hal_outputs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\hal_outputs.c</FilePath>
+            </File>
+            <File>
+              <FileName>message_layer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\message_layer.c</FilePath>
+            </File>
+            <File>
+              <FileName>ml_math_func.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\ml_math_func.c</FilePath>
+            </File>
+            <File>
+              <FileName>mlmath.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\mlmath.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\mpl.c</FilePath>
+            </File>
+            <File>
+              <FileName>results_holder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\results_holder.c</FilePath>
+            </File>
+            <File>
+              <FileName>start_manager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\start_manager.c</FilePath>
+            </File>
+            <File>
+              <FileName>storage_manager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\mllite\storage_manager.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>driver_eMPL</GroupName>
+          <Files>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>eMPL-hal</GroupName>
+          <Files>
+            <File>
+              <FileName>eMPL_outputs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\eMD-6.0\core\eMPL-hal\eMPL_outputs.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
