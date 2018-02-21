@@ -3,6 +3,7 @@
 .\_build\mpl.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
 .\_build\mpl.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
 .\_build\mpl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\mpl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\mpl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
 .\_build\mpl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\_build\mpl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

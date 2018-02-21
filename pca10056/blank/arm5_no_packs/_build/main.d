@@ -62,4 +62,7 @@
 .\_build\main.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mpl\fusion_9axis.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mpl\quaternion_supervisor.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mllite\mpl.h
 .\_build\main.o: ..\..\..\nrf_drv_inv_dmp.h

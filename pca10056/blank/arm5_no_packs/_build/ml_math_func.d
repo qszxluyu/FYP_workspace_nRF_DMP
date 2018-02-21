@@ -5,7 +5,7 @@
 .\_build\ml_math_func.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
 .\_build\ml_math_func.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
 .\_build\ml_math_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\ml_math_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\ml_math_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
 .\_build\ml_math_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\_build\ml_math_func.o: ..\..\..\eMD-6.0\core\driver\include\mlinclude.h
-.\_build\ml_math_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

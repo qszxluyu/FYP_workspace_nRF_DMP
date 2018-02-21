@@ -72,8 +72,13 @@
 #include "inv_mpu.h"
 #include "inv_mpu_dmp_motion_driver.h"
 #include "eMPL_outputs.h"
+#include "fusion_9axis.h"
+#include "quaternion_supervisor.h"
+#include "mpl.h"
 
 #include "nrf_drv_inv_dmp.h"
+
+
 
 //#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
 
@@ -87,6 +92,9 @@
 
 // General application timer settings.
 APP_TIMER_DEF(timer1);
+
+unsigned char *mpl_key = (unsigned char*)"eMPL 5.1";
+
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -250,6 +258,10 @@ int main(void)
 		uint8_t TempReading;
 	
 		unsigned long timestamp;
+		
+		long *quat_data;
+		int8_t accuracy;
+		unsigned long inv_timestamp;
 	
 		//set up uart
 		uart_config();
@@ -277,10 +289,38 @@ int main(void)
 		create_timers();
 	
 		err_code = app_timer_start(timer1, APP_TIMER_TICKS(360000), NULL);
-		APP_ERROR_CHECK(err_code);		
+		APP_ERROR_CHECK(err_code);
+		
+		inv_error_t inv_err_code;
+		inv_init_mpl();
+		inv_init_quaternion();
+		
+		inv_enable_eMPL_outputs();
+		inv_enable_9x_sensor_fusion();
+		inv_enable_quaternion();
+	
+		inv_err_code = inv_start_mpl();
+    if (inv_err_code == INV_ERROR_NOT_AUTHORIZED) {
+        while (1) {
+           printf("Not authorized.\n");
+					 nrf_delay_ms(1000000);
+        }
+    }
+    if (inv_err_code) {
+        printf("Could not start the MPL.\n");
+				nrf_delay_ms(1000000);
+    }
+		if (inv_err_code == INV_SUCCESS){
+        printf("MPL starts!.\n");			
+		}
+		
+		inv_start_9x_sensor_fusion();
+		inv_start_quaternion();
+    //inv_stop_9x_sensor_fusion();
     
 		while (true)
     {
+
 				
 			  // Read accelerometer sensor values
         err_code = mpu_read_accel(&acc_values);
@@ -295,6 +335,8 @@ int main(void)
 				APP_ERROR_CHECK(err_code);
 			
 				millis(&timestamp);
+			
+				inv_err_code = inv_get_sensor_type_quat(quat_data, &accuracy, (inv_time_t*)&inv_timestamp);
 				
         // Clear terminal and print values
         //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
@@ -305,6 +347,8 @@ int main(void)
 				printf("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
 				
 				printf("Timestamp: T: %ld ;  \n ", timestamp);
+				
+				printf("Raw quat data: %ld ; Updated?: %d ; \n ", *quat_data, inv_err_code);
 				
 				nrf_gpio_pin_toggle(LED_1);
         nrf_delay_ms(100);

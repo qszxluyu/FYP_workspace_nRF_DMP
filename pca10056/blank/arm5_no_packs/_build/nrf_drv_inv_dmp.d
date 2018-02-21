@@ -50,3 +50,5 @@
 .\_build\nrf_drv_inv_dmp.o: ..\..\..\nrf_drv_inv_dmp.h
 .\_build\nrf_drv_inv_dmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\_build\nrf_drv_inv_dmp.o: ..\..\..\..\..\..\components\libraries\timer\app_timer.h
+.\_build\nrf_drv_inv_dmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\_build\nrf_drv_inv_dmp.o: ..\..\..\eMD-6.0\core\driver\include\log.h

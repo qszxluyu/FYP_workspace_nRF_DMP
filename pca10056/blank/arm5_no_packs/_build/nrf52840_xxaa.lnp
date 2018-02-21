@@ -5,6 +5,7 @@
 ".\_build\app_mpu.o"
 ".\_build\nrf_drv_inv_dmp.o"
 "..\..\..\libmpllib.lib"
+"..\..\..\eMD-6.0\core\mpl\libmplmpu.lib"
 ".\_build\boards.o"
 ".\_build\nrf_drv_clock.o"
 ".\_build\nrf_drv_common.o"

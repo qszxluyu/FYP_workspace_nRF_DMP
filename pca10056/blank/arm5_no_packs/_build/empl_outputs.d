@@ -3,6 +3,7 @@
 .\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\driver\include\mltypes.h
 .\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\driver\include\stdint_invensense.h
 .\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
 .\_build\empl_outputs.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\_build\empl_outputs.o: ..\..\..\eMD-6.0\core\mllite\ml_math_func.h
