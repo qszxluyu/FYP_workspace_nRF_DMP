@@ -25,6 +25,7 @@
 #include "inv_mpu.h"
 #include "nrf_drv_inv_dmp.h"
 #include "nrf_drv_mpu.h"
+#include "nrf_log.h"
 #include "nrf_delay.h"
 
 
@@ -41,12 +42,12 @@
  * min(int a, int b)
  */
  
-#define i2c_write mpu_twi_write_test
+#define i2c_write i2c_write_porting
 #define i2c_read mpu_twi_read_test
 #define delay_ms nrf_delay_ms
 #define get_ms millis
-#define log_i(...)     do {} while (0)
-#define log_e(...)     do {} while (0)
+#define log_i NRF_LOG_INFO
+#define log_e NRF_LOG_ERROR
 
 static inline int reg_int_cb(struct int_param_s *int_param){
 	return 0;
@@ -2776,19 +2777,23 @@ int mpu_write_mem(unsigned short mem_addr, unsigned short length,
     if (!data)
         return -1;
     if (!st.chip_cfg.sensors)
-        return -1;
-
+        //return -1;
+				return -2;
+		
     tmp[0] = (unsigned char)(mem_addr >> 8);
     tmp[1] = (unsigned char)(mem_addr & 0xFF);
 
     /* Check bank boundaries. */
     if (tmp[1] + length > st.hw->bank_size)
-        return -1;
-
+        //return -1;
+				return -3;
+		
     if (i2c_write(st.hw->addr, st.reg->bank_sel, 2, tmp))
-        return -1;
+        //return -1;
+				return -4;
     if (i2c_write(st.hw->addr, st.reg->mem_r_w, length, data))
-        return -1;
+        //return -1;
+				return -5;
     return 0;
 }
 
@@ -2844,26 +2849,38 @@ int mpu_load_firmware(unsigned short length, const unsigned char *firmware,
 
     if (st.chip_cfg.dmp_loaded)
         /* DMP should only be loaded once. */
-        return -1;
+        return -1;		
 
     if (!firmware)
-        return -1;
+        //return -1;
+				return -2;
     for (ii = 0; ii < length; ii += this_write) {
         this_write = min(LOAD_CHUNK, length - ii);
-        if (mpu_write_mem(ii, this_write, (unsigned char*)&firmware[ii]))
-            return -1;
-        if (mpu_read_mem(ii, this_write, cur))
-            return -1;
+			
+				//******this part is modified for debug use
+				int err_code = mpu_write_mem(ii, this_write, (unsigned char*)&firmware[ii]);
+        if (err_code)
+				//if (mpu_write_mem(ii, this_write, (unsigned char*)&firmware[ii]))
+				{
+						printf("mpu_write_mem return error code: %d \n", err_code);
+            //return -1;
+						return -3;
+        }
+				if (mpu_read_mem(ii, this_write, cur))
+            //return -1;
+						return -4;
         if (memcmp(firmware+ii, cur, this_write))
-            return -2;
+            //return -2;
+						return -5;
     }
 
     /* Set program start address. */
     tmp[0] = start_addr >> 8;
     tmp[1] = start_addr & 0xFF;
     if (i2c_write(st.hw->addr, st.reg->prgm_start_h, 2, tmp))
-        return -1;
-
+        //return -1;
+				return -6;
+		
     st.chip_cfg.dmp_loaded = 1;
     st.chip_cfg.dmp_sample_rate = sample_rate;
     return 0;

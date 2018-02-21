@@ -195,8 +195,8 @@ void mpu_setup(void)
     // Setup and configure the MPU with intial values
     mpu_config_t p_mpu_config = MPU_DEFAULT_CONFIG(); // Load default values
     p_mpu_config.smplrt_div = 19;   // Change sampelrate. Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV). 19 gives a sample rate of 50Hz
-    p_mpu_config.accel_config.afs_sel = AFS_16G; // Set accelerometer full scale range
-		p_mpu_config.gyro_config.fs_sel = GFS_1000DPS; //Set gyroscope full scale range 
+    p_mpu_config.accel_config.afs_sel = AFS_2G; // Set accelerometer full scale range
+		p_mpu_config.gyro_config.fs_sel = GFS_2000DPS; //Set gyroscope full scale range 
     ret_code = mpu_config(&p_mpu_config); // Configure the MPU with above values
     APP_ERROR_CHECK(ret_code); // Check for errors in return value 
 }
@@ -255,7 +255,7 @@ int main(void)
 		gyro_values_t gyro_values;
 		magn_values_t magn_values;
 		
-		uint8_t TempReading;
+		uint8_t TempReading[3]={0};
 	
 		unsigned long timestamp;
 		
@@ -266,20 +266,24 @@ int main(void)
 		//set up uart
 		uart_config();
 		
-		//printf("\r\nTest1: MPU twi communication \r\n");
+		//weak up all sensors
+		//mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
 		
 		//set up mpu acc & gyro
 		mpu_setup();
-
-		//printf("\r\nMPU setup complete! \r\n");	
 		
 		//set up mpu magn
 		magn_setup();
 		
-		err_code=mpu_twi_read_test(0x68, 0x75, 1, &TempReading);
+		//i2c r/w function test
+		/*
+		uint8_t test_data[3]={0,0,0};
+		err_code=i2c_write_porting(0x68,0x13, 3, test_data);
+		err_code=mpu_twi_read_test(0x68, 0x13, 3, TempReading);
 		APP_ERROR_CHECK(err_code);
-		printf("Device ID: %d \n", TempReading);
-	
+		printf("Test result: %d ; %d ; %d \n", TempReading[0],TempReading[1],TempReading[2]);
+		*/
+		
 		// Request LF clock.
     lfclk_request();
 		// Initialize the application timer module.
@@ -291,6 +295,11 @@ int main(void)
 		err_code = app_timer_start(timer1, APP_TIMER_TICKS(360000), NULL);
 		APP_ERROR_CHECK(err_code);
 		
+		//set up logger module
+		//err_code = NRF_LOG_INIT(NULL);
+		//APP_ERROR_CHECK(err_code);
+		
+		//DMP MPL setting
 		inv_error_t inv_err_code;
 		inv_init_mpl();
 		inv_init_quaternion();
@@ -298,7 +307,8 @@ int main(void)
 		inv_enable_eMPL_outputs();
 		inv_enable_9x_sensor_fusion();
 		inv_enable_quaternion();
-	
+		
+		/********mpl starting check********/
 		inv_err_code = inv_start_mpl();
     if (inv_err_code == INV_ERROR_NOT_AUTHORIZED) {
         while (1) {
@@ -313,38 +323,58 @@ int main(void)
 		if (inv_err_code == INV_SUCCESS){
         printf("MPL starts!.\n");			
 		}
+		/*********************************/
 		
-		inv_start_9x_sensor_fusion();
+		/**********dmp firmware loading check**************/
+		
+		inv_err_code = dmp_load_motion_driver_firmware();
+		if (inv_err_code != 0) {
+			printf("Could not download DMP!!! Error Code: %d \n", inv_err_code);
+    }else{
+						printf("DMP downloaded!");
+		}
+		
+		inv_err_code = inv_start_9x_sensor_fusion();
+		if (inv_err_code == INV_SUCCESS){
+        printf("9x sensor fusion starts!.\n");			
+		}
+		
 		inv_start_quaternion();
+		if (inv_err_code == INV_SUCCESS){
+        printf("quaternion starts!.\n");			
+		}
     //inv_stop_9x_sensor_fusion();
     
+		
+		//NRF_LOG_FLUSH();
+		
 		while (true)
     {
 
 				
 			  // Read accelerometer sensor values
-        err_code = mpu_read_accel(&acc_values);
-        APP_ERROR_CHECK(err_code);
+        //err_code = mpu_read_accel(&acc_values);
+        //APP_ERROR_CHECK(err_code);
 			
 				// Read gyroscope sensor values
-				err_code = mpu_read_gyro(&gyro_values);
-				APP_ERROR_CHECK(err_code);
+				//err_code = mpu_read_gyro(&gyro_values);
+				//APP_ERROR_CHECK(err_code);
 				
 				// Read Magnetometer sensor values
-				err_code = mpu_read_magnetometer(&magn_values, NULL);
-				APP_ERROR_CHECK(err_code);
+				//err_code = mpu_read_magnetometer(&magn_values, NULL);
+				//APP_ERROR_CHECK(err_code);
 			
 				millis(&timestamp);
 			
-				inv_err_code = inv_get_sensor_type_quat(quat_data, &accuracy, (inv_time_t*)&inv_timestamp);
+				inv_err_code = inv_get_sensor_type_gyro(quat_data, &accuracy, (inv_time_t*)&inv_timestamp);
 				
         // Clear terminal and print values
         //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
-				printf("Accel Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
+				//printf("Accel Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
 				
-				printf("Gyro Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
+				//printf("Gyro Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
 				
-				printf("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
+				//printf("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
 				
 				printf("Timestamp: T: %ld ;  \n ", timestamp);
 				
