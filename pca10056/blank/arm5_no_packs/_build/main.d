@@ -52,7 +52,6 @@
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h
 .\_build\main.o: ..\..\..\nrf_drv_mpu.h
-.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\driver\eMPL\dmpkey.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\driver\eMPL\dmpmap.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\driver\eMPL\inv_mpu.h
@@ -64,5 +63,8 @@
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mpl\fusion_9axis.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mpl\quaternion_supervisor.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mllite\ml_math_func.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mllite\data_builder.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mllite\mpl.h
 .\_build\main.o: ..\..\..\nrf_drv_inv_dmp.h
+.\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

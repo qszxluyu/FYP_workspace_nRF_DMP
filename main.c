@@ -65,7 +65,7 @@
 #include "boards.h"
 #include "nrf_drv_mpu.h"
 
-#include "math.h"
+//#include "math.h"
 
 #include "dmpkey.h"
 #include "dmpmap.h"
@@ -74,6 +74,9 @@
 #include "eMPL_outputs.h"
 #include "fusion_9axis.h"
 #include "quaternion_supervisor.h"
+#include "ml_math_func.h"
+#include "data_builder.h"
+//#include "fast_no_motion.h"
 #include "mpl.h"
 
 #include "nrf_drv_inv_dmp.h"
@@ -89,12 +92,45 @@
 #define MPU_ADDRESS     			0x68 
 #define MPU_AK89XX_MAGN_ADDRESS     0x0C
 
+#define DEFAULT_MPU_HZ  (20)
+
 
 // General application timer settings.
 APP_TIMER_DEF(timer1);
 
 unsigned char *mpl_key = (unsigned char*)"eMPL 5.1";
 
+struct platform_data_s {
+		signed char orientation[9];
+};
+
+static struct platform_data_s gyro_pdata = {
+    .orientation = { 1, 0, 0,
+                     0, 1, 0,
+                     0, 0, 1}
+};
+
+struct rx_s {
+    unsigned char header[3];
+    unsigned char cmd;
+};
+
+struct hal_s {
+    unsigned char lp_accel_mode;
+    unsigned char sensors;
+    unsigned char dmp_on;
+    unsigned char wait_for_tap;
+    volatile unsigned char new_gyro;
+    unsigned char motion_int_mode;
+    unsigned long no_dmp_hz;
+    unsigned long next_pedo_ms;
+    unsigned long next_temp_ms;
+    unsigned long next_compass_ms;
+    unsigned int report;
+    unsigned short dmp_features;
+    struct rx_s rx;
+};
+static struct hal_s hal = {0};
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -244,18 +280,30 @@ static void create_timers()
     APP_ERROR_CHECK(err_code);
 }
 
+static void tap_cb(unsigned char direction, unsigned char count)
+{
+
+}
+
+static void android_orient_cb(unsigned char orientation)
+{
+	
+}
+
 /**
  * @brief Function for main application entry.
  */	
 int main(void)
 {		
 		uint32_t err_code;
+	  /*
 		//variables carry out the reading from MPU9250
 		accel_values_t acc_values;
 		gyro_values_t gyro_values;
 		magn_values_t magn_values;
-		
-		uint8_t TempReading[3]={0};
+		*/
+	
+		//uint8_t TempReading[3]={0};
 	
 		unsigned long timestamp;
 		
@@ -266,17 +314,14 @@ int main(void)
 		//set up uart
 		uart_config();
 		
-		//weak up all sensors
-		//mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
-		
 		//set up mpu acc & gyro
 		mpu_setup();
 		
 		//set up mpu magn
 		magn_setup();
-		
-		//i2c r/w function test
+
 		/*
+		//i2c r/w function test
 		uint8_t test_data[3]={0,0,0};
 		err_code=i2c_write_porting(0x68,0x13, 3, test_data);
 		err_code=mpu_twi_read_test(0x68, 0x13, 3, TempReading);
@@ -301,15 +346,42 @@ int main(void)
 		
 		//DMP MPL setting
 		inv_error_t inv_err_code;
-		inv_init_mpl();
-		inv_init_quaternion();
 		
-		inv_enable_eMPL_outputs();
-		inv_enable_9x_sensor_fusion();
+		/*********************mpu initiation******************************/
+		struct int_param_s int_param;
+    inv_err_code = mpu_init_inv(&int_param);
+    if (inv_err_code) {
+        printf("Could not initialize the mpu.\n");
+    }
+		/*******************end of mpu initation**************************/
+		
+		/*********mpl initiation*************/
+		
+		inv_err_code = inv_init_mpl();
+		
+		if (inv_err_code == INV_SUCCESS){
+        printf("MPL initiated\n");			
+		}
+		
+		/******end of mpl initiation*********/
+		
+		/************enable modules************/
+		
 		inv_enable_quaternion();
 		
-		/********mpl starting check********/
+		//inv_enable_9x_sensor_fusion();
+		
+		inv_err_code = inv_enable_eMPL_outputs();
+		if(inv_err_code){
+				printf("enable_eMPL_outputs failed! /n");
+		}
+		
+		/*********end of enable modules********/
+		
+		/*********mpl starting*************/
+		
 		inv_err_code = inv_start_mpl();
+		
     if (inv_err_code == INV_ERROR_NOT_AUTHORIZED) {
         while (1) {
            printf("Not authorized.\n");
@@ -323,26 +395,56 @@ int main(void)
 		if (inv_err_code == INV_SUCCESS){
         printf("MPL starts!.\n");			
 		}
-		/*********************************/
 		
-		/**********dmp firmware loading check**************/
+		/******end of mpl starting*********/
+		
+		
+		/*********weak up all sensors************/
+		
+		mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
+		
+		/********end of weak up all sensors******/
+		
+		
+		/*************initialize the DMP**************/
 		
 		inv_err_code = dmp_load_motion_driver_firmware();
 		if (inv_err_code != 0) {
 			printf("Could not download DMP!!! Error Code: %d \n", inv_err_code);
     }else{
-						printf("DMP downloaded!");
+			printf("DMP downloaded! \n");
 		}
 		
+		dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_pdata.orientation));
+		
+		dmp_register_tap_cb(tap_cb);
+    dmp_register_android_orient_cb(android_orient_cb);
+		
+		hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
+        DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO |
+        DMP_FEATURE_GYRO_CAL;		
+		
+	  dmp_enable_feature(hal.dmp_features);
+    dmp_set_fifo_rate(DEFAULT_MPU_HZ);
+    inv_set_quat_sample_rate(1000000L / DEFAULT_MPU_HZ);
+    mpu_set_dmp_state(1);
+    hal.dmp_on = 1;
+		
+		/**********end of initialize the DMP**********/
+		
+		/**********start functions************/
+		/*
 		inv_err_code = inv_start_9x_sensor_fusion();
 		if (inv_err_code == INV_SUCCESS){
         printf("9x sensor fusion starts!.\n");			
 		}
+		*/
 		
-		inv_start_quaternion();
+		inv_err_code = inv_start_quaternion();
 		if (inv_err_code == INV_SUCCESS){
         printf("quaternion starts!.\n");			
 		}
+		
     //inv_stop_9x_sensor_fusion();
     
 		
@@ -366,7 +468,7 @@ int main(void)
 			
 				millis(&timestamp);
 			
-				inv_err_code = inv_get_sensor_type_gyro(quat_data, &accuracy, (inv_time_t*)&inv_timestamp);
+				inv_err_code = inv_get_sensor_type_quat(quat_data, &accuracy, (inv_time_t*)&inv_timestamp);
 				
         // Clear terminal and print values
         //printf("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
