@@ -10,6 +10,7 @@
 ".\_build\nrf_drv_clock.o"
 ".\_build\nrf_drv_common.o"
 ".\_build\nrf_drv_uart.o"
+".\_build\nrf_drv_gpiote.o"
 ".\_build\app_timer_1.o"
 ".\_build\app_error.o"
 ".\_build\app_error_weak.o"

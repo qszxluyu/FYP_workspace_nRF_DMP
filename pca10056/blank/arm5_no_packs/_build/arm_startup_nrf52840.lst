@@ -459,13 +459,13 @@ Device\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8
 ARM Macro Assembler    Page 8 
 
 
-.15.2\Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1
-" --predefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SETA 1" --predefi
-ne="NRF52840_XXAA SETA 1" --predefine="BOARD_PCA10056 SETA 1" --predefine="BSP_
-DEFINES_ONLY SETA 1" --predefine="CONFIG_GPIO_AS_PINRESET SETA 1" --predefine="
-NRF52840_XXAA SETA 1" --cpreproc_opts=-DBOARD_PCA10056,-DBSP_DEFINES_ONLY,-DCON
-FIG_GPIO_AS_PINRESET,-DNRF52840_XXAA --list=.\_build\arm_startup_nrf52840.lst R
-TE\Device\nRF52840_xxAA\arm_startup_nrf52840.s
+.15.2\Device\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VER
+SION SETA 523" --predefine="_RTE_ SETA 1" --predefine="NRF52840_XXAA SETA 1" --
+predefine="BOARD_PCA10056 SETA 1" --predefine="BSP_DEFINES_ONLY SETA 1" --prede
+fine="CONFIG_GPIO_AS_PINRESET SETA 1" --predefine="NRF52840_XXAA SETA 1" --cpre
+proc_opts=-DBOARD_PCA10056,-DBSP_DEFINES_ONLY,-DCONFIG_GPIO_AS_PINRESET,-DNRF52
+840_XXAA --list=.\_build\arm_startup_nrf52840.lst RTE\Device\nRF52840_xxAA\arm_
+startup_nrf52840.s
 
 
 
@@ -1180,4 +1180,4 @@ Symbol: __main
       At line 215 in file RTE\Device\nRF52840_xxAA\arm_startup_nrf52840.s
 Comment: __main used once
 2 symbols
-424 symbols in table
+423 symbols in table

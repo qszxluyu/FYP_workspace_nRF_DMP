@@ -60,6 +60,8 @@
 #include "bsp.h"
 #include "app_mpu.h"
 #include "nrf_drv_twi.h"
+#include "nrf_drv_gpiote.h"
+#include "nrf_drv_common.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "boards.h"
@@ -76,7 +78,7 @@
 #include "quaternion_supervisor.h"
 #include "ml_math_func.h"
 #include "data_builder.h"
-//#include "fast_no_motion.h"
+#include "fast_no_motion.h"
 #include "mpl.h"
 
 #include "nrf_drv_inv_dmp.h"
@@ -93,6 +95,8 @@
 #define MPU_AK89XX_MAGN_ADDRESS     0x0C
 
 #define DEFAULT_MPU_HZ  (20)
+
+#define PIN_IN ARDUINO_7_PIN
 
 
 // General application timer settings.
@@ -290,6 +294,28 @@ static void android_orient_cb(unsigned char orientation)
 	
 }
 
+static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+
+}
+
+static void GPIO_setup()
+{
+		uint32_t err_code = nrf_drv_gpiote_init();
+		APP_ERROR_CHECK(err_code);
+	
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
+	
+	  err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, pin_in_read);
+    APP_ERROR_CHECK(err_code);			
+}
+
+static void gyro_data_ready_cb(void)
+{
+    hal.new_gyro = 1;
+}
+
 /**
  * @brief Function for main application entry.
  */	
@@ -313,6 +339,10 @@ int main(void)
 	
 		//set up uart
 		uart_config();
+	
+		//set up GPIOTE
+		GPIO_setup();
+		
 		
 		//set up mpu acc & gyro
 		mpu_setup();
@@ -349,6 +379,12 @@ int main(void)
 		
 		/*********************mpu initiation******************************/
 		struct int_param_s int_param;
+		
+		int_param.cb = gyro_data_ready_cb;
+    int_param.pin = PIN_IN;
+    //int_param.lp_exit = INT_EXIT_LPM0;
+    int_param.active_low = 1;
+		
     inv_err_code = mpu_init_inv(&int_param);
     if (inv_err_code) {
         printf("Could not initialize the mpu.\n");
@@ -369,7 +405,9 @@ int main(void)
 		
 		inv_enable_quaternion();
 		
-		//inv_enable_9x_sensor_fusion();
+		inv_enable_9x_sensor_fusion();
+		
+		inv_enable_fast_nomot();
 		
 		inv_err_code = inv_enable_eMPL_outputs();
 		if(inv_err_code){
@@ -445,7 +483,7 @@ int main(void)
         printf("quaternion starts!.\n");			
 		}
 		
-    //inv_stop_9x_sensor_fusion();
+    inv_stop_9x_sensor_fusion();
     
 		
 		//NRF_LOG_FLUSH();
