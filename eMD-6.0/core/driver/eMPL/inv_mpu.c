@@ -43,6 +43,7 @@
  */
  
 #define i2c_write i2c_write_porting
+//#define i2c_write mpu_twi_write_test
 #define i2c_read mpu_twi_read_test
 #define delay_ms nrf_delay_ms
 #define get_ms millis
@@ -1420,17 +1421,19 @@ int mpu_get_compass_sample_rate(unsigned short *rate)
 int mpu_set_compass_sample_rate(unsigned short rate)
 {
 #ifdef AK89xx_SECONDARY
+	//this function has modified for debug
     unsigned char div;
     if (!rate || rate > st.chip_cfg.sample_rate || rate > MAX_COMPASS_SAMPLE_RATE)
         return -1;
 
     div = st.chip_cfg.sample_rate / rate - 1;
     if (i2c_write(st.hw->addr, st.reg->s4_ctrl, 1, &div))
-        return -1;
+        //return -1;
+				return -2;
     st.chip_cfg.compass_sample_rate = st.chip_cfg.sample_rate / (div + 1);
     return 0;
 #else
-    return -1;
+    return -3;
 #endif
 }
 
@@ -1682,19 +1685,22 @@ int mpu_get_int_status(short *status)
 int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
         unsigned char *sensors, unsigned char *more)
 {
+		/* This code is modified to debug by Yu*/
     /* Assumes maximum packet size is gyro (6) + accel (6). */
     unsigned char data[MAX_PACKET_LENGTH];
     unsigned char packet_size = 0;
     unsigned short fifo_count, index = 0;
 
     if (st.chip_cfg.dmp_on)
-        return -1;
+        return -88;
 
     sensors[0] = 0;
     if (!st.chip_cfg.sensors)
-        return -1;
+        //return -1;
+				return -2;
     if (!st.chip_cfg.fifo_enable)
-        return -1;
+        //return -1;
+				return -3;
 
     if (st.chip_cfg.fifo_enable & INV_X_GYRO)
         packet_size += 2;
@@ -1706,7 +1712,8 @@ int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
         packet_size += 6;
 
     if (i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, data))
-        return -1;
+        //return -1;
+				return -4;
     fifo_count = (data[0] << 8) | data[1];
     if (fifo_count < packet_size)
         return 0;
@@ -1714,16 +1721,19 @@ int mpu_read_fifo(short *gyro, short *accel, unsigned long *timestamp,
     if (fifo_count > (st.hw->max_fifo >> 1)) {
         /* FIFO is 50% full, better check overflow bit. */
         if (i2c_read(st.hw->addr, st.reg->int_status, 1, data))
-            return -1;
+            //return -1;
+						return 1;
         if (data[0] & BIT_FIFO_OVERFLOW) {
             mpu_reset_fifo();
-            return -2;
+            //return -2;
+						return 2;
         }
     }
     get_ms((unsigned long*)timestamp);
 
     if (i2c_read(st.hw->addr, st.reg->fifo_r_w, packet_size, data))
-        return -1;
+        //return -1;
+				return 3;
     more[0] = fifo_count / packet_size - 1;
     sensors[0] = 0;
 

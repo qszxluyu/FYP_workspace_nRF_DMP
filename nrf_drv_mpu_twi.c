@@ -297,7 +297,7 @@ uint32_t i2c_write_porting(unsigned char slave_addr,
 	
     err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, packet, length+1, false);
     if(err_code != NRF_SUCCESS){
-			printf("write completed!");
+			printf("twi_tx error");
 			return err_code;
 		}
     while((!twi_tx_done) && --timeout);

@@ -335,7 +335,7 @@
               <MiscControls>--reduce_paths</MiscControls>
               <Define>BOARD_PCA10056 BSP_DEFINES_ONLY CONFIG_GPIO_AS_PINRESET NRF52840_XXAA MPU9255 MPU_USES_TWI MPU9250 MPL_LOG_NDEBUG=0 EMPL USE_DMP</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\config\uart_pca10056;..\..\..\config;..\..\..\..\..\..\components;..\..\..\..\..\..\components\boards;..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\components\libraries\bsp;..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\components\libraries\log;..\..\..\..\..\..\components\libraries\log\src;..\..\..\..\..\..\components\libraries\strerror;..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\components\toolchain;..\..\..;..\..\..\..\..\..\external\segger_rtt;..\config;..\..\..\..\..\..\components\libraries\twi;..\..\..\..\..\..\examples\peripheral\test_mpu_uart;..\..\..\..\..\..\components\libraries\experimental_log;..\..\..\..\..\..\components\libraries\experimental_log\src;..\..\..\..\..\..\components\libraries\experimental_memobj;..\..\..\..\..\..\components\libraries\experimental_section_vars;..\..\..\..\..\..\components\drivers_nrf\twi_master;..\..\..\eMD-6.0\core\driver\eMPL;..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\components\drivers_nrf\clock;..\..\..\eMD-6.0\core\eMPL-hal;..\..\..\eMD-6.0\core\driver\include;..\..\..\eMD-6.0\core\mllite;..\..\..\eMD-6.0\core\mpl</IncludePath>
+              <IncludePath>..\..\..\config\uart_pca10056;..\..\..\config;..\..\..\..\..\..\components;..\..\..\..\..\..\components\boards;..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\components\libraries\bsp;..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\components\libraries\log;..\..\..\..\..\..\components\libraries\log\src;..\..\..\..\..\..\components\libraries\strerror;..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\components\toolchain;..\..\..;..\..\..\..\..\..\external\segger_rtt;..\config;..\..\..\..\..\..\components\libraries\twi;..\..\..\..\..\..\examples\peripheral\test_mpu_uart;..\..\..\..\..\..\components\libraries\experimental_log;..\..\..\..\..\..\components\libraries\experimental_log\src;..\..\..\..\..\..\components\libraries\experimental_memobj;..\..\..\..\..\..\components\libraries\experimental_section_vars;..\..\..\..\..\..\components\drivers_nrf\twi_master;..\..\..\eMD-6.0\core\driver\eMPL;..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\components\drivers_nrf\clock;..\..\..\eMD-6.0\core\eMPL-hal;..\..\..\eMD-6.0\core\driver\include;..\..\..\eMD-6.0\core\mllite;..\..\..\eMD-6.0\core\mpl;..\..\..\..\..\..\components\drivers_nrf\gpiote</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -448,6 +448,11 @@
               <FileName>nrf_drv_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\components\drivers_nrf\uart\nrf_drv_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf_drv_gpiote.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\drivers_nrf\gpiote\nrf_drv_gpiote.c</FilePath>
             </File>
           </Files>
         </Group>
