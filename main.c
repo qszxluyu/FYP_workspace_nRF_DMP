@@ -342,7 +342,9 @@ static void GPIO_setup()
     in_config.pull = NRF_GPIO_PIN_PULLUP;
 	
 	  err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, pin_in_read);
-    APP_ERROR_CHECK(err_code);			
+    APP_ERROR_CHECK(err_code);		
+
+		nrf_drv_gpiote_in_event_enable(PIN_IN, true);	
 }
 
 /* Get data from MPL.
@@ -361,7 +363,12 @@ static void read_from_mpl(void)
         * test app to visually represent a 3D quaternion, it's sent each time
         * the MPL has new data.*/
         NRF_LOG_RAW_INFO("MPL data updated! \n");
+				NRF_LOG_RAW_INFO("quat data: %ld %ld %ld %ld\n",data[0],data[1],data[2],data[3]);
     }
+		
+		if (inv_get_sensor_type_euler(data, &accuracy, (inv_time_t*)&timestamp)){
+				NRF_LOG_RAW_INFO("euler data: %ld %ld %ld \n",data[0],data[1],data[2]);				
+		}
     
 }
 
@@ -488,11 +495,11 @@ int main(void)
 		
 		inv_enable_9x_sensor_fusion();
 		
-		//inv_enable_fast_nomot();
+		inv_enable_fast_nomot();
 		
-		//inv_enable_vector_compass_cal();
+		inv_enable_vector_compass_cal();
     
-		//inv_enable_magnetic_disturbance();
+		inv_enable_magnetic_disturbance();
 		
 		inv_err_code = inv_enable_eMPL_outputs();
 		if(inv_err_code){
@@ -623,7 +630,7 @@ int main(void)
 		
 		dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_pdata.orientation));
 		
-		hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_GYRO_CAL;		
+		hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL;		
 		
 	  dmp_enable_feature(hal.dmp_features);
     dmp_set_fifo_rate(DEFAULT_MPU_HZ);
@@ -691,21 +698,27 @@ int main(void)
     /* We're not using a data ready interrupt for the compass, so we'll
      * make our compass reads timer-based instead.
      */
+		/*
     if ((timestamp > hal.next_compass_ms) && !hal.lp_accel_mode &&
         hal.new_gyro && (hal.sensors & COMPASS_ON)) {
         hal.next_compass_ms = timestamp + COMPASS_READ_MS;
         new_compass = 1;
     }
+		*/
+		
+		if(hal.new_gyro){
+			new_compass=1;
+		}
 		
 		
 	
-
 		NRF_LOG_RAW_INFO("new gyro? %d \n",hal.new_gyro);
+		NRF_LOG_RAW_INFO("new compass? %d \n",new_compass);
 
 
 		
 		NRF_LOG_FLUSH();
-		nrf_delay_ms(250);
+		//nrf_delay_ms(250);
 		
 
 
@@ -731,15 +744,27 @@ int main(void)
              * registered). The more parameter is non-zero if there are
              * leftover packets in the FIFO.
              */
-            dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
-            if (!more)
+            inv_err_code = dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
+						
+						if(!inv_err_code){
+							NRF_LOG_RAW_INFO("gyro: %06d, %06d, %06d \n",gyro[0],gyro[1],gyro[2]);
+							NRF_LOG_RAW_INFO("accel: %06d, %06d, %06d \n",accel_short[0],accel_short[1],accel_short[2]);
+							NRF_LOG_RAW_INFO("sensor masks: %d \n", sensors);
+						} else {
+							NRF_LOG_RAW_INFO("read fifo failed, err code: %d \n",inv_err_code);
+						}
+						if (!more)
                 hal.new_gyro = 0;
             if (sensors & INV_XYZ_GYRO) {
                 /* Push the new data to the MPL. */
+							
+								NRF_LOG_RAW_INFO("pushing gyro data... ");
                 inv_build_gyro(gyro, sensor_timestamp);
                 new_data = 1;
             }
             if (sensors & INV_XYZ_ACCEL) {
+							
+								NRF_LOG_RAW_INFO("pushing accel data... ");
                 accel[0] = (long)accel_short[0];
                 accel[1] = (long)accel_short[1];
                 accel[2] = (long)accel_short[2];
@@ -759,7 +784,8 @@ int main(void)
             /* For any MPU device with an AKM on the auxiliary I2C bus, the raw
              * magnetometer registers are copied to special gyro registers.
              */
-            if (!mpu_get_compass_reg(compass_short, &sensor_timestamp)) {
+						inv_err_code = mpu_get_compass_reg(compass_short, &sensor_timestamp);
+            if (!inv_err_code) {
                 compass[0] = (long)compass_short[0];
                 compass[1] = (long)compass_short[1];
                 compass[2] = (long)compass_short[2];
@@ -768,8 +794,13 @@ int main(void)
                  * parameter to INV_CALIBRATED | acc, where acc is the
                  * accuracy from 0 to 3.
                  */
+								NRF_LOG_RAW_INFO("pushing compass data... \n");
+								NRF_LOG_RAW_INFO("compass: %06d, %06d, %06d \n",compass[0],compass[1],compass[2]);
                 inv_build_compass(compass, 0, sensor_timestamp);
-            }
+								
+            } else {
+								NRF_LOG_RAW_INFO("compass failed, err code: %d \n",inv_err_code);
+						}
             new_data = 1;
         }
 
@@ -783,7 +814,7 @@ int main(void)
             read_from_mpl();
         }
 			NRF_LOG_FLUSH();
-			nrf_delay_ms(100);
+			nrf_delay_ms(50);
     }
 		#endif
 		

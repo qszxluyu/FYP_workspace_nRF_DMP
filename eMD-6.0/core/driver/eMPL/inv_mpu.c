@@ -1779,27 +1779,33 @@ int mpu_read_fifo_stream(unsigned short length, unsigned char *data,
     if (!st.chip_cfg.dmp_on)
         return -1;
     if (!st.chip_cfg.sensors)
-        return -1;
+        //return -1;
+				return -2;
 
     if (i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp))
-        return -1;
+        //return -1;
+				return -3;
     fifo_count = (tmp[0] << 8) | tmp[1];
     if (fifo_count < length) {
         more[0] = 0;
-        return -1;
-    }
+        //return -1;
+				return -4;
+		}
     if (fifo_count > (st.hw->max_fifo >> 1)) {
         /* FIFO is 50% full, better check overflow bit. */
         if (i2c_read(st.hw->addr, st.reg->int_status, 1, tmp))
-            return -1;
+            //return -1;
+						return -5;
         if (tmp[0] & BIT_FIFO_OVERFLOW) {
             mpu_reset_fifo();
-            return -2;
+            //return -2;
+						return -6;
         }
     }
 
     if (i2c_read(st.hw->addr, st.reg->fifo_r_w, length, data))
-        return -1;
+        //return -1;
+				return -7;
     more[0] = fifo_count / length - 1;
     return 0;
 }
@@ -3067,13 +3073,16 @@ int mpu_get_compass_reg(short *data, unsigned long *timestamp)
 
 #ifdef AK89xx_BYPASS
     if (i2c_read(st.chip_cfg.compass_addr, AKM_REG_ST1, 8, tmp))
-        return -1;
+        //return -1;
+				return -2;
     tmp[8] = AKM_SINGLE_MEASUREMENT;
     if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, tmp+8))
-        return -1;
+        //return -1;
+				return -3;
 #else
     if (i2c_read(st.hw->addr, st.reg->raw_compass, 8, tmp))
-        return -1;
+        //return -1;
+				return -4;
 #endif
 
 #if defined AK8975_SECONDARY
@@ -3085,9 +3094,11 @@ int mpu_get_compass_reg(short *data, unsigned long *timestamp)
 #elif defined AK8963_SECONDARY
     /* AK8963 doesn't have the data read error bit. */
     if (!(tmp[0] & AKM_DATA_READY) || (tmp[0] & AKM_DATA_OVERRUN))
-        return -2;
+        //return -2;
+				return -5;
     if (tmp[7] & AKM_OVERFLOW)
-        return -3;
+        //return -3;
+				return -6;
 #endif
     data[0] = (tmp[2] << 8) | tmp[1];
     data[1] = (tmp[4] << 8) | tmp[3];
@@ -3101,7 +3112,8 @@ int mpu_get_compass_reg(short *data, unsigned long *timestamp)
         get_ms(timestamp);
     return 0;
 #else
-    return -1;
+    //return -1;
+		return -7;
 #endif
 }
 
