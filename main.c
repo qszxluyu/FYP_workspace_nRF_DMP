@@ -118,8 +118,8 @@
 #define PRINT_LINEAR_ACCEL (0x100)
 #define PRINT_GRAVITY_VECTOR (0x200)
 
-#define SparkFun_test_mode
-//#define mllite_test_mode
+//#define SparkFun_test_mode
+#define mllite_test_mode
 //#define Raw_date_test_mode
 
 enum t_axisOrder {
@@ -323,16 +323,6 @@ static void create_timers()
     APP_ERROR_CHECK(err_code);
 }
 
-static void tap_cb(unsigned char direction, unsigned char count)
-{
-		//this feature is not enabled
-}
-
-static void android_orient_cb(unsigned char orientation)
-{
-		//this feature is not enabled
-}
-
 static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
 		hal.new_gyro = 1;
@@ -439,12 +429,13 @@ int main(void)
 
 		
 		//i2c r/w function test
+		/*
 		uint8_t test_data[3]={0,0,0};
 		err_code=i2c_write_porting(0x68,0x13, 3, test_data);
 		err_code=mpu_twi_read_test(0x68, 0x13, 3, TempReading);
 		APP_ERROR_CHECK(err_code);
 		NRF_LOG_RAW_INFO("Test result: %d ; %d ; %d \n", TempReading[0],TempReading[1],TempReading[2]);
-		
+		*/
 		
 		// Request LF clock.
     lfclk_request();
@@ -464,10 +455,10 @@ int main(void)
 		/*********************mpu initiation******************************/
 		struct int_param_s int_param;
 		
-		int_param.cb = gyro_data_ready_cb;
-    int_param.pin = PIN_IN;
+		//int_param.cb = gyro_data_ready_cb;
+    //int_param.pin = PIN_IN;
     //int_param.lp_exit = INT_EXIT_LPM0;
-    int_param.active_low = 1;
+    //int_param.active_low = 1;
 		
     inv_err_code = mpu_init_inv(&int_param);
     if (inv_err_code) {
@@ -632,9 +623,6 @@ int main(void)
 		
 		dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_pdata.orientation));
 		
-		dmp_register_tap_cb(tap_cb);
-    dmp_register_android_orient_cb(android_orient_cb);
-		
 		hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_GYRO_CAL;		
 		
 	  dmp_enable_feature(hal.dmp_features);
@@ -685,13 +673,15 @@ int main(void)
 		short *fifo_Status;
 		
   while(1){
-		/*
+		/* 
+		//This is a test using mpu_get_int_status to detect data ready
 		inv_err_code = mpu_get_int_status(fifo_Status);
 		NRF_LOG_RAW_INFO("getting mpu int status, 0 is pass? %d \n",inv_err_code);
 		if(fifo_Status){
 			hal.new_gyro = 1;
 		}
 		*/
+		
     
     unsigned long sensor_timestamp;
     int new_data = 0;
@@ -708,14 +698,14 @@ int main(void)
     }
 		
 		
-		/*
-		if(hal.new_gyro){
-			NRF_LOG_RAW_INFO("new gyro? %d \n",hal.new_gyro);
-		}
-		*/
+	
+
+		NRF_LOG_RAW_INFO("new gyro? %d \n",hal.new_gyro);
+
+
 		
 		NRF_LOG_FLUSH();
-		nrf_delay_ms(100);
+		nrf_delay_ms(250);
 		
 
 
