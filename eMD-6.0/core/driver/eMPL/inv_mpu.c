@@ -1659,7 +1659,8 @@ int mpu_get_int_status(short *status)
     if (!st.chip_cfg.sensors)
         return -1;
     if (i2c_read(st.hw->addr, st.reg->dmp_int_status, 2, tmp))
-        return -1;
+        //return -1;
+				return -2;
     status[0] = (tmp[0] << 8) | tmp[1];
     return 0;
 }

@@ -28,25 +28,25 @@ Project File Date:  03/07/2018
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'nrf52840_xxaa'
 compiling main.c...
-..\..\..\main.c(363): warning:  #177-D: variable "msg"  was declared but never referenced
+..\..\..\main.c(364): warning:  #177-D: variable "msg"  was declared but never referenced
       long msg, data[9];
-..\..\..\main.c(366): warning:  #177-D: variable "float_data"  was declared but never referenced
+..\..\..\main.c(367): warning:  #177-D: variable "float_data"  was declared but never referenced
       float float_data[3] = {0};
-..\..\..\main.c(496): warning:  #177-D: variable "new_temp"  was declared but never referenced
+..\..\..\main.c(404): warning:  #177-D: variable "new_temp"  was declared but never referenced
   	  unsigned char accel_fsr,  new_temp = 0;
-..\..\..\main.c(499): warning:  #177-D: variable "new_compass"  was declared but never referenced
+..\..\..\main.c(407): warning:  #177-D: variable "new_compass"  was declared but never referenced
   	  unsigned char new_compass = 0;
-..\..\..\main.c(509): warning:  #177-D: variable "timestamp"  was declared but never referenced
+..\..\..\main.c(417): warning:  #177-D: variable "timestamp"  was declared but never referenced
   		unsigned long timestamp;
-..\..\..\main.c(511): warning:  #177-D: variable "quat_data"  was declared but never referenced
+..\..\..\main.c(419): warning:  #177-D: variable "quat_data"  was declared but never referenced
   		long *quat_data;
-..\..\..\main.c(512): warning:  #177-D: variable "accuracy"  was declared but never referenced
+..\..\..\main.c(420): warning:  #177-D: variable "accuracy"  was declared but never referenced
   		int8_t accuracy;
-..\..\..\main.c(361): warning:  #177-D: function "read_from_mpl"  was declared but never referenced
+..\..\..\main.c(362): warning:  #177-D: function "read_from_mpl"  was declared but never referenced
   static void read_from_mpl(void)
 ..\..\..\main.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=55292 RO-data=5664 RW-data=176 ZI-data=24600  
+Program Size: Code=35532 RO-data=5312 RW-data=156 ZI-data=21396  
 FromELF: creating hex file...
 ".\_build\nrf52840_xxaa.axf" - 0 Error(s), 8 Warning(s).
 
@@ -75,9 +75,9 @@ Package Vendor: NordicSemiconductor
    * Component: ARM::CMSIS:CORE:4.3.0
 
    * Component: NordicSemiconductor::Device:Startup:8.12.0
-      Source file:   Device\Source\arm\arm_startup_nrf52840.s
       Source file:   Device\Source\system_nrf52840.c
       Include file:  Device\Include\system_nrf52840.h
+      Source file:   Device\Source\arm\arm_startup_nrf52840.s
 Build Time Elapsed:  00:00:03
 </pre>
 </body>
