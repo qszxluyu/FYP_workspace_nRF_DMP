@@ -14,6 +14,7 @@
 #include "nrf_drv_mpu.h"
 #include "app_util_platform.h"
 #include "nrf_gpio.h"
+#include "nrf_log.h"
 
 
 /* Pins to connect MPU. Pinout is different for nRF51 DK and nRF52 DK
@@ -234,15 +235,19 @@ uint32_t mpu_twi_read_test(uint8_t slave_addr,
 		uint32_t timeout = MPU_TWI_TIMEOUT;
 	
 	  err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, &reg_addr, 1, false);
-		if(err_code != NRF_SUCCESS) return err_code;
-
+		if(err_code != NRF_SUCCESS) {
+				NRF_LOG_RAW_INFO("error return from twi tx \n");
+				return err_code;
+		}
     while((!twi_tx_done) && --timeout);
     if(!timeout) return NRF_ERROR_TIMEOUT;
-    twi_tx_done = false;	
+    twi_tx_done = false;
 	
 	  err_code = nrf_drv_twi_rx(&m_twi_instance, slave_addr, data, length);
-    if(err_code != NRF_SUCCESS) return err_code;
-		
+    if(err_code != NRF_SUCCESS){
+				NRF_LOG_RAW_INFO("error return from twi rx \n");
+				return err_code;
+		}		
 		timeout = MPU_TWI_TIMEOUT;
     while((!twi_rx_done) && --timeout);
     if(!timeout) return NRF_ERROR_TIMEOUT;

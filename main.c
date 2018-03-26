@@ -472,10 +472,11 @@ int main(void)
         //printf("Could not initialize the mpu.\n");
 				NRF_LOG_RAW_INFO("Could not initialize the mpu.\n");
 		}
-		
+		/*
 		if(!mpu_set_bypass(1)){
 				NRF_LOG_RAW_INFO("Bypass mode enabled! \n");
 		}
+		*/
 		/*******************end of mpu initation**************************/
 		
 		/*********mpl initiation*************/
@@ -544,7 +545,8 @@ int main(void)
 		inv_err_code = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); //magn data doesn't go to fifo
     NRF_LOG_RAW_INFO("set fifo, 0 is pass? %d \n", inv_err_code);
 		
-		inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
+		//inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
+		inv_err_code = mpu_set_sample_rate(10);
 		NRF_LOG_RAW_INFO("set sample rate, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_compass_sample_rate(1000 / COMPASS_READ_MS);
@@ -677,7 +679,7 @@ int main(void)
 
 		#ifdef mllite_test_mode
 		
-		short *fifo_Status;
+		//short *fifo_Status;
 		
   while(1){
 		/* 
@@ -708,6 +710,8 @@ int main(void)
 		
 		if(hal.new_gyro){
 			new_compass=1;
+		} else{
+			new_compass=0;
 		}
 		
 		
@@ -799,13 +803,16 @@ int main(void)
                 inv_build_compass(compass, 0, sensor_timestamp);
 								
             } else {
-								NRF_LOG_RAW_INFO("compass failed, err code: %d \n",inv_err_code);
+								NRF_LOG_RAW_INFO("compass reading failed, err code: %d \n",inv_err_code);
 						}
             new_data = 1;
         }
 
         if (new_data) {
-            inv_execute_on_data();
+						inv_err_code=inv_execute_on_data();
+            if(inv_err_code!=INV_SUCCESS){
+								NRF_LOG_RAW_INFO("execution failed! \n");
+						}
             /* This function reads bias-compensated sensor data and sensor
              * fusion outputs from the MPL. The outputs are formatted as seen
              * in eMPL_outputs.c. This function only needs to be called at the
@@ -814,7 +821,7 @@ int main(void)
             read_from_mpl();
         }
 			NRF_LOG_FLUSH();
-			nrf_delay_ms(50);
+			nrf_delay_ms(250);
     }
 		#endif
 		

@@ -32,3 +32,10 @@
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_gpio.h
 .\_build\nrf_drv_mpu_twi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\log\nrf_log.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\sdk_common.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\sdk_os.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\sdk_macros.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\strerror\nrf_strerror.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_internal.h

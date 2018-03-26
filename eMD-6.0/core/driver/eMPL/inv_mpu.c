@@ -23,6 +23,7 @@
 #include <string.h>
 #include <math.h>
 #include "inv_mpu.h"
+#include "app_error.h"
 #include "nrf_drv_inv_dmp.h"
 #include "nrf_drv_mpu.h"
 #include "nrf_log.h"
@@ -1781,10 +1782,14 @@ int mpu_read_fifo_stream(unsigned short length, unsigned char *data,
     if (!st.chip_cfg.sensors)
         //return -1;
 				return -2;
-
-    if (i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp))
-        //return -1;
+		
+		int err_code_i2c_read=i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp);
+    //if (i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp)){
+		if(err_code_i2c_read){
+				NRF_LOG_RAW_INFO("fifo i2c_read err code: %d \n",err_code_i2c_read);
+				//return -1;
 				return -3;
+		}
     fifo_count = (tmp[0] << 8) | tmp[1];
     if (fifo_count < length) {
         more[0] = 0;
@@ -3080,9 +3085,13 @@ int mpu_get_compass_reg(short *data, unsigned long *timestamp)
         //return -1;
 				return -3;
 #else
-    if (i2c_read(st.hw->addr, st.reg->raw_compass, 8, tmp))
+		int err_code_compass=i2c_read(st.hw->addr, st.reg->raw_compass, 8, tmp);
+    if (err_code_compass){
         //return -1;
+				NRF_LOG_RAW_INFO("i2c read error code: %d \n",err_code_compass);
+				//APP_ERROR_CHECK(err_code_compass);
 				return -4;
+		}
 #endif
 
 #if defined AK8975_SECONDARY
