@@ -81,6 +81,7 @@
 #include "fast_no_motion.h"
 #include "compass_vec_cal.h"
 #include "mag_disturb.h"
+#include "hal_outputs.h"
 #include "mpl.h"
 
 #include "nrf_drv_inv_dmp.h"
@@ -117,10 +118,6 @@
 #define PRINT_PEDO      (0x80)
 #define PRINT_LINEAR_ACCEL (0x100)
 #define PRINT_GRAVITY_VECTOR (0x200)
-
-//#define SparkFun_test_mode
-#define mllite_test_mode
-//#define Raw_date_test_mode
 
 enum t_axisOrder {
 	X_AXIS, // 0
@@ -183,51 +180,6 @@ void uart_error_handle(app_uart_evt_t * p_event)
         APP_ERROR_HANDLER(p_event->data.error_code);
     }
 }
-
-
-
-#ifdef ENABLE_LOOPBACK_TEST
-/** @brief Function for setting the @ref ERROR_PIN high, and then enter an infinite loop.
- */
-static void show_error(void)
-{
-
-    bsp_board_leds_on();
-    while (true)
-    {
-        // Do nothing.
-    }
-}
-
-
-/** @brief Function for testing UART loop back.
- *  @details Transmitts one character at a time to check if the data received from the loopback is same as the transmitted data.
- *  @note  @ref TX_PIN_NUMBER must be connected to @ref RX_PIN_NUMBER)
- */
-static void uart_loopback_test()
-{
-    uint8_t * tx_data = (uint8_t *)("\r\nLOOPBACK_TEST\r\n");
-    uint8_t   rx_data;
-
-    // Start sending one byte and see if you get the same
-    for (uint32_t i = 0; i < MAX_TEST_DATA_BYTES; i++)
-    {
-        uint32_t err_code;
-        while (app_uart_put(tx_data[i]) != NRF_SUCCESS);
-
-        nrf_delay_ms(10);
-        err_code = app_uart_get(&rx_data);
-
-        if ((rx_data != tx_data[i]) || (err_code != NRF_SUCCESS))
-        {
-            show_error();
-        }
-    }
-    return;
-}
-
-
-#endif
 
 void uart_config(void)
 {
@@ -294,6 +246,7 @@ void magn_setup()
 
 }
 
+
 // Function starting the internal LFCLK oscillator.
 // This is needed by RTC1 which is used by the application timer
 // (When SoftDevice is enabled the LFCLK is always running and this is not needed).
@@ -328,6 +281,91 @@ static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 		hal.new_gyro = 1;
 }
 
+static inline void run_self_test(void)
+{
+    int result;
+    long gyro[3], accel[3];
+
+#if defined (MPU6500) || defined (MPU9250)
+    result = mpu_run_6500_self_test(gyro, accel, 0);
+#elif defined (MPU6050) || defined (MPU9150)
+    result = mpu_run_self_test(gyro, accel);
+#endif
+    if (result == 0x7) {
+	NRF_LOG_RAW_INFO("Passed!\n");
+        NRF_LOG_RAW_INFO("accel: %7.4f %7.4f %7.4f\n",
+                    accel[0]/65536.f,
+                    accel[1]/65536.f,
+                    accel[2]/65536.f);
+        NRF_LOG_RAW_INFO("gyro: %7.4f %7.4f %7.4f\n",
+                    gyro[0]/65536.f,
+                    gyro[1]/65536.f,
+                    gyro[2]/65536.f);
+        /* Test passed. We can trust the gyro data here, so now we need to update calibrated data*/
+
+#ifdef USE_CAL_HW_REGISTERS
+        /*
+         * This portion of the code uses the HW offset registers that are in the MPUxxxx devices
+         * instead of pushing the cal data to the MPL software library
+         */
+        unsigned char i = 0;
+
+        for(i = 0; i<3; i++) {
+        	gyro[i] = (long)(gyro[i] * 32.8f); //convert to +-1000dps
+        	accel[i] *= 2048.f; //convert to +-16G
+        	accel[i] = accel[i] >> 16;
+        	gyro[i] = (long)(gyro[i] >> 16);
+        }
+
+        mpu_set_gyro_bias_reg(gyro);
+
+#if defined (MPU6500) || defined (MPU9250)
+        mpu_set_accel_bias_6500_reg(accel);
+#elif defined (MPU6050) || defined (MPU9150)
+        mpu_set_accel_bias_6050_reg(accel);
+#endif
+#else
+        /* Push the calibrated data to the MPL library.
+         *
+         * MPL expects biases in hardware units << 16, but self test returns
+		 * biases in g's << 16.
+		 */
+    	unsigned short accel_sens;
+    	float gyro_sens;
+
+		mpu_get_accel_sens(&accel_sens);
+		accel[0] *= accel_sens;
+		accel[1] *= accel_sens;
+		accel[2] *= accel_sens;
+		inv_set_accel_bias(accel, 3);
+		mpu_get_gyro_sens(&gyro_sens);
+		gyro[0] = (long) (gyro[0] * gyro_sens);
+		gyro[1] = (long) (gyro[1] * gyro_sens);
+		gyro[2] = (long) (gyro[2] * gyro_sens);
+		inv_set_gyro_bias(gyro, 3);
+#endif
+    }
+    else {
+            if (!(result & 0x1))
+                NRF_LOG_RAW_INFO("Gyro failed.\n");
+            if (!(result & 0x2))
+                NRF_LOG_RAW_INFO("Accel failed.\n");
+            if (!(result & 0x4))
+                NRF_LOG_RAW_INFO("Compass failed.\n");
+     }
+
+}
+
+static void tap_cb(unsigned char direction, unsigned char count)
+{	
+		//Do nothing
+}
+
+static void android_orient_cb(unsigned char orientation)
+{
+		//Do nothing
+}
+
 static void gyro_data_ready_cb(void)
 {
     hal.new_gyro = 1;
@@ -357,18 +395,26 @@ static void read_from_mpl(void)
     int8_t accuracy;
     unsigned long timestamp;
     float float_data[3] = {0};
-
-    if (inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)) {
-       /* Sends a quaternion packet to the PC. Since this is used by the Python
-        * test app to visually represent a 3D quaternion, it's sent each time
-        * the MPL has new data.*/
-        NRF_LOG_RAW_INFO("MPL data updated! \n");
-				NRF_LOG_RAW_INFO("quat data: %ld %ld %ld %ld\n",data[0],data[1],data[2],data[3]);
-    }
+		double quat_print[4] = {0};
 		
-		if (inv_get_sensor_type_euler(data, &accuracy, (inv_time_t*)&timestamp)){
-				NRF_LOG_RAW_INFO("euler data: %ld %ld %ld \n",data[0],data[1],data[2]);				
+		if (inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
+
+				
+				quat_print[0]= data[0] * 1.0 / (1<<30);
+				quat_print[1]= data[1] * 1.0 / (1<<30);			
+				quat_print[2]= data[2] * 1.0 / (1<<30);
+				quat_print[3]= data[3] * 1.0 / (1<<30);
+
+        NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);			
+			
+    }
+					
+		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
+				
+				NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
+		
 		}
+
     
 }
 
@@ -400,18 +446,14 @@ int main(void)
 	
 	  unsigned char accel_fsr,  new_temp = 0;
     unsigned short gyro_rate, gyro_fsr;
-		unsigned short compass_fsr;
-	  unsigned char new_compass = 0;
-	
-		//variables carry out the reading from MPU9250
-//		accel_values_t acc_values;
-//		gyro_values_t gyro_values;
-//		magn_values_t magn_values;
-		
-	
-		uint8_t TempReading[3]={0};
-	
 		unsigned long timestamp;
+		struct int_param_s int_param;
+	
+	  unsigned char new_compass = 0;
+		unsigned short compass_fsr;
+
+		uint8_t TempReading[3]={0};
+		
 		
 		long *quat_data;
 		int8_t accuracy;
@@ -423,14 +465,14 @@ int main(void)
 		//set up GPIOTE
 		GPIO_setup();
 		
-		
 		//set up mpu acc & gyro
 		mpu_setup();
 		//NRF_LOG_FLUSH();
 		
 		//set up mpu magn
 		magn_setup();
-		
+
+
 		//set up NRF logger module
 		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
 
@@ -460,16 +502,9 @@ int main(void)
 		inv_error_t inv_err_code;
 		
 		/*********************mpu initiation******************************/
-		struct int_param_s int_param;
-		
-		//int_param.cb = gyro_data_ready_cb;
-    //int_param.pin = PIN_IN;
-    //int_param.lp_exit = INT_EXIT_LPM0;
-    //int_param.active_low = 1;
 		
     inv_err_code = mpu_init_inv(&int_param);
     if (inv_err_code) {
-        //printf("Could not initialize the mpu.\n");
 				NRF_LOG_RAW_INFO("Could not initialize the mpu.\n");
 		}
 		/*
@@ -483,9 +518,9 @@ int main(void)
 		
 		inv_err_code = inv_init_mpl();
 		
-		if (inv_err_code == INV_SUCCESS){
+		if (inv_err_code){
         //printf("MPL initiated\n");
-				NRF_LOG_RAW_INFO("MPL initiated\n");
+				NRF_LOG_RAW_INFO("Could not initialize MPL.\n");
 		}
 		
 		/******end of mpl initiation*********/
@@ -516,20 +551,16 @@ int main(void)
 		
     if (inv_err_code == INV_ERROR_NOT_AUTHORIZED) {
         while (1) {
-           //printf("Not authorized.\n");
 					 NRF_LOG_RAW_INFO("Not authorized.\n");
 					 nrf_delay_ms(1000000);
         }
     }
     if (inv_err_code) {
-        printf("Could not start the MPL.\n");
 				NRF_LOG_RAW_INFO("Could not start the MPL.\n");
 				nrf_delay_ms(1000000);
     }
 		if (inv_err_code == INV_SUCCESS){
-        //printf("MPL starts!.\n");
 				NRF_LOG_RAW_INFO("MPL starts! \n");
-			
 		}
 		
 		NRF_LOG_FLUSH();
@@ -545,8 +576,7 @@ int main(void)
 		inv_err_code = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); //magn data doesn't go to fifo
     NRF_LOG_RAW_INFO("set fifo, 0 is pass? %d \n", inv_err_code);
 		
-		//inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
-		inv_err_code = mpu_set_sample_rate(10);
+		inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
 		NRF_LOG_RAW_INFO("set sample rate, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_compass_sample_rate(1000 / COMPASS_READ_MS);
@@ -617,69 +647,76 @@ int main(void)
 
 		/*************end of initialize HAL state variables************/
 		
-		millis(&inv_timestamp);
+		millis(&timestamp);
 
 		/*************initialize the DMP**************/
 		
 		inv_err_code = dmp_load_motion_driver_firmware();
+		while(inv_err_code != 0){
+			NRF_LOG_RAW_INFO("Could not load DMP Image, Error Code: %d, retry in 1 sec \n", inv_err_code);
+			nrf_delay_ms(1000);
+			inv_err_code = dmp_load_motion_driver_firmware();
+		}
+		
 		if (inv_err_code != 0) {
-			NRF_LOG_RAW_INFO("Could not download DMP!!! Error Code: %d \n", inv_err_code);
+			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \n", inv_err_code);
     }else{
 			NRF_LOG_RAW_INFO("DMP downloaded! \n");
 		}
 		
-		//NRF_LOG_FLUSH();
+		NRF_LOG_FLUSH();
 		
-		dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_pdata.orientation));
-		
-		hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL;		
-		
+		dmp_set_orientation(
+				inv_orientation_matrix_to_scalar(gyro_pdata.orientation));	
+		dmp_register_tap_cb(tap_cb);
+    dmp_register_android_orient_cb(android_orient_cb);
+		/*
+		* Known Bug -
+		* DMP when enabled will sample sensor data at 200Hz and output to FIFO at the rate
+		* specified in the dmp_set_fifo_rate API. The DMP will then sent an interrupt once
+		* a sample has been put into the FIFO. Therefore if the dmp_set_fifo_rate is at 25Hz
+		* there will be a 25Hz interrupt from the MPU device.
+		*
+		* There is a known issue in which if you do not enable DMP_FEATURE_TAP
+		* then the interrupts will be at 200Hz even if fifo rate
+		* is set at a different rate. To avoid this issue include the DMP_FEATURE_TAP
+		*
+		* DMP sensor fusion works only with gyro at +-2000dps and accel +-2G
+		*/
+
+    hal.dmp_features = DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
+        DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO |
+        DMP_FEATURE_GYRO_CAL;
 	  dmp_enable_feature(hal.dmp_features);
     dmp_set_fifo_rate(DEFAULT_MPU_HZ);
-    inv_set_quat_sample_rate(1000000L / DEFAULT_MPU_HZ);
     mpu_set_dmp_state(1);
-    hal.dmp_on = 1;					
+    hal.dmp_on = 1;
 		
-		NRF_LOG_FLUSH();
+		/*
+		if (hal.dmp_on) {
+				dmp_set_fifo_rate(100);
+				inv_set_quat_sample_rate(10000L);
+		} else
+				mpu_set_sample_rate(100);
+		inv_set_gyro_sample_rate(10000L);
+		inv_set_accel_sample_rate(10000L);
+		*/
+		
+		if (hal.dmp_on) {
+				dmp_set_fifo_rate(10);
+				inv_set_quat_sample_rate(100000L);
+		} else
+				mpu_set_sample_rate(10);
+		inv_set_gyro_sample_rate(100000L);
+		inv_set_accel_sample_rate(100000L);
+		
 		//__enable_interrupt();
 		__enable_irq();
-		
+
+		NRF_LOG_FLUSH();
 		
 		/**********end of initialize the DMP**********/
 		
-		#ifdef SparkFun_test_mode
-		
-		while(1){
-			short *fifo_Status;
-			inv_err_code = mpu_get_int_status(fifo_Status);
-			NRF_LOG_RAW_INFO("getting mpu int status, 0 is pass? %d \n",inv_err_code);
-			if ( fifo_Status )
-			{
-				// Use dmpUpdateFifo to update the ax, gx, mx, etc. values
-				if ( updateFifo() == INV_SUCCESS)
-				{
-					// computeEulerAngles can be used -- after updating the
-					// quaternion values -- to estimate roll, pitch, and yaw
-					//imu.computeEulerAngles();
-					//printIMUData();
-					
-					NRF_LOG_RAW_INFO("Implement more code here \n");
-					
-						//NRF_LOG_FLUSH();
-        
-					//nrf_delay_ms(250);
-					
-				}
-			}
-			NRF_LOG_FLUSH();
-			nrf_delay_ms(100);
-		}
-		
-		#endif
-
-		#ifdef mllite_test_mode
-		
-		//short *fifo_Status;
 		
   while(1){
 		/* 
@@ -700,6 +737,7 @@ int main(void)
     /* We're not using a data ready interrupt for the compass, so we'll
      * make our compass reads timer-based instead.
      */
+		
 		/*
     if ((timestamp > hal.next_compass_ms) && !hal.lp_accel_mode &&
         hal.new_gyro && (hal.sensors & COMPASS_ON)) {
@@ -708,6 +746,7 @@ int main(void)
     }
 		*/
 		
+		
 		if(hal.new_gyro){
 			new_compass=1;
 		} else{
@@ -715,18 +754,8 @@ int main(void)
 		}
 		
 		
-	
-		NRF_LOG_RAW_INFO("new gyro? %d \n",hal.new_gyro);
-		NRF_LOG_RAW_INFO("new compass? %d \n",new_compass);
-
-
 		
-		NRF_LOG_FLUSH();
-		//nrf_delay_ms(250);
-		
-
-
-    if (!hal.sensors || !hal.new_gyro) {
+    if (!hal.sensors || !hal.new_gyro || !new_compass) {
         continue;
     }    
 
@@ -751,14 +780,19 @@ int main(void)
             inv_err_code = dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
 						
 						if(!inv_err_code){
+							NRF_LOG_RAW_INFO("dmp fifo read succeed. \n");
 							NRF_LOG_RAW_INFO("gyro: %06d, %06d, %06d \n",gyro[0],gyro[1],gyro[2]);
 							NRF_LOG_RAW_INFO("accel: %06d, %06d, %06d \n",accel_short[0],accel_short[1],accel_short[2]);
-							NRF_LOG_RAW_INFO("sensor masks: %d \n", sensors);
+							//NRF_LOG_RAW_INFO("sensor masks: %d \n", sensors);
 						} else {
 							NRF_LOG_RAW_INFO("read fifo failed, err code: %d \n",inv_err_code);
 						}
-						if (!more)
+						if (!more){
                 hal.new_gyro = 0;
+								NRF_LOG_RAW_INFO("more hits zero!!!!!!! \n");
+						} else{
+								NRF_LOG_RAW_INFO("value of more: %d \n",more);
+						}
             if (sensors & INV_XYZ_GYRO) {
                 /* Push the new data to the MPL. */
 							
@@ -819,72 +853,12 @@ int main(void)
              * rate requested by the host.
              */
             read_from_mpl();
+						
+						NRF_LOG_FLUSH();
+						
         }
-			NRF_LOG_FLUSH();
-			nrf_delay_ms(250);
+				
     }
-		#endif
-		
-		#ifdef Raw_date_test_mode
-		
-		//variables carry out the reading from MPU9250
-		accel_values_t acc_values;
-		gyro_values_t gyro_values;
-		magn_values_t magn_values;
-		
-		while (1)
-    {
-
-				
-			  // Read accelerometer sensor values
-        err_code = mpu_read_accel(&acc_values);
-        APP_ERROR_CHECK(err_code);
-			
-				// Read gyroscope sensor values
-				err_code = mpu_read_gyro(&gyro_values);
-				APP_ERROR_CHECK(err_code);
-				
-				// Read Magnetometer sensor values
-				err_code = mpu_read_magnetometer(&magn_values, NULL);
-				APP_ERROR_CHECK(err_code);
-			
-				millis(&timestamp);
-			
-        // Clear terminal and print values
-        //NRF_LOG_RAW_INFO("\033[3;1HSample # %d\r\nX: %06d\r\nY: %06d\r\nZ: %06d", ++sample_number, acc_values.x, acc_values.y, acc_values.z);
-				NRF_LOG_RAW_INFO("Accel Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", acc_values.x, acc_values.y, acc_values.z);
-				
-				NRF_LOG_RAW_INFO("Gyro Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", gyro_values.x, gyro_values.y, gyro_values.z);
-				
-				NRF_LOG_RAW_INFO("Magn Data: X: %06d ; Y: %06d ; Z: %06d ; \n ", magn_values.x, magn_values.y, magn_values.z);
-				
-				NRF_LOG_RAW_INFO("Timestamp: T: %ld ;  \n ", timestamp);
-				
-				NRF_LOG_FLUSH();
-								
-				nrf_gpio_pin_toggle(LED_2);
-        nrf_delay_ms(100);
-				
-				//app_timer_pause();
-				
-								/*
-        uint8_t cr;
-        while (app_uart_get(&cr) != NRF_SUCCESS);
-        while (app_uart_put(cr) != NRF_SUCCESS);
-
-        if (cr == 'q' || cr == 'Q')
-        {
-            printf(" \r\nExit!\r\n");
-
-            while (true)
-            {
-                // Do nothing.
-            }
-        }
-				*/
-    }
-		#endif
-		
 
 }
 

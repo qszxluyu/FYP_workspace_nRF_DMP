@@ -70,6 +70,7 @@
 .\_build\main.o: ..\..\..\eMD-6.0\core\mpl\fast_no_motion.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mpl\compass_vec_cal.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mpl\mag_disturb.h
+.\_build\main.o: ..\..\..\eMD-6.0\core\mllite\hal_outputs.h
 .\_build\main.o: ..\..\..\eMD-6.0\core\mllite\mpl.h
 .\_build\main.o: ..\..\..\nrf_drv_inv_dmp.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

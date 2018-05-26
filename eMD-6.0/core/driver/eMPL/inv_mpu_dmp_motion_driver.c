@@ -36,7 +36,8 @@
  * delay_ms(unsigned long num_ms)
  * get_ms(unsigned long *count)
  */
-#define i2c_write mpu_twi_write_test
+#define i2c_write i2c_write_porting
+//#define i2c_write mpu_twi_write_test
 #define i2c_read mpu_twi_read_test
 #define delay_ms nrf_delay_ms
 #define get_ms millis
