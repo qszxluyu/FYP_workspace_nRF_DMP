@@ -279,6 +279,7 @@ static void create_timers()
 static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
 		hal.new_gyro = 1;
+		//Do nothing
 }
 
 static inline void run_self_test(void)
@@ -292,8 +293,9 @@ static inline void run_self_test(void)
     result = mpu_run_self_test(gyro, accel);
 #endif
     if (result == 0x7) {
-	NRF_LOG_RAW_INFO("Passed!\n");
-        NRF_LOG_RAW_INFO("accel: %7.4f %7.4f %7.4f\n",
+	NRF_LOG_RAW_INFO("Self Test Passed!\n");
+        /*
+				NRF_LOG_RAW_INFO("accel: %7.4f %7.4f %7.4f\n",
                     accel[0]/65536.f,
                     accel[1]/65536.f,
                     accel[2]/65536.f);
@@ -301,7 +303,8 @@ static inline void run_self_test(void)
                     gyro[0]/65536.f,
                     gyro[1]/65536.f,
                     gyro[2]/65536.f);
-        /* Test passed. We can trust the gyro data here, so now we need to update calibrated data*/
+        */
+				/* Test passed. We can trust the gyro data here, so now we need to update calibrated data*/
 
 #ifdef USE_CAL_HW_REGISTERS
         /*
@@ -368,7 +371,8 @@ static void android_orient_cb(unsigned char orientation)
 
 static void gyro_data_ready_cb(void)
 {
-    hal.new_gyro = 1;
+    //hal.new_gyro = 1;
+		//Do nothing, pin_in_read() does the job of this part
 }
 
 static void GPIO_setup()
@@ -391,7 +395,7 @@ static void GPIO_setup()
  */
 static void read_from_mpl(void)
 {
-    long msg, data[9];
+    long data[9];
     int8_t accuracy;
     unsigned long timestamp;
     float float_data[3] = {0};
@@ -405,17 +409,29 @@ static void read_from_mpl(void)
 				quat_print[2]= data[2] * 1.0 / (1<<30);
 				quat_print[3]= data[3] * 1.0 / (1<<30);
 
-        NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);			
+				//NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[0]));
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[1]));
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[2]));
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[3]));
 			
-    }
-					
+				NRF_LOG_FLUSH();
+			
+    } else{
+			return;
+		}
+		
 		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
 				
-				NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
-		
+				//NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[0]));
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[1]));
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(float_data[2]));
+			
+				NRF_LOG_FLUSH();
+			
 		}
-
-    
+		
 }
 
 inv_error_t updateFifo(void)
@@ -444,21 +460,14 @@ int main(void)
 {		
 		uint32_t err_code;
 	
-	  unsigned char accel_fsr,  new_temp = 0;
+	  unsigned char accel_fsr;
     unsigned short gyro_rate, gyro_fsr;
 		unsigned long timestamp;
 		struct int_param_s int_param;
 	
 	  unsigned char new_compass = 0;
 		unsigned short compass_fsr;
-
-		uint8_t TempReading[3]={0};
-		
-		
-		long *quat_data;
-		int8_t accuracy;
-		unsigned long inv_timestamp;
-	
+			
 		//set up uart
 		uart_config();
 	
@@ -693,6 +702,7 @@ int main(void)
     hal.dmp_on = 1;
 		
 		/*
+		//100Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(100);
 				inv_set_quat_sample_rate(10000L);
@@ -702,6 +712,8 @@ int main(void)
 		inv_set_accel_sample_rate(10000L);
 		*/
 		
+		
+		//10Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(10);
 				inv_set_quat_sample_rate(100000L);
@@ -710,8 +722,11 @@ int main(void)
 		inv_set_gyro_sample_rate(100000L);
 		inv_set_accel_sample_rate(100000L);
 		
+		
 		//__enable_interrupt();
 		__enable_irq();
+		
+		run_self_test();
 
 		NRF_LOG_FLUSH();
 		
@@ -846,7 +861,9 @@ int main(void)
 						inv_err_code=inv_execute_on_data();
             if(inv_err_code!=INV_SUCCESS){
 								NRF_LOG_RAW_INFO("execution failed! \n");
+								NRF_LOG_FLUSH();
 						}
+						
             /* This function reads bias-compensated sensor data and sensor
              * fusion outputs from the MPL. The outputs are formatted as seen
              * in eMPL_outputs.c. This function only needs to be called at the
