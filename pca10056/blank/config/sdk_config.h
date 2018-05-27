@@ -905,7 +905,7 @@
 // <i> Must be power of 2
 
 #ifndef NRF_LOG_DEFERRED_BUFSIZE
-#define NRF_LOG_DEFERRED_BUFSIZE 256
+#define NRF_LOG_DEFERRED_BUFSIZE 1024
 #endif
 
 #endif //NRF_LOG_DEFERRED

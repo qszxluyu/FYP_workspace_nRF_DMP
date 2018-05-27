@@ -409,49 +409,57 @@ static void read_from_mpl(void)
 				quat_print[2]= data[2] * 1.0 / (1<<30);
 				quat_print[3]= data[3] * 1.0 / (1<<30);
 
-				//NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
+				//printf("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
+				
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[0]));
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[1]));
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[2]));
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[3]));
-			
 				NRF_LOG_FLUSH();
-			
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[1]));
+				NRF_LOG_FLUSH();
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[2]));
+				NRF_LOG_FLUSH();
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[3]));
+				NRF_LOG_FLUSH();
+				
     } else{
 			return;
 		}
 		
 		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
 				
-				//NRF_LOG_RAW_INFO("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
+				//printf("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
+				
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[0]));
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[1]));
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(float_data[2]));
-			
 				NRF_LOG_FLUSH();
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[1]));
+				NRF_LOG_FLUSH();	
+				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(float_data[2]));
+				NRF_LOG_FLUSH();
+				
 			
 		}
 		
 }
 
+/*
 inv_error_t updateFifo(void)
 {
-	short gyro[3], accel[3], sensors;
-	long quat[4];
-	unsigned long timestamp;
-	unsigned char more;
-	int inv_err_code;
-	inv_err_code =dmp_read_fifo(gyro, accel, quat, &timestamp, &sensors, &more);
-	if (inv_err_code != INV_SUCCESS)
-	{	
-		//NRF_LOG_RAW_INFO("fifo data failed! error code: %d \n",inv_err_code);		
-		return INV_ERROR;
-	} else {
-		NRF_LOG_RAW_INFO("fifo data updated! \n");
-		NRF_LOG_RAW_INFO("accel data: %d \n",accel[0]);
-	}
-	return INV_SUCCESS;
+		short gyro[3], accel[3], sensors;
+		long quat[4];
+		unsigned long timestamp;
+		unsigned char more;
+		int inv_err_code;
+		inv_err_code =dmp_read_fifo(gyro, accel, quat, &timestamp, &sensors, &more);
+		if (inv_err_code != INV_SUCCESS)
+		{	
+			//NRF_LOG_RAW_INFO("fifo data failed! error code: %d \n",inv_err_code);		
+			return INV_ERROR;
+		} else {
+			NRF_LOG_RAW_INFO("fifo data updated! \n");
+			NRF_LOG_RAW_INFO("accel data: %d \n",accel[0]);
+		}
+		return INV_SUCCESS;
 }
+*/
 
 /**
  * @brief Function for main application entry.
@@ -580,36 +588,36 @@ int main(void)
 		/***********set up hardware************/
 		
 		inv_err_code = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
-		NRF_LOG_RAW_INFO("set sensors, 0 is pass? %d \n", inv_err_code);
+		//NRF_LOG_RAW_INFO("set sensors, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); //magn data doesn't go to fifo
-    NRF_LOG_RAW_INFO("set fifo, 0 is pass? %d \n", inv_err_code);
+    //NRF_LOG_RAW_INFO("set fifo, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
-		NRF_LOG_RAW_INFO("set sample rate, 0 is pass? %d \n", inv_err_code);
+		//NRF_LOG_RAW_INFO("set sample rate, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_compass_sample_rate(1000 / COMPASS_READ_MS);
-    NRF_LOG_RAW_INFO("set magn sample rate, 0 is pass? %d \n", inv_err_code);
+    //NRF_LOG_RAW_INFO("set magn sample rate, 0 is pass? %d \n", inv_err_code);
 		
-		NRF_LOG_FLUSH();
+		//NRF_LOG_FLUSH();
 		
 		/********end of set up hardware********/
 		
 		/***Read back configuration in case it was set improperly. ***/
 		
     mpu_get_sample_rate(&gyro_rate);
-		NRF_LOG_RAW_INFO("sample rate: %d \n",gyro_rate);
+		//NRF_LOG_RAW_INFO("sample rate: %d \n",gyro_rate);
 		
     mpu_get_gyro_fsr(&gyro_fsr);
-		NRF_LOG_RAW_INFO("gyro fsr: %d \n",gyro_fsr);
+		//NRF_LOG_RAW_INFO("gyro fsr: %d \n",gyro_fsr);
 		
     mpu_get_accel_fsr(&accel_fsr);
-		NRF_LOG_RAW_INFO("accel fsr: %d \n",accel_fsr);
+		//NRF_LOG_RAW_INFO("accel fsr: %d \n",accel_fsr);
 		
 		mpu_get_compass_fsr(&compass_fsr);
-		NRF_LOG_RAW_INFO("magn fsr: %d \n",compass_fsr);
+		//NRF_LOG_RAW_INFO("magn fsr: %d \n",compass_fsr);
 		
-		NRF_LOG_FLUSH();
+		//NRF_LOG_FLUSH();
 		
 		/**********************end of read back***********************/
 		
@@ -663,17 +671,18 @@ int main(void)
 		inv_err_code = dmp_load_motion_driver_firmware();
 		while(inv_err_code != 0){
 			NRF_LOG_RAW_INFO("Could not load DMP Image, Error Code: %d, retry in 1 sec \n", inv_err_code);
+			NRF_LOG_FLUSH();
 			nrf_delay_ms(1000);
 			inv_err_code = dmp_load_motion_driver_firmware();
 		}
 		
 		if (inv_err_code != 0) {
 			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \n", inv_err_code);
+			NRF_LOG_FLUSH();
     }else{
 			NRF_LOG_RAW_INFO("DMP downloaded! \n");
+			NRF_LOG_FLUSH();
 		}
-		
-		NRF_LOG_FLUSH();
 		
 		dmp_set_orientation(
 				inv_orientation_matrix_to_scalar(gyro_pdata.orientation));	
@@ -712,7 +721,27 @@ int main(void)
 		inv_set_accel_sample_rate(10000L);
 		*/
 		
+		/*
+		//40Hz
+		if (hal.dmp_on) {
+				dmp_set_fifo_rate(40);
+				inv_set_quat_sample_rate(25000L);
+		} else
+				mpu_set_sample_rate(40);
+		inv_set_gyro_sample_rate(25000L);
+		inv_set_accel_sample_rate(25000L);
+		*/
 		
+		//50Hz
+		if (hal.dmp_on) {
+				dmp_set_fifo_rate(50);
+				inv_set_quat_sample_rate(20000L);
+		} else
+				mpu_set_sample_rate(50);
+		inv_set_gyro_sample_rate(20000L);
+		inv_set_accel_sample_rate(20000L);
+
+		/*
 		//10Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(10);
@@ -721,7 +750,7 @@ int main(void)
 				mpu_set_sample_rate(10);
 		inv_set_gyro_sample_rate(100000L);
 		inv_set_accel_sample_rate(100000L);
-		
+		*/
 		
 		//__enable_interrupt();
 		__enable_irq();
@@ -731,149 +760,107 @@ int main(void)
 		NRF_LOG_FLUSH();
 		
 		/**********end of initialize the DMP**********/
+				
 		
-		
-  while(1){
-		/* 
-		//This is a test using mpu_get_int_status to detect data ready
-		inv_err_code = mpu_get_int_status(fifo_Status);
-		NRF_LOG_RAW_INFO("getting mpu int status, 0 is pass? %d \n",inv_err_code);
-		if(fifo_Status){
-			hal.new_gyro = 1;
-		}
-		*/
-		
-    
-    unsigned long sensor_timestamp;
-    int new_data = 0;
+		while(1){
+								
+				unsigned long sensor_timestamp;
+				int new_data = 0;
 
-    millis(&timestamp);
+				millis(&timestamp);
+				
+				if(hal.new_gyro){
+					new_compass=1;
+				} else{
+					new_compass=0;
+				}
+				
+				
+				
+				if (!hal.sensors || !hal.new_gyro || !new_compass) {
+						continue;
+				}    
 
-    /* We're not using a data ready interrupt for the compass, so we'll
-     * make our compass reads timer-based instead.
-     */
-		
-		/*
-    if ((timestamp > hal.next_compass_ms) && !hal.lp_accel_mode &&
-        hal.new_gyro && (hal.sensors & COMPASS_ON)) {
-        hal.next_compass_ms = timestamp + COMPASS_READ_MS;
-        new_compass = 1;
-    }
-		*/
-		
-		
-		if(hal.new_gyro){
-			new_compass=1;
-		} else{
-			new_compass=0;
-		}
-		
-		
-		
-    if (!hal.sensors || !hal.new_gyro || !new_compass) {
-        continue;
-    }    
-
-        if (hal.new_gyro && hal.lp_accel_mode) {
+				if (hal.new_gyro && hal.lp_accel_mode) {
 						//lp_accel_mode is not used in this project
-        } else if (hal.new_gyro && hal.dmp_on) {
-            short gyro[3], accel_short[3], sensors;
-            unsigned char more;
-            long accel[3], quat[4];
-            /* This function gets new data from the FIFO when the DMP is in
-             * use. The FIFO can contain any combination of gyro, accel,
-             * quaternion, and gesture data. The sensors parameter tells the
-             * caller which data fields were actually populated with new data.
-             * For example, if sensors == (INV_XYZ_GYRO | INV_WXYZ_QUAT), then
-             * the FIFO isn't being filled with accel data.
-             * The driver parses the gesture data to determine if a gesture
-             * event has occurred; on an event, the application will be notified
-             * via a callback (assuming that a callback function was properly
-             * registered). The more parameter is non-zero if there are
-             * leftover packets in the FIFO.
-             */
-            inv_err_code = dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
+				} else if (hal.new_gyro && hal.dmp_on) {
+						short gyro[3], accel_short[3], sensors;
+						unsigned char more;
+						long accel[3], quat[4];
+						/* This function gets new data from the FIFO when the DMP is in
+						 * use. The FIFO can contain any combination of gyro, accel,
+						 * quaternion, and gesture data. The sensors parameter tells the
+						 * caller which data fields were actually populated with new data.
+						 * For example, if sensors == (INV_XYZ_GYRO | INV_WXYZ_QUAT), then
+						 * the FIFO isn't being filled with accel data.
+						 * The driver parses the gesture data to determine if a gesture
+						 * event has occurred; on an event, the application will be notified
+						 * via a callback (assuming that a callback function was properly
+						 * registered). The more parameter is non-zero if there are
+						 * leftover packets in the FIFO.
+						 */
+						inv_err_code = dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
 						
-						if(!inv_err_code){
-							NRF_LOG_RAW_INFO("dmp fifo read succeed. \n");
-							NRF_LOG_RAW_INFO("gyro: %06d, %06d, %06d \n",gyro[0],gyro[1],gyro[2]);
-							NRF_LOG_RAW_INFO("accel: %06d, %06d, %06d \n",accel_short[0],accel_short[1],accel_short[2]);
-							//NRF_LOG_RAW_INFO("sensor masks: %d \n", sensors);
-						} else {
-							NRF_LOG_RAW_INFO("read fifo failed, err code: %d \n",inv_err_code);
+						if(inv_err_code){
+								//NRF_LOG_RAW_INFO("read fifo failed, err code: %d \n",inv_err_code);
+								//NRF_LOG_FLUSH();
+								continue;
 						}
 						if (!more){
-                hal.new_gyro = 0;
-								NRF_LOG_RAW_INFO("more hits zero!!!!!!! \n");
-						} else{
-								NRF_LOG_RAW_INFO("value of more: %d \n",more);
+								hal.new_gyro = 0;
 						}
-            if (sensors & INV_XYZ_GYRO) {
-                /* Push the new data to the MPL. */
-							
-								NRF_LOG_RAW_INFO("pushing gyro data... ");
-                inv_build_gyro(gyro, sensor_timestamp);
-                new_data = 1;
-            }
-            if (sensors & INV_XYZ_ACCEL) {
-							
-								NRF_LOG_RAW_INFO("pushing accel data... ");
-                accel[0] = (long)accel_short[0];
-                accel[1] = (long)accel_short[1];
-                accel[2] = (long)accel_short[2];
-                inv_build_accel(accel, 0, sensor_timestamp);
-                new_data = 1;
-            }
-            if (sensors & INV_WXYZ_QUAT) {
-                inv_build_quat(quat, 0, sensor_timestamp);
-                new_data = 1;
-            }
-        }
+						if (sensors & INV_XYZ_GYRO) {
+								inv_build_gyro(gyro, sensor_timestamp);
+								new_data = 1;
+						}
+						if (sensors & INV_XYZ_ACCEL) {
+								accel[0] = (long)accel_short[0];
+								accel[1] = (long)accel_short[1];
+								accel[2] = (long)accel_short[2];
+								inv_build_accel(accel, 0, sensor_timestamp);
+								new_data = 1;
+						}
+						if (sensors & INV_WXYZ_QUAT) {
+								inv_build_quat(quat, 0, sensor_timestamp);
+								new_data = 1;
+						}
+				}
 
-        if (new_compass) {
-            short compass_short[3];
-            long compass[3];
-            new_compass = 0;
-            /* For any MPU device with an AKM on the auxiliary I2C bus, the raw
-             * magnetometer registers are copied to special gyro registers.
-             */
+				if (new_compass) {
+						short compass_short[3];
+						long compass[3];
+						new_compass = 0;
+						/* For any MPU device with an AKM on the auxiliary I2C bus, the raw
+						 * magnetometer registers are copied to special gyro registers.
+						 */
 						inv_err_code = mpu_get_compass_reg(compass_short, &sensor_timestamp);
-            if (!inv_err_code) {
-                compass[0] = (long)compass_short[0];
-                compass[1] = (long)compass_short[1];
-                compass[2] = (long)compass_short[2];
-                /* NOTE: If using a third-party compass calibration library,
-                 * pass in the compass data in uT * 2^16 and set the second
-                 * parameter to INV_CALIBRATED | acc, where acc is the
-                 * accuracy from 0 to 3.
-                 */
-								NRF_LOG_RAW_INFO("pushing compass data... \n");
-								NRF_LOG_RAW_INFO("compass: %06d, %06d, %06d \n",compass[0],compass[1],compass[2]);
-                inv_build_compass(compass, 0, sensor_timestamp);
-								
-            } else {
-								NRF_LOG_RAW_INFO("compass reading failed, err code: %d \n",inv_err_code);
+						if (!inv_err_code) {
+								compass[0] = (long)compass_short[0];
+								compass[1] = (long)compass_short[1];
+								compass[2] = (long)compass_short[2];
+								/* NOTE: If using a third-party compass calibration library,
+								 * pass in the compass data in uT * 2^16 and set the second
+								 * parameter to INV_CALIBRATED | acc, where acc is the
+								 * accuracy from 0 to 3.
+								 */
+								inv_build_compass(compass, 0, sensor_timestamp);
 						}
-            new_data = 1;
-        }
+						new_data = 1;
+				}
 
-        if (new_data) {
+				if (new_data) {
 						inv_err_code=inv_execute_on_data();
-            if(inv_err_code!=INV_SUCCESS){
-								NRF_LOG_RAW_INFO("execution failed! \n");
-								NRF_LOG_FLUSH();
-						}
 						
-            /* This function reads bias-compensated sensor data and sensor
-             * fusion outputs from the MPL. The outputs are formatted as seen
-             * in eMPL_outputs.c. This function only needs to be called at the
-             * rate requested by the host.
-             */
-            read_from_mpl();
+						/* This function reads bias-compensated sensor data and sensor
+						 * fusion outputs from the MPL. The outputs are formatted as seen
+						 * in eMPL_outputs.c. This function only needs to be called at the
+						 * rate requested by the host.
+						 */
+						read_from_mpl();
 						
-						NRF_LOG_FLUSH();
+						//NRF_LOG_FLUSH();
 						
-        }
+				}
 				
     }
 

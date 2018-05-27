@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52840_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52840_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sun May 27 16:29:27 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sun May 27 20:34:39 2018
 <BR><P>
 <H3>Maximum Stack Usage =        952 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -743,7 +743,8 @@ Global Symbols
 <P><STRONG><a name="[b1]"></a>inv_perform_9x_fusion</STRONG> (Thumb, 894 bytes, Stack size 216 bytes, fusion_9axis.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = inv_perform_9x_fusion &rArr; inv_find_synchronized_compass_angle &rArr; inv_compass_angle &rArr; __hardfp_atan2f
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_compass_correction
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_compass_correction
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_6axis_quaternion
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_q_normalizef
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_q_multf
@@ -751,7 +752,6 @@ Global Symbols
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_q_invert
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gyro_sum_of_sqr
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_quaternion_to_rotation
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_magnetic_disturbance_state
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_filter_correction_angle
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_find_synchronized_compass_angle
@@ -885,9 +885,9 @@ Global Symbols
 <P><STRONG><a name="[cd]"></a>inv_magnetic_disturbance_process</STRONG> (Thumb, 50 bytes, Stack size 48 bytes, mag_disturb.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 236<LI>Call Chain = inv_magnetic_disturbance_process &rArr; inv_check_magnetic_disturbance &rArr; ComputeAngleVelocity &rArr; inv_q_mult
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_compass_disturbance
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_compass_disturbance
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_6axis_quaternion
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_check_magnetic_disturbance
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mag_disturb.o(.text)
@@ -2043,8 +2043,8 @@ Global Symbols
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_start
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_clock_hfclk_request
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_clock_hfclk_release
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cont_buf_prealloc
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buf_prealloc
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cont_buf_prealloc
 </UL>
 
 <P><STRONG><a name="[154]"></a>app_util_critical_region_exit</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, app_util_platform.o(i.app_util_critical_region_exit))
@@ -2054,8 +2054,8 @@ Global Symbols
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_timer_start
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_clock_hfclk_request
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_clock_hfclk_release
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cont_buf_prealloc
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buf_prealloc
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cont_buf_prealloc
 </UL>
 
 <P><STRONG><a name="[15e]"></a>app_util_disable_irq</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, app_util_platform.o(i.app_util_disable_irq))
@@ -2501,8 +2501,8 @@ Global Symbols
 <P><STRONG><a name="[e0]"></a>inv_get_linear_accel</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, results_holder.o(i.inv_get_linear_accel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = inv_get_linear_accel &rArr; inv_get_gravity
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_accel_set
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_accel_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_linear_accel_float
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_check_push
@@ -2558,8 +2558,8 @@ Global Symbols
 <P><STRONG><a name="[1a9]"></a>inv_get_sensor_type_linear_acceleration</STRONG> (Thumb, 106 bytes, Stack size 32 bytes, hal_outputs.o(i.inv_get_sensor_type_linear_acceleration))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = inv_get_sensor_type_linear_acceleration &rArr; inv_get_gravity
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_accel_set
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_accel_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_from_mpl
 </UL>
@@ -2630,8 +2630,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1a1]"></a>inv_q29_mult</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, ml_math_func.o(i.inv_q29_mult))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_quaternion_to_rotation
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_quaternion_to_rotation
 </UL>
 
 <P><STRONG><a name="[94]"></a>inv_q30_mult</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, ml_math_func.o(i.inv_q30_mult))
@@ -2732,13 +2732,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_MLPrintLog
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_results_holder
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_magnetic_disturbance
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_9x_sensor_fusion
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_fast_nomot
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_vector_compass_cal
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_eMPL_outputs
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_in_use_auto_calibration
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_quaternion
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_start_magnetic_disturbance
 </UL>
 
 <P><STRONG><a name="[1ac]"></a>inv_register_load_store</STRONG> (Thumb, 102 bytes, Stack size 20 bytes, storage_manager.o(i.inv_register_load_store))
@@ -2918,7 +2918,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[84]"></a>inv_unregister_data_cb</STRONG> (Thumb, 72 bytes, Stack size 12 bytes, data_builder.o(i.inv_unregister_data_cb), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_9x_sensor_fusion
+<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_disable_magnetic_disturbance
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_magnetic_disturbance
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_9x_sensor_fusion
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_fast_nomot
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_disable_vector_compass_cal
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_vector_compass_cal
@@ -2926,8 +2928,6 @@ Global Symbols
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_in_use_auto_calibration
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_disable_quaternion
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_quaternion
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_disable_magnetic_disturbance
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_stop_magnetic_disturbance
 </UL>
 
 <P><STRONG><a name="[8a]"></a>inv_unregister_mpl_start_notification</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, start_manager.o(i.inv_unregister_mpl_start_notification), UNUSED)
@@ -2949,11 +2949,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[36]"></a>main</STRONG> (Thumb, 1828 bytes, Stack size 96 bytes, main.o(i.main))
+<P><STRONG><a name="[36]"></a>main</STRONG> (Thumb, 752 bytes, Stack size 96 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 952<LI>Call Chain = main &rArr; run_self_test &rArr; mpu_run_6500_self_test &rArr; get_st_6500_biases &rArr; mpu_twi_read_test &rArr; nrf_drv_twi_tx &rArr; nrf_drv_twi_xfer &rArr; twim_xfer &rArr; nrf_twim_event_clear
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_3
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
@@ -3638,7 +3637,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_fault_handler
 </UL>
 
-<P><STRONG><a name="[146]"></a>nrf_log_frontend_dequeue</STRONG> (Thumb, 298 bytes, Stack size 64 bytes, nrf_log_frontend.o(i.nrf_log_frontend_dequeue))
+<P><STRONG><a name="[146]"></a>nrf_log_frontend_dequeue</STRONG> (Thumb, 314 bytes, Stack size 64 bytes, nrf_log_frontend.o(i.nrf_log_frontend_dequeue))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = nrf_log_frontend_dequeue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buffer_is_empty
@@ -3648,7 +3647,7 @@ Global Symbols
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_fault_handler
 </UL>
 
-<P><STRONG><a name="[21a]"></a>nrf_log_frontend_init</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, nrf_log_frontend.o(i.nrf_log_frontend_init))
+<P><STRONG><a name="[21a]"></a>nrf_log_frontend_init</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, nrf_log_frontend.o(i.nrf_log_frontend_init))
 <BR><BR>[Calls]<UL><LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_handlers_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
@@ -3703,8 +3702,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buf_prealloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_from_mpl
+<BR>[Called By]<UL><LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_from_mpl
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_6500_self_test
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;accel_6500_self_test
 </UL>
@@ -3717,7 +3715,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_6500_biases
 </UL>
 
-<P><STRONG><a name="[21b]"></a>nrf_log_handlers_set</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, nrf_log_frontend.o(i.nrf_log_handlers_set))
+<P><STRONG><a name="[21b]"></a>nrf_log_handlers_set</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, nrf_log_frontend.o(i.nrf_log_handlers_set))
 <BR><BR>[Called By]<UL><LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_init
 </UL>
 
@@ -3796,7 +3794,7 @@ Local Symbols
 <P><STRONG><a name="[44]"></a>pin_in_read</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, main.o(i.pin_in_read))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
-<P><STRONG><a name="[1dc]"></a>read_from_mpl</STRONG> (Thumb, 984 bytes, Stack size 144 bytes, main.o(i.read_from_mpl))
+<P><STRONG><a name="[1dc]"></a>read_from_mpl</STRONG> (Thumb, 1100 bytes, Stack size 144 bytes, main.o(i.read_from_mpl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = read_from_mpl &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_3
@@ -4722,11 +4720,11 @@ Local Symbols
 <P><STRONG><a name="[e8]"></a>inv_check_push</STRONG> (Thumb, 352 bytes, Stack size 72 bytes, accel_auto_cal.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = inv_check_push &rArr; inv_set_accel_bias_mask &rArr; inv_apply_calibration &rArr; inv_convert_to_body_with_scale
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_accel_bias_mask
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_accel_bias_mask
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_accel_accuracy
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_accel_bias_found
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_linear_accel
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_gravity
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memmove4
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_get_current_calibrated_accel
 </UL>

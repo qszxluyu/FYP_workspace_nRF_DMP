@@ -118,7 +118,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>杷S,P鮒w杷S,</Name>
+          <Name>h?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -150,9 +150,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>484</LineNumber>
+          <LineNumber>868</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>43666</Address>
+          <Address>48012</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -161,23 +161,55 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\nrf52840_xxaa\../../../main.c\484</Expression>
+          <Expression>\\\../../../main.c\868</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>1795</LineNumber>
+          <LineNumber>725</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>46764</Address>
+          <Address>47766</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\eMD-6.0\core\driver\eMPL\inv_mpu.c</Filename>
+          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\nrf52840_xxaa\../../../eMD-6.0/core/driver/eMPL/inv_mpu.c\1795</Expression>
+          <Expression>\\nrf52840_xxaa\../../../main.c\725</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>727</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>47770</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\nrf52840_xxaa\../../../main.c\727</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>429</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>60656</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\nrf52840_xxaa\../../../main.c\429</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -185,6 +217,26 @@
           <count>0</count>
           <WinNumber>1</WinNumber>
           <ItemText>new_compass</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>quat_print</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>float_data</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hal.new_gyro</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>data</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
