@@ -86,6 +86,13 @@
 
 #include "nrf_drv_inv_dmp.h"
 
+#include "ble.h"
+#include "ble_gap.h"
+#include "ble_hci.h"
+#include "softdevice_handler.h"
+#include "nrf_ble_gatt.h"
+#include "ble_advdata.h"
+#include "ble_nus_c.h"
 
 
 //#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
@@ -723,14 +730,8 @@ int main(void)
 				int new_data = 0;
 
 				millis(&timestamp);
-				
-				if(hal.new_gyro){
-					new_compass=1;
-				} else{
-					new_compass=0;
-				}
-				
-				
+
+				new_compass = hal.new_gyro;
 				
 				if (!hal.sensors || !hal.new_gyro || !new_compass) {
 						continue;
