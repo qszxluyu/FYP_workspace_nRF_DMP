@@ -2904,398 +2904,398 @@ Image Symbol Table
     i.dmp_enable_lp_quat                     0x00008fbc   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_enable_lp_quat)
     i.dmp_load_motion_driver_firmware        0x00008ff8   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_load_motion_driver_firmware)
     i.dmp_read_fifo                          0x0000900c   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_read_fifo)
-    i.dmp_register_android_orient_cb         0x00009188   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_register_android_orient_cb)
-    i.dmp_register_tap_cb                    0x00009194   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_register_tap_cb)
-    i.dmp_set_fifo_rate                      0x000091a0   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_fifo_rate)
-    i.dmp_set_orientation                    0x00009204   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_orientation)
-    i.dmp_set_shake_reject_thresh            0x00009310   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_thresh)
-    i.dmp_set_shake_reject_time              0x00009340   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_time)
-    i.dmp_set_shake_reject_timeout           0x00009360   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_timeout)
-    i.dmp_set_tap_axes                       0x00009380   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_axes)
-    i.dmp_set_tap_count                      0x000093c0   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_count)
-    i.dmp_set_tap_thresh                     0x000093e4   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_thresh)
-    i.dmp_set_tap_time                       0x00009544   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time)
-    i.dmp_set_tap_time_multi                 0x00009564   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time_multi)
-    i.elapsed_ticks_acquire                  0x00009584   Section        0  app_timer_1.o(i.elapsed_ticks_acquire)
-    elapsed_ticks_acquire                    0x00009585   Thumb Code    58  app_timer_1.o(i.elapsed_ticks_acquire)
-    i.fabs                                   0x000095c4   Section        0  fabs.o(i.fabs)
-    i.fifo_get                               0x000095dc   Section        0  app_fifo.o(i.fifo_get)
-    fifo_get                                 0x000095dd   Thumb Code    20  app_fifo.o(i.fifo_get)
-    i.fifo_put                               0x000095f0   Section        0  app_fifo.o(i.fifo_put)
-    fifo_put                                 0x000095f1   Thumb Code    18  app_fifo.o(i.fifo_put)
-    i.fputc                                  0x00009602   Section        0  retarget.o(i.fputc)
-    i.free                                   0x00009610   Section        0  malloc.o(i.free)
-    i.get_st_6500_biases                     0x00009660   Section        0  inv_mpu.o(i.get_st_6500_biases)
-    get_st_6500_biases                       0x00009661   Thumb Code  1168  inv_mpu.o(i.get_st_6500_biases)
-    i.gyro_6500_self_test                    0x00009b28   Section        0  inv_mpu.o(i.gyro_6500_self_test)
-    gyro_6500_self_test                      0x00009b29   Thumb Code   630  inv_mpu.o(i.gyro_6500_self_test)
-    i.hfclk_stop                             0x00009f98   Section        0  nrf_drv_clock.o(i.hfclk_stop)
-    hfclk_stop                               0x00009f99   Thumb Code    24  nrf_drv_clock.o(i.hfclk_stop)
-    i.i2c_write_porting                      0x00009fb8   Section        0  nrf_drv_mpu_twi.o(i.i2c_write_porting)
-    i.interrupts_enable                      0x0000a038   Section        0  nrf_drv_uart.o(i.interrupts_enable)
-    interrupts_enable                        0x0000a039   Thumb Code   106  nrf_drv_uart.o(i.interrupts_enable)
-    i.inv_apply_calibration                  0x0000a0b0   Section        0  data_builder.o(i.inv_apply_calibration)
-    i.inv_build_accel                        0x0000a11c   Section        0  data_builder.o(i.inv_build_accel)
-    i.inv_build_compass                      0x0000a184   Section        0  data_builder.o(i.inv_build_compass)
-    i.inv_build_gyro                         0x0000a208   Section        0  data_builder.o(i.inv_build_gyro)
-    i.inv_build_quat                         0x0000a238   Section        0  data_builder.o(i.inv_build_quat)
-    i.inv_compass_angle                      0x0000a264   Section        0  ml_math_func.o(i.inv_compass_angle)
-    i.inv_convert_to_body_with_scale         0x0000a310   Section        0  ml_math_func.o(i.inv_convert_to_body_with_scale)
-    i.inv_db_load_func                       0x0000a36c   Section        0  data_builder.o(i.inv_db_load_func)
-    inv_db_load_func                         0x0000a36d   Thumb Code    54  data_builder.o(i.inv_db_load_func)
-    i.inv_db_save_func                       0x0000a3a8   Section        0  data_builder.o(i.inv_db_save_func)
-    inv_db_save_func                         0x0000a3a9   Thumb Code    14  data_builder.o(i.inv_db_save_func)
-    i.inv_enable_eMPL_outputs                0x0000a3bc   Section        0  empl_outputs.o(i.inv_enable_eMPL_outputs)
-    i.inv_enable_results_holder              0x0000a3d8   Section        0  results_holder.o(i.inv_enable_results_holder)
-    i.inv_execute_mpl_start_notification     0x0000a3f4   Section        0  start_manager.o(i.inv_execute_mpl_start_notification)
-    i.inv_execute_on_data                    0x0000a420   Section        0  data_builder.o(i.inv_execute_on_data)
-    i.inv_generate_eMPL_outputs              0x0000a4a0   Section        0  empl_outputs.o(i.inv_generate_eMPL_outputs)
-    inv_generate_eMPL_outputs                0x0000a4a1   Thumb Code   160  empl_outputs.o(i.inv_generate_eMPL_outputs)
-    i.inv_generate_results                   0x0000a544   Section        0  results_holder.o(i.inv_generate_results)
-    i.inv_get_6axis_quaternion               0x0000a554   Section        0  results_holder.o(i.inv_get_6axis_quaternion)
-    i.inv_get_acc_state                      0x0000a568   Section        0  results_holder.o(i.inv_get_acc_state)
-    i.inv_get_accel_accuracy                 0x0000a574   Section        0  data_builder.o(i.inv_get_accel_accuracy)
-    i.inv_get_accel_on                       0x0000a580   Section        0  data_builder.o(i.inv_get_accel_on)
-    i.inv_get_accel_set                      0x0000a590   Section        0  data_builder.o(i.inv_get_accel_set)
-    i.inv_get_compass_bias                   0x0000a5b8   Section        0  data_builder.o(i.inv_get_compass_bias)
-    i.inv_get_compass_correction             0x0000a5cc   Section        0  results_holder.o(i.inv_get_compass_correction)
-    i.inv_get_compass_on                     0x0000a5e4   Section        0  data_builder.o(i.inv_get_compass_on)
-    i.inv_get_compass_soft_iron_output_data  0x0000a5f4   Section        0  data_builder.o(i.inv_get_compass_soft_iron_output_data)
-    i.inv_get_compass_state                  0x0000a610   Section        0  results_holder.o(i.inv_get_compass_state)
-    i.inv_get_gravity                        0x0000a61c   Section        0  results_holder.o(i.inv_get_gravity)
-    i.inv_get_gyro                           0x0000a670   Section        0  data_builder.o(i.inv_get_gyro)
-    i.inv_get_gyro_accuracy                  0x0000a680   Section        0  data_builder.o(i.inv_get_gyro_accuracy)
-    i.inv_get_gyro_bias                      0x0000a68c   Section        0  data_builder.o(i.inv_get_gyro_bias)
-    i.inv_get_gyro_on                        0x0000a6b0   Section        0  data_builder.o(i.inv_get_gyro_on)
-    i.inv_get_gyro_sum_of_sqr                0x0000a6c0   Section        0  ml_math_func.o(i.inv_get_gyro_sum_of_sqr)
-    i.inv_get_large_mag_field                0x0000a6dc   Section        0  results_holder.o(i.inv_get_large_mag_field)
-    i.inv_get_last_timestamp                 0x0000a6e8   Section        0  data_builder.o(i.inv_get_last_timestamp)
-    i.inv_get_linear_accel                   0x0000a730   Section        0  results_holder.o(i.inv_get_linear_accel)
-    i.inv_get_linear_accel_float             0x0000a76c   Section        0  results_holder.o(i.inv_get_linear_accel_float)
-    i.inv_get_local_field                    0x0000a7b0   Section        0  results_holder.o(i.inv_get_local_field)
-    i.inv_get_mag_accuracy                   0x0000a7c0   Section        0  data_builder.o(i.inv_get_mag_accuracy)
-    i.inv_get_quaternion                     0x0000a7dc   Section        0  results_holder.o(i.inv_get_quaternion)
-    i.inv_get_quaternion_set                 0x0000a810   Section        0  results_holder.o(i.inv_get_quaternion_set)
-    i.inv_get_sensor_type_gravity            0x0000a848   Section        0  hal_outputs.o(i.inv_get_sensor_type_gravity)
-    i.inv_get_sensor_type_linear_acceleration 0x0000a8a8   Section        0  hal_outputs.o(i.inv_get_sensor_type_linear_acceleration)
-    i.inv_get_sensor_type_quat               0x0000a918   Section        0  empl_outputs.o(i.inv_get_sensor_type_quat)
-    i.inv_got_compass_bias                   0x0000a934   Section        0  results_holder.o(i.inv_got_compass_bias)
-    i.inv_init_data_builder                  0x0000a940   Section        0  data_builder.o(i.inv_init_data_builder)
-    i.inv_init_mpl                           0x0000a97c   Section        0  mpl.o(i.inv_init_mpl)
-    i.inv_init_results_holder                0x0000aa04   Section        0  results_holder.o(i.inv_init_results_holder)
-    i.inv_init_start_manager                 0x0000aa34   Section        0  start_manager.o(i.inv_init_start_manager)
-    i.inv_init_storage_manager               0x0000aa48   Section        0  storage_manager.o(i.inv_init_storage_manager)
-    i.inv_orientation_matrix_to_scalar       0x0000aa60   Section        0  ml_math_func.o(i.inv_orientation_matrix_to_scalar)
-    i.inv_q29_mult                           0x0000aa82   Section        0  ml_math_func.o(i.inv_q29_mult)
-    i.inv_q30_mult                           0x0000aa8e   Section        0  ml_math_func.o(i.inv_q30_mult)
-    i.inv_q_add                              0x0000aa9a   Section        0  ml_math_func.o(i.inv_q_add)
-    i.inv_q_addf                             0x0000aabe   Section        0  ml_math_func.o(i.inv_q_addf)
-    i.inv_q_invert                           0x0000ab00   Section        0  ml_math_func.o(i.inv_q_invert)
-    i.inv_q_invertf                          0x0000ab18   Section        0  ml_math_func.o(i.inv_q_invertf)
-    i.inv_q_mult                             0x0000ab46   Section        0  ml_math_func.o(i.inv_q_mult)
-    i.inv_q_multf                            0x0000abf6   Section        0  ml_math_func.o(i.inv_q_multf)
-    i.inv_q_norm4                            0x0000acc8   Section        0  ml_math_func.o(i.inv_q_norm4)
-    i.inv_q_normalizef                       0x0000ad4c   Section        0  ml_math_func.o(i.inv_q_normalizef)
-    i.inv_q_rotate                           0x0000adfc   Section        0  ml_math_func.o(i.inv_q_rotate)
-    i.inv_quaternion_to_rotation             0x0000ae3a   Section        0  ml_math_func.o(i.inv_quaternion_to_rotation)
-    i.inv_register_data_cb                   0x0000af14   Section        0  data_builder.o(i.inv_register_data_cb)
-    i.inv_register_load_store                0x0000afb8   Section        0  storage_manager.o(i.inv_register_load_store)
-    i.inv_register_mpl_start_notification    0x0000b024   Section        0  start_manager.o(i.inv_register_mpl_start_notification)
-    i.inv_reset_compass_soft_iron_matrix     0x0000b044   Section        0  data_builder.o(i.inv_reset_compass_soft_iron_matrix)
-    i.inv_row_2_scale                        0x0000b098   Section        0  ml_math_func.o(i.inv_row_2_scale)
-    inv_row_2_scale                          0x0000b099   Thumb Code    72  ml_math_func.o(i.inv_row_2_scale)
-    i.inv_set_accel_accuracy                 0x0000b0e0   Section        0  data_builder.o(i.inv_set_accel_accuracy)
-    i.inv_set_accel_bias                     0x0000b0fc   Section        0  data_builder.o(i.inv_set_accel_bias)
-    i.inv_set_accel_bias_found               0x0000b144   Section        0  results_holder.o(i.inv_set_accel_bias_found)
-    i.inv_set_accel_bias_mask                0x0000b150   Section        0  data_builder.o(i.inv_set_accel_bias_mask)
-    i.inv_set_accel_orientation_and_scale    0x0000b1a0   Section        0  data_builder.o(i.inv_set_accel_orientation_and_scale)
-    i.inv_set_accel_sample_rate              0x0000b1ac   Section        0  data_builder.o(i.inv_set_accel_sample_rate)
-    i.inv_set_compass_bias                   0x0000b1d8   Section        0  data_builder.o(i.inv_set_compass_bias)
-    i.inv_set_compass_bias_error             0x0000b220   Section        0  results_holder.o(i.inv_set_compass_bias_error)
-    i.inv_set_compass_bias_found             0x0000b230   Section        0  results_holder.o(i.inv_set_compass_bias_found)
-    i.inv_set_compass_correction             0x0000b23c   Section        0  results_holder.o(i.inv_set_compass_correction)
-    i.inv_set_compass_disturbance            0x0000b25c   Section        0  data_builder.o(i.inv_set_compass_disturbance)
-    i.inv_set_compass_orientation_and_scale  0x0000b268   Section        0  data_builder.o(i.inv_set_compass_orientation_and_scale)
-    i.inv_set_compass_sample_rate            0x0000b278   Section        0  data_builder.o(i.inv_set_compass_sample_rate)
-    i.inv_set_compass_soft_iron_input_data   0x0000b2a4   Section        0  data_builder.o(i.inv_set_compass_soft_iron_input_data)
-    i.inv_set_compass_state                  0x0000b2f4   Section        0  results_holder.o(i.inv_set_compass_state)
-    i.inv_set_contiguous                     0x0000b300   Section        0  data_builder.o(i.inv_set_contiguous)
-    inv_set_contiguous                       0x0000b301   Thumb Code   124  data_builder.o(i.inv_set_contiguous)
-    i.inv_set_gyro_bias                      0x0000b380   Section        0  data_builder.o(i.inv_set_gyro_bias)
-    i.inv_set_gyro_orientation_and_scale     0x0000b3dc   Section        0  data_builder.o(i.inv_set_gyro_orientation_and_scale)
-    i.inv_set_gyro_sample_rate               0x0000b3e8   Section        0  data_builder.o(i.inv_set_gyro_sample_rate)
-    i.inv_set_message                        0x0000b410   Section        0  message_layer.o(i.inv_set_message)
-    i.inv_set_motion_state                   0x0000b424   Section        0  results_holder.o(i.inv_set_motion_state)
-    i.inv_set_quat_sample_rate               0x0000b458   Section        0  data_builder.o(i.inv_set_quat_sample_rate)
-    i.inv_start_eMPL_outputs                 0x0000b470   Section        0  empl_outputs.o(i.inv_start_eMPL_outputs)
-    inv_start_eMPL_outputs                   0x0000b471   Thumb Code    12  empl_outputs.o(i.inv_start_eMPL_outputs)
-    i.inv_start_mpl                          0x0000b480   Section        0  mpl.o(i.inv_start_mpl)
-    i.inv_start_results_holder               0x0000b4cc   Section        0  results_holder.o(i.inv_start_results_holder)
-    i.inv_store_gaming_quaternion            0x0000b4e4   Section        0  results_holder.o(i.inv_store_gaming_quaternion)
-    i.inv_unregister_data_cb                 0x0000b504   Section        0  data_builder.o(i.inv_unregister_data_cb)
-    i.inv_unregister_mpl_start_notification  0x0000b550   Section        0  start_manager.o(i.inv_unregister_mpl_start_notification)
-    i.irq_handler_twim                       0x0000b598   Section        0  nrf_drv_twi.o(i.irq_handler_twim)
-    irq_handler_twim                         0x0000b599   Thumb Code   334  nrf_drv_twi.o(i.irq_handler_twim)
-    i.item_enqueue                           0x0000b6e6   Section        0  nrf_drv_clock.o(i.item_enqueue)
-    item_enqueue                             0x0000b6e7   Thumb Code    22  nrf_drv_clock.o(i.item_enqueue)
-    i.list_insertions_handler                0x0000b6fc   Section        0  app_timer_1.o(i.list_insertions_handler)
-    list_insertions_handler                  0x0000b6fd   Thumb Code   234  app_timer_1.o(i.list_insertions_handler)
-    i.magn_setup                             0x0000b7f4   Section        0  main.o(i.magn_setup)
-    i.main                                   0x0000b818   Section        0  main.o(i.main)
-    i.malloc                                 0x0000bc1c   Section        0  malloc.o(i.malloc)
-    i.millis                                 0x0000bc88   Section        0  nrf_drv_inv_dmp.o(i.millis)
-    i.mlMatrixVectorMult                     0x0000bca6   Section        0  ml_math_func.o(i.mlMatrixVectorMult)
-    i.mpu_config                             0x0000bcd8   Section        0  app_mpu.o(i.mpu_config)
-    i.mpu_configure_fifo                     0x0000bce4   Section        0  inv_mpu.o(i.mpu_configure_fifo)
-    i.mpu_get_accel_fsr                      0x0000bd38   Section        0  inv_mpu.o(i.mpu_get_accel_fsr)
-    i.mpu_get_accel_sens                     0x0000bd74   Section        0  inv_mpu.o(i.mpu_get_accel_sens)
-    i.mpu_get_compass_fsr                    0x0000bdb8   Section        0  inv_mpu.o(i.mpu_get_compass_fsr)
-    i.mpu_get_compass_reg                    0x0000bdc8   Section        0  inv_mpu.o(i.mpu_get_compass_reg)
-    i.mpu_get_gyro_fsr                       0x0000be7c   Section        0  inv_mpu.o(i.mpu_get_gyro_fsr)
-    i.mpu_get_gyro_sens                      0x0000beb0   Section        0  inv_mpu.o(i.mpu_get_gyro_sens)
-    i.mpu_get_lpf                            0x0000befc   Section        0  inv_mpu.o(i.mpu_get_lpf)
-    i.mpu_get_sample_rate                    0x0000bf34   Section        0  inv_mpu.o(i.mpu_get_sample_rate)
-    i.mpu_init                               0x0000bf50   Section        0  app_mpu.o(i.mpu_init)
-    i.mpu_init_inv                           0x0000bf74   Section        0  inv_mpu.o(i.mpu_init_inv)
-    i.mpu_int_cfg_pin                        0x0000c04c   Section        0  app_mpu.o(i.mpu_int_cfg_pin)
-    i.mpu_load_firmware                      0x0000c054   Section        0  inv_mpu.o(i.mpu_load_firmware)
-    i.mpu_lp_accel_mode                      0x0000c13c   Section        0  inv_mpu.o(i.mpu_lp_accel_mode)
-    i.mpu_magnetometer_init                  0x0000c228   Section        0  app_mpu.o(i.mpu_magnetometer_init)
-    i.mpu_read_fifo_stream                   0x0000c258   Section        0  inv_mpu.o(i.mpu_read_fifo_stream)
-    i.mpu_read_mem                           0x0000c32c   Section        0  inv_mpu.o(i.mpu_read_mem)
-    i.mpu_reset_fifo                         0x0000c380   Section        0  inv_mpu.o(i.mpu_reset_fifo)
-    i.mpu_run_6500_self_test                 0x0000c4e0   Section        0  inv_mpu.o(i.mpu_run_6500_self_test)
-    i.mpu_set_accel_fsr                      0x0000c79c   Section        0  inv_mpu.o(i.mpu_set_accel_fsr)
-    i.mpu_set_bypass                         0x0000c804   Section        0  inv_mpu.o(i.mpu_set_bypass)
-    i.mpu_set_compass_sample_rate            0x0000c8e0   Section        0  inv_mpu.o(i.mpu_set_compass_sample_rate)
-    i.mpu_set_dmp_state                      0x0000c930   Section        0  inv_mpu.o(i.mpu_set_dmp_state)
-    i.mpu_set_gyro_fsr                       0x0000c9a8   Section        0  inv_mpu.o(i.mpu_set_gyro_fsr)
-    i.mpu_set_int_latched                    0x0000ca14   Section        0  inv_mpu.o(i.mpu_set_int_latched)
-    i.mpu_set_lpf                            0x0000ca78   Section        0  inv_mpu.o(i.mpu_set_lpf)
-    i.mpu_set_sample_rate                    0x0000cb00   Section        0  inv_mpu.o(i.mpu_set_sample_rate)
-    i.mpu_set_sensors                        0x0000cb90   Section        0  inv_mpu.o(i.mpu_set_sensors)
-    i.mpu_setup                              0x0000ccc4   Section        0  main.o(i.mpu_setup)
-    i.mpu_twi_read_test                      0x0000cd4c   Section        0  nrf_drv_mpu_twi.o(i.mpu_twi_read_test)
-    i.mpu_write_mem                          0x0000ce04   Section        0  inv_mpu.o(i.mpu_write_mem)
-    i.nrf_bitmask_bit_is_set                 0x0000ce70   Section        0  nrf_drv_gpiote.o(i.nrf_bitmask_bit_is_set)
-    nrf_bitmask_bit_is_set                   0x0000ce71   Thumb Code    16  nrf_drv_gpiote.o(i.nrf_bitmask_bit_is_set)
-    i.nrf_clock_event_check                  0x0000ce80   Section        0  nrf_drv_clock.o(i.nrf_clock_event_check)
-    nrf_clock_event_check                    0x0000ce81   Thumb Code    14  nrf_drv_clock.o(i.nrf_clock_event_check)
-    i.nrf_clock_event_clear                  0x0000ce8e   Section        0  nrf_drv_clock.o(i.nrf_clock_event_clear)
-    nrf_clock_event_clear                    0x0000ce8f   Thumb Code    16  nrf_drv_clock.o(i.nrf_clock_event_clear)
-    i.nrf_clock_hf_is_running                0x0000cea0   Section        0  nrf_drv_clock.o(i.nrf_clock_hf_is_running)
-    nrf_clock_hf_is_running                  0x0000cea1   Thumb Code    24  nrf_drv_clock.o(i.nrf_clock_hf_is_running)
-    i.nrf_delay_ms                           0x0000cebc   Section        0  inv_mpu.o(i.nrf_delay_ms)
-    nrf_delay_ms                             0x0000cebd   Thumb Code    10  inv_mpu.o(i.nrf_delay_ms)
-    i.nrf_delay_us                           0x0000cec8   Section        0  main.o(i.nrf_delay_us)
-    nrf_delay_us                             0x0000cec9   Thumb Code   132  main.o(i.nrf_delay_us)
-    i.nrf_delay_us                           0x0000cf54   Section        0  nrf_drv_twi.o(i.nrf_delay_us)
-    nrf_delay_us                             0x0000cf55   Thumb Code   132  nrf_drv_twi.o(i.nrf_delay_us)
-    i.nrf_delay_us                           0x0000cfe0   Section        0  app_timer_1.o(i.nrf_delay_us)
-    nrf_delay_us                             0x0000cfe1   Thumb Code   132  app_timer_1.o(i.nrf_delay_us)
-    i.nrf_delay_us                           0x0000d06c   Section        0  inv_mpu.o(i.nrf_delay_us)
-    nrf_delay_us                             0x0000d06d   Thumb Code   132  inv_mpu.o(i.nrf_delay_us)
-    i.nrf_drv_clock_hfclk_release            0x0000d0f8   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_release)
-    i.nrf_drv_clock_hfclk_request            0x0000d120   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_request)
-    i.nrf_drv_clock_init                     0x0000d178   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_init)
-    i.nrf_drv_clock_lfclk_request            0x0000d1c4   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_lfclk_request)
-    i.nrf_drv_common_irq_disable             0x0000d224   Section        0  nrf_drv_uart.o(i.nrf_drv_common_irq_disable)
-    nrf_drv_common_irq_disable               0x0000d225   Thumb Code    22  nrf_drv_uart.o(i.nrf_drv_common_irq_disable)
-    i.nrf_drv_common_irq_enable              0x0000d23a   Section        0  nrf_drv_common.o(i.nrf_drv_common_irq_enable)
-    i.nrf_drv_get_IRQn                       0x0000d272   Section        0  nrf_drv_uart.o(i.nrf_drv_get_IRQn)
-    nrf_drv_get_IRQn                         0x0000d273   Thumb Code     6  nrf_drv_uart.o(i.nrf_drv_get_IRQn)
-    i.nrf_drv_gpiote_in_event_enable         0x0000d278   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable)
-    i.nrf_drv_gpiote_in_init                 0x0000d310   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init)
-    i.nrf_drv_gpiote_init                    0x0000d410   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_init)
-    i.nrf_drv_is_in_RAM                      0x0000d4f0   Section        0  nrf_drv_twi.o(i.nrf_drv_is_in_RAM)
-    nrf_drv_is_in_RAM                        0x0000d4f1   Thumb Code    16  nrf_drv_twi.o(i.nrf_drv_is_in_RAM)
-    i.nrf_drv_is_in_RAM                      0x0000d500   Section        0  nrf_drv_uart.o(i.nrf_drv_is_in_RAM)
-    nrf_drv_is_in_RAM                        0x0000d501   Thumb Code    16  nrf_drv_uart.o(i.nrf_drv_is_in_RAM)
-    i.nrf_drv_mpu_init                       0x0000d510   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_init)
-    i.nrf_drv_mpu_read_registers             0x0000d544   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_read_registers)
-    i.nrf_drv_mpu_twi_event_handler          0x0000d5b0   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_twi_event_handler)
-    nrf_drv_mpu_twi_event_handler            0x0000d5b1   Thumb Code    34  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_twi_event_handler)
-    i.nrf_drv_mpu_write_magnetometer_register 0x0000d5d8   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_magnetometer_register)
-    i.nrf_drv_mpu_write_registers            0x0000d618   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_registers)
-    i.nrf_drv_mpu_write_single_register      0x0000d670   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_single_register)
-    i.nrf_drv_twi_enable                     0x0000d6b0   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_enable)
-    i.nrf_drv_twi_init                       0x0000d6d0   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_init)
-    i.nrf_drv_twi_rx                         0x0000d75c   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_rx)
-    i.nrf_drv_twi_tx                         0x0000d780   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_tx)
-    i.nrf_drv_twi_xfer                       0x0000d7a4   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_xfer)
-    i.nrf_drv_uart_init                      0x0000d7c8   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_init)
-    i.nrf_drv_uart_rx                        0x0000d830   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx)
-    i.nrf_drv_uart_rx_enable                 0x0000d8e0   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_enable)
-    i.nrf_drv_uart_rx_for_uart               0x0000d910   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uart)
-    nrf_drv_uart_rx_for_uart                 0x0000d911   Thumb Code   162  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uart)
-    i.nrf_drv_uart_rx_for_uarte              0x0000d9b8   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uarte)
-    nrf_drv_uart_rx_for_uarte                0x0000d9b9   Thumb Code   172  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uarte)
-    i.nrf_drv_uart_tx                        0x0000da68   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_tx)
-    i.nrf_drv_uart_tx_in_progress            0x0000db74   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_tx_in_progress)
-    i.nrf_drv_uart_uninit                    0x0000db8c   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_uninit)
-    i.nrf_gpio_cfg                           0x0000dbe0   Section        0  boards.o(i.nrf_gpio_cfg)
-    nrf_gpio_cfg                             0x0000dbe1   Thumb Code    50  boards.o(i.nrf_gpio_cfg)
-    i.nrf_gpio_cfg                           0x0000dc12   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg)
-    nrf_gpio_cfg                             0x0000dc13   Thumb Code    50  nrf_drv_uart.o(i.nrf_gpio_cfg)
-    i.nrf_gpio_cfg                           0x0000dc44   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_cfg)
-    nrf_gpio_cfg                             0x0000dc45   Thumb Code    50  nrf_drv_gpiote.o(i.nrf_gpio_cfg)
-    i.nrf_gpio_cfg_default                   0x0000dc76   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_default)
-    nrf_gpio_cfg_default                     0x0000dc77   Thumb Code    18  nrf_drv_uart.o(i.nrf_gpio_cfg_default)
-    i.nrf_gpio_cfg_input                     0x0000dc88   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_input)
-    nrf_gpio_cfg_input                       0x0000dc89   Thumb Code    18  nrf_drv_uart.o(i.nrf_gpio_cfg_input)
-    i.nrf_gpio_cfg_output                    0x0000dc9a   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_output)
-    nrf_gpio_cfg_output                      0x0000dc9b   Thumb Code    20  nrf_drv_uart.o(i.nrf_gpio_cfg_output)
-    i.nrf_gpio_cfg_sense_set                 0x0000dcae   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_cfg_sense_set)
-    nrf_gpio_cfg_sense_set                   0x0000dcaf   Thumb Code    48  nrf_drv_gpiote.o(i.nrf_gpio_cfg_sense_set)
-    i.nrf_gpio_pin_clear                     0x0000dcde   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_clear)
-    nrf_gpio_pin_clear                       0x0000dcdf   Thumb Code    20  nrf_drv_twi.o(i.nrf_gpio_pin_clear)
-    i.nrf_gpio_pin_port_decode               0x0000dcf4   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_port_decode)
-    nrf_gpio_pin_port_decode                 0x0000dcf5   Thumb Code    22  nrf_drv_twi.o(i.nrf_gpio_pin_port_decode)
-    i.nrf_gpio_pin_port_decode               0x0000dd10   Section        0  boards.o(i.nrf_gpio_pin_port_decode)
-    nrf_gpio_pin_port_decode                 0x0000dd11   Thumb Code    22  boards.o(i.nrf_gpio_pin_port_decode)
-    i.nrf_gpio_pin_port_decode               0x0000dd2c   Section        0  nrf_drv_uart.o(i.nrf_gpio_pin_port_decode)
-    nrf_gpio_pin_port_decode                 0x0000dd2d   Thumb Code    22  nrf_drv_uart.o(i.nrf_gpio_pin_port_decode)
-    i.nrf_gpio_pin_port_decode               0x0000dd48   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_pin_port_decode)
-    nrf_gpio_pin_port_decode                 0x0000dd49   Thumb Code    22  nrf_drv_gpiote.o(i.nrf_gpio_pin_port_decode)
-    i.nrf_gpio_pin_read                      0x0000dd64   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_pin_read)
-    nrf_gpio_pin_read                        0x0000dd65   Thumb Code    22  nrf_drv_gpiote.o(i.nrf_gpio_pin_read)
-    i.nrf_gpio_pin_set                       0x0000dd7a   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_set)
-    nrf_gpio_pin_set                         0x0000dd7b   Thumb Code    20  nrf_drv_twi.o(i.nrf_gpio_pin_set)
-    i.nrf_gpio_pin_set                       0x0000dd8e   Section        0  nrf_drv_uart.o(i.nrf_gpio_pin_set)
-    nrf_gpio_pin_set                         0x0000dd8f   Thumb Code    20  nrf_drv_uart.o(i.nrf_gpio_pin_set)
-    i.nrf_gpio_pin_write                     0x0000dda2   Section        0  boards.o(i.nrf_gpio_pin_write)
-    nrf_gpio_pin_write                       0x0000dda3   Thumb Code    38  boards.o(i.nrf_gpio_pin_write)
-    i.nrf_gpio_ports_read                    0x0000ddc8   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_ports_read)
-    nrf_gpio_ports_read                      0x0000ddc9   Thumb Code    38  nrf_drv_gpiote.o(i.nrf_gpio_ports_read)
-    i.nrf_gpiote_event_clear                 0x0000ddf4   Section        0  nrf_drv_gpiote.o(i.nrf_gpiote_event_clear)
-    nrf_gpiote_event_clear                   0x0000ddf5   Thumb Code    16  nrf_drv_gpiote.o(i.nrf_gpiote_event_clear)
-    i.nrf_gpiote_event_is_set                0x0000de08   Section        0  nrf_drv_gpiote.o(i.nrf_gpiote_event_is_set)
-    nrf_gpiote_event_is_set                  0x0000de09   Thumb Code    12  nrf_drv_gpiote.o(i.nrf_gpiote_event_is_set)
-    i.nrf_log_backend_hexdump_handler_get    0x0000de18   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_hexdump_handler_get)
-    i.nrf_log_backend_init                   0x0000de20   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_init)
-    i.nrf_log_backend_serial_hexdump_handler 0x0000de90   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_serial_hexdump_handler)
-    nrf_log_backend_serial_hexdump_handler   0x0000de91   Thumb Code   302  nrf_log_backend_serial.o(i.nrf_log_backend_serial_hexdump_handler)
-    i.nrf_log_backend_serial_std_handler     0x0000dfbe   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_serial_std_handler)
-    nrf_log_backend_serial_std_handler       0x0000dfbf   Thumb Code   276  nrf_log_backend_serial.o(i.nrf_log_backend_serial_std_handler)
-    i.nrf_log_backend_std_handler_get        0x0000e0d4   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_std_handler_get)
-    i.nrf_log_blocking_backend_set           0x0000e0dc   Section        0  nrf_log_frontend.o(i.nrf_log_blocking_backend_set)
-    i.nrf_log_frontend_dequeue               0x0000e0e4   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_dequeue)
-    i.nrf_log_frontend_init                  0x0000e228   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_init)
-    i.nrf_log_frontend_std_0                 0x0000e240   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_0)
-    i.nrf_log_frontend_std_1                 0x0000e28c   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_1)
-    i.nrf_log_frontend_std_2                 0x0000e2e4   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_2)
-    i.nrf_log_frontend_std_3                 0x0000e34c   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_3)
-    i.nrf_log_frontend_std_4                 0x0000e3c8   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_4)
-    i.nrf_log_handlers_set                   0x0000e450   Section        0  nrf_log_frontend.o(i.nrf_log_handlers_set)
-    i.nrf_log_init                           0x0000e45c   Section        0  nrf_log_frontend.o(i.nrf_log_init)
-    i.nrf_log_push                           0x0000e480   Section        0  nrf_log_frontend.o(i.nrf_log_push)
-    i.nrf_strerror_find                      0x0000e4e0   Section        0  nrf_strerror.o(i.nrf_strerror_find)
-    i.nrf_strerror_get                       0x0000e518   Section        0  nrf_strerror.o(i.nrf_strerror_get)
-    i.nrf_twim_event_check                   0x0000e52c   Section        0  nrf_drv_twi.o(i.nrf_twim_event_check)
-    nrf_twim_event_check                     0x0000e52d   Thumb Code    10  nrf_drv_twi.o(i.nrf_twim_event_check)
-    i.nrf_twim_event_clear                   0x0000e536   Section        0  nrf_drv_twi.o(i.nrf_twim_event_clear)
-    nrf_twim_event_clear                     0x0000e537   Thumb Code    12  nrf_drv_twi.o(i.nrf_twim_event_clear)
-    i.nrf_uart_event_check                   0x0000e542   Section        0  nrf_drv_uart.o(i.nrf_uart_event_check)
-    nrf_uart_event_check                     0x0000e543   Thumb Code    10  nrf_drv_uart.o(i.nrf_uart_event_check)
-    i.nrf_uart_event_clear                   0x0000e54c   Section        0  nrf_drv_uart.o(i.nrf_uart_event_clear)
-    nrf_uart_event_clear                     0x0000e54d   Thumb Code    12  nrf_drv_uart.o(i.nrf_uart_event_clear)
-    i.nrf_uart_int_enable_check              0x0000e558   Section        0  nrf_drv_uart.o(i.nrf_uart_int_enable_check)
-    nrf_uart_int_enable_check                0x0000e559   Thumb Code    12  nrf_drv_uart.o(i.nrf_uart_int_enable_check)
-    i.nrf_uarte_event_check                  0x0000e564   Section        0  nrf_drv_uart.o(i.nrf_uarte_event_check)
-    nrf_uarte_event_check                    0x0000e565   Thumb Code    10  nrf_drv_uart.o(i.nrf_uarte_event_check)
-    i.nrf_uarte_event_clear                  0x0000e56e   Section        0  nrf_drv_uart.o(i.nrf_uarte_event_clear)
-    nrf_uarte_event_clear                    0x0000e56f   Thumb Code    12  nrf_drv_uart.o(i.nrf_uarte_event_clear)
-    i.pin_in_read                            0x0000e57c   Section        0  main.o(i.pin_in_read)
-    pin_in_read                              0x0000e57d   Thumb Code     8  main.o(i.pin_in_read)
-    i.pin_in_use_by_port                     0x0000e588   Section        0  nrf_drv_gpiote.o(i.pin_in_use_by_port)
-    pin_in_use_by_port                       0x0000e589   Thumb Code    20  nrf_drv_gpiote.o(i.pin_in_use_by_port)
-    i.pin_in_use_by_te                       0x0000e5a0   Section        0  nrf_drv_gpiote.o(i.pin_in_use_by_te)
-    pin_in_use_by_te                         0x0000e5a1   Thumb Code    20  nrf_drv_gpiote.o(i.pin_in_use_by_te)
-    i.pins_to_default                        0x0000e5b8   Section        0  nrf_drv_uart.o(i.pins_to_default)
-    pins_to_default                          0x0000e5b9   Thumb Code   114  nrf_drv_uart.o(i.pins_to_default)
-    i.read_from_mpl                          0x0000e630   Section        0  main.o(i.read_from_mpl)
-    read_from_mpl                            0x0000e631   Thumb Code  1100  main.o(i.read_from_mpl)
-    i.rtc1_stop                              0x0000ea7c   Section        0  app_timer_1.o(i.rtc1_stop)
-    rtc1_stop                                0x0000ea7d   Thumb Code    52  app_timer_1.o(i.rtc1_stop)
-    i.run_self_test                          0x0000eab8   Section        0  main.o(i.run_self_test)
-    run_self_test                            0x0000eab9   Thumb Code   186  main.o(i.run_self_test)
-    i.rx_byte                                0x0000ebbc   Section        0  nrf_drv_uart.o(i.rx_byte)
-    rx_byte                                  0x0000ebbd   Thumb Code    50  nrf_drv_uart.o(i.rx_byte)
-    i.rx_done_event                          0x0000ebee   Section        0  nrf_drv_uart.o(i.rx_done_event)
-    rx_done_event                            0x0000ebef   Thumb Code    24  nrf_drv_uart.o(i.rx_done_event)
-    i.rx_enable                              0x0000ec06   Section        0  nrf_drv_uart.o(i.rx_enable)
-    rx_enable                                0x0000ec07   Thumb Code    32  nrf_drv_uart.o(i.rx_enable)
-    i.serial_is_busy                         0x0000ec28   Section        0  nrf_log_backend_serial.o(i.serial_is_busy)
-    serial_is_busy                           0x0000ec29   Thumb Code     6  nrf_log_backend_serial.o(i.serial_is_busy)
-    i.serial_tx                              0x0000ec34   Section        0  nrf_log_backend_serial.o(i.serial_tx)
-    serial_tx                                0x0000ec35   Thumb Code    34  nrf_log_backend_serial.o(i.serial_tx)
-    i.set_int_enable                         0x0000ec60   Section        0  inv_mpu.o(i.set_int_enable)
-    set_int_enable                           0x0000ec61   Thumb Code    84  inv_mpu.o(i.set_int_enable)
-    i.setup_compass                          0x0000ecb8   Section        0  inv_mpu.o(i.setup_compass)
-    setup_compass                            0x0000ecb9   Thumb Code   450  inv_mpu.o(i.setup_compass)
-    i.sqrtf                                  0x0000ee9c   Section        0  sqrtf.o(i.sqrtf)
-    i.tap_cb                                 0x0000eeda   Section        0  main.o(i.tap_cb)
-    tap_cb                                   0x0000eedb   Thumb Code     2  main.o(i.tap_cb)
-    i.timer_a_handler                        0x0000eedc   Section        0  main.o(i.timer_a_handler)
-    timer_a_handler                          0x0000eedd   Thumb Code     2  main.o(i.timer_a_handler)
-    i.timer_list_handler                     0x0000eee0   Section        0  app_timer_1.o(i.timer_list_handler)
-    timer_list_handler                       0x0000eee1   Thumb Code   122  app_timer_1.o(i.timer_list_handler)
-    i.timer_list_insert                      0x0000ef60   Section        0  app_timer_1.o(i.timer_list_insert)
-    timer_list_insert                        0x0000ef61   Thumb Code    56  app_timer_1.o(i.timer_list_insert)
-    i.timer_list_remove                      0x0000ef9c   Section        0  app_timer_1.o(i.timer_list_remove)
-    timer_list_remove                        0x0000ef9d   Thumb Code    88  app_timer_1.o(i.timer_list_remove)
-    i.timer_timeouts_check                   0x0000effc   Section        0  app_timer_1.o(i.timer_timeouts_check)
-    timer_timeouts_check                     0x0000effd   Thumb Code   106  app_timer_1.o(i.timer_timeouts_check)
-    i.timestamp_process                      0x0000f070   Section        0  nrf_log_backend_serial.o(i.timestamp_process)
-    timestamp_process                        0x0000f071   Thumb Code    44  nrf_log_backend_serial.o(i.timestamp_process)
-    i.twi_clear_bus                          0x0000f0a4   Section        0  nrf_drv_twi.o(i.twi_clear_bus)
-    twi_clear_bus                            0x0000f0a5   Thumb Code   164  nrf_drv_twi.o(i.twi_clear_bus)
-    i.twim_xfer                              0x0000f148   Section        0  nrf_drv_twi.o(i.twim_xfer)
-    twim_xfer                                0x0000f149   Thumb Code   570  nrf_drv_twi.o(i.twim_xfer)
-    i.tx_byte                                0x0000f388   Section        0  nrf_drv_uart.o(i.tx_byte)
-    tx_byte                                  0x0000f389   Thumb Code    32  nrf_drv_uart.o(i.tx_byte)
-    i.tx_done_event                          0x0000f3a8   Section        0  nrf_drv_uart.o(i.tx_done_event)
-    tx_done_event                            0x0000f3a9   Thumb Code    28  nrf_drv_uart.o(i.tx_done_event)
-    i.uart_config                            0x0000f3c4   Section        0  main.o(i.uart_config)
-    i.uart_error_handle                      0x0000f414   Section        0  main.o(i.uart_error_handle)
-    i.uart_event_handler                     0x0000f428   Section        0  app_uart_fifo.o(i.uart_event_handler)
-    uart_event_handler                       0x0000f429   Thumb Code   152  app_uart_fifo.o(i.uart_event_handler)
-    i.uart_event_handler                     0x0000f4c8   Section        0  nrf_log_backend_serial.o(i.uart_event_handler)
-    uart_event_handler                       0x0000f4c9   Thumb Code    12  nrf_log_backend_serial.o(i.uart_event_handler)
-    i.uart_irq_handler                       0x0000f4d8   Section        0  nrf_drv_uart.o(i.uart_irq_handler)
-    uart_irq_handler                         0x0000f4d9   Thumb Code   286  nrf_drv_uart.o(i.uart_irq_handler)
-    i.uarte_irq_handler                      0x0000f5f6   Section        0  nrf_drv_uart.o(i.uarte_irq_handler)
-    uarte_irq_handler                        0x0000f5f7   Thumb Code   240  nrf_drv_uart.o(i.uarte_irq_handler)
-    i.user_op_alloc                          0x0000f6e8   Section        0  app_timer_1.o(i.user_op_alloc)
-    user_op_alloc                            0x0000f6e9   Thumb Code    42  app_timer_1.o(i.user_op_alloc)
-    .constdata                               0x0000f718   Section       36  main.o(.constdata)
-    timer1                                   0x0000f718   Data           4  main.o(.constdata)
-    .constdata                               0x0000f73c   Section       12  nrf_drv_twi.o(.constdata)
-    .constdata                               0x0000f748   Section       24  nrf_drv_mpu_twi.o(.constdata)
-    m_twi_instance                           0x0000f748   Data           8  nrf_drv_mpu_twi.o(.constdata)
-    .constdata                               0x0000f760   Section        8  boards.o(.constdata)
-    m_board_led_list                         0x0000f760   Data           4  boards.o(.constdata)
-    m_board_btn_list                         0x0000f764   Data           4  boards.o(.constdata)
-    .constdata                               0x0000f768   Section       75  nrf_drv_gpiote.o(.constdata)
-    __func__                                 0x0000f770   Data          20  nrf_drv_gpiote.o(.constdata)
-    __func__                                 0x0000f784   Data          24  nrf_drv_gpiote.o(.constdata)
-    __func__                                 0x0000f79c   Data          23  nrf_drv_gpiote.o(.constdata)
-    .constdata                               0x0000f7b4   Section       32  app_uart_fifo.o(.constdata)
-    .constdata                               0x0000f7d4   Section      260  nrf_strerror.o(.constdata)
-    m_unknown_str                            0x0000f7d4   Data          19  nrf_strerror.o(.constdata)
-    nrf_strerror_array                       0x0000f7e8   Data         240  nrf_strerror.o(.constdata)
-    .constdata                               0x0000f8d8   Section       32  nrf_log_backend_serial.o(.constdata)
-    .constdata                               0x0000f8f8   Section       36  nrf_log_frontend.o(.constdata)
-    .constdata                               0x0000f91c   Section       47  mpl.o(.constdata)
-    __func__                                 0x0000f930   Data          13  mpl.o(.constdata)
-    __func__                                 0x0000f93d   Data          14  mpl.o(.constdata)
-    .constdata                               0x0000f94b   Section     3062  inv_mpu_dmp_motion_driver.o(.constdata)
-    dmp_memory                               0x0000f94b   Data        3062  inv_mpu_dmp_motion_driver.o(.constdata)
-    .constdata                               0x00010541   Section       42  inv_mpu.o(.constdata)
-    .constdata                               0x0001056c   Section       14  inv_mpu.o(.constdata)
-    .constdata                               0x0001057c   Section       48  inv_mpu.o(.constdata)
-    .constdata                               0x000105ac   Section      512  inv_mpu.o(.constdata)
-    mpu_6500_st_tb                           0x000105ac   Data         512  inv_mpu.o(.constdata)
+    i.dmp_register_android_orient_cb         0x0000918c   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_register_android_orient_cb)
+    i.dmp_register_tap_cb                    0x00009198   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_register_tap_cb)
+    i.dmp_set_fifo_rate                      0x000091a4   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_fifo_rate)
+    i.dmp_set_orientation                    0x00009208   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_orientation)
+    i.dmp_set_shake_reject_thresh            0x00009314   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_thresh)
+    i.dmp_set_shake_reject_time              0x00009344   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_time)
+    i.dmp_set_shake_reject_timeout           0x00009364   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_timeout)
+    i.dmp_set_tap_axes                       0x00009384   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_axes)
+    i.dmp_set_tap_count                      0x000093c4   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_count)
+    i.dmp_set_tap_thresh                     0x000093e8   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_thresh)
+    i.dmp_set_tap_time                       0x00009548   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time)
+    i.dmp_set_tap_time_multi                 0x00009568   Section        0  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time_multi)
+    i.elapsed_ticks_acquire                  0x00009588   Section        0  app_timer_1.o(i.elapsed_ticks_acquire)
+    elapsed_ticks_acquire                    0x00009589   Thumb Code    58  app_timer_1.o(i.elapsed_ticks_acquire)
+    i.fabs                                   0x000095c8   Section        0  fabs.o(i.fabs)
+    i.fifo_get                               0x000095e0   Section        0  app_fifo.o(i.fifo_get)
+    fifo_get                                 0x000095e1   Thumb Code    20  app_fifo.o(i.fifo_get)
+    i.fifo_put                               0x000095f4   Section        0  app_fifo.o(i.fifo_put)
+    fifo_put                                 0x000095f5   Thumb Code    18  app_fifo.o(i.fifo_put)
+    i.fputc                                  0x00009606   Section        0  retarget.o(i.fputc)
+    i.free                                   0x00009614   Section        0  malloc.o(i.free)
+    i.get_st_6500_biases                     0x00009664   Section        0  inv_mpu.o(i.get_st_6500_biases)
+    get_st_6500_biases                       0x00009665   Thumb Code  1168  inv_mpu.o(i.get_st_6500_biases)
+    i.gyro_6500_self_test                    0x00009b2c   Section        0  inv_mpu.o(i.gyro_6500_self_test)
+    gyro_6500_self_test                      0x00009b2d   Thumb Code   630  inv_mpu.o(i.gyro_6500_self_test)
+    i.hfclk_stop                             0x00009f9c   Section        0  nrf_drv_clock.o(i.hfclk_stop)
+    hfclk_stop                               0x00009f9d   Thumb Code    24  nrf_drv_clock.o(i.hfclk_stop)
+    i.i2c_write_porting                      0x00009fbc   Section        0  nrf_drv_mpu_twi.o(i.i2c_write_porting)
+    i.interrupts_enable                      0x0000a03c   Section        0  nrf_drv_uart.o(i.interrupts_enable)
+    interrupts_enable                        0x0000a03d   Thumb Code   106  nrf_drv_uart.o(i.interrupts_enable)
+    i.inv_apply_calibration                  0x0000a0b4   Section        0  data_builder.o(i.inv_apply_calibration)
+    i.inv_build_accel                        0x0000a120   Section        0  data_builder.o(i.inv_build_accel)
+    i.inv_build_compass                      0x0000a188   Section        0  data_builder.o(i.inv_build_compass)
+    i.inv_build_gyro                         0x0000a20c   Section        0  data_builder.o(i.inv_build_gyro)
+    i.inv_build_quat                         0x0000a23c   Section        0  data_builder.o(i.inv_build_quat)
+    i.inv_compass_angle                      0x0000a268   Section        0  ml_math_func.o(i.inv_compass_angle)
+    i.inv_convert_to_body_with_scale         0x0000a314   Section        0  ml_math_func.o(i.inv_convert_to_body_with_scale)
+    i.inv_db_load_func                       0x0000a370   Section        0  data_builder.o(i.inv_db_load_func)
+    inv_db_load_func                         0x0000a371   Thumb Code    54  data_builder.o(i.inv_db_load_func)
+    i.inv_db_save_func                       0x0000a3ac   Section        0  data_builder.o(i.inv_db_save_func)
+    inv_db_save_func                         0x0000a3ad   Thumb Code    14  data_builder.o(i.inv_db_save_func)
+    i.inv_enable_eMPL_outputs                0x0000a3c0   Section        0  empl_outputs.o(i.inv_enable_eMPL_outputs)
+    i.inv_enable_results_holder              0x0000a3dc   Section        0  results_holder.o(i.inv_enable_results_holder)
+    i.inv_execute_mpl_start_notification     0x0000a3f8   Section        0  start_manager.o(i.inv_execute_mpl_start_notification)
+    i.inv_execute_on_data                    0x0000a424   Section        0  data_builder.o(i.inv_execute_on_data)
+    i.inv_generate_eMPL_outputs              0x0000a4a4   Section        0  empl_outputs.o(i.inv_generate_eMPL_outputs)
+    inv_generate_eMPL_outputs                0x0000a4a5   Thumb Code   160  empl_outputs.o(i.inv_generate_eMPL_outputs)
+    i.inv_generate_results                   0x0000a548   Section        0  results_holder.o(i.inv_generate_results)
+    i.inv_get_6axis_quaternion               0x0000a558   Section        0  results_holder.o(i.inv_get_6axis_quaternion)
+    i.inv_get_acc_state                      0x0000a56c   Section        0  results_holder.o(i.inv_get_acc_state)
+    i.inv_get_accel_accuracy                 0x0000a578   Section        0  data_builder.o(i.inv_get_accel_accuracy)
+    i.inv_get_accel_on                       0x0000a584   Section        0  data_builder.o(i.inv_get_accel_on)
+    i.inv_get_accel_set                      0x0000a594   Section        0  data_builder.o(i.inv_get_accel_set)
+    i.inv_get_compass_bias                   0x0000a5bc   Section        0  data_builder.o(i.inv_get_compass_bias)
+    i.inv_get_compass_correction             0x0000a5d0   Section        0  results_holder.o(i.inv_get_compass_correction)
+    i.inv_get_compass_on                     0x0000a5e8   Section        0  data_builder.o(i.inv_get_compass_on)
+    i.inv_get_compass_soft_iron_output_data  0x0000a5f8   Section        0  data_builder.o(i.inv_get_compass_soft_iron_output_data)
+    i.inv_get_compass_state                  0x0000a614   Section        0  results_holder.o(i.inv_get_compass_state)
+    i.inv_get_gravity                        0x0000a620   Section        0  results_holder.o(i.inv_get_gravity)
+    i.inv_get_gyro                           0x0000a674   Section        0  data_builder.o(i.inv_get_gyro)
+    i.inv_get_gyro_accuracy                  0x0000a684   Section        0  data_builder.o(i.inv_get_gyro_accuracy)
+    i.inv_get_gyro_bias                      0x0000a690   Section        0  data_builder.o(i.inv_get_gyro_bias)
+    i.inv_get_gyro_on                        0x0000a6b4   Section        0  data_builder.o(i.inv_get_gyro_on)
+    i.inv_get_gyro_sum_of_sqr                0x0000a6c4   Section        0  ml_math_func.o(i.inv_get_gyro_sum_of_sqr)
+    i.inv_get_large_mag_field                0x0000a6e0   Section        0  results_holder.o(i.inv_get_large_mag_field)
+    i.inv_get_last_timestamp                 0x0000a6ec   Section        0  data_builder.o(i.inv_get_last_timestamp)
+    i.inv_get_linear_accel                   0x0000a734   Section        0  results_holder.o(i.inv_get_linear_accel)
+    i.inv_get_linear_accel_float             0x0000a770   Section        0  results_holder.o(i.inv_get_linear_accel_float)
+    i.inv_get_local_field                    0x0000a7b4   Section        0  results_holder.o(i.inv_get_local_field)
+    i.inv_get_mag_accuracy                   0x0000a7c4   Section        0  data_builder.o(i.inv_get_mag_accuracy)
+    i.inv_get_quaternion                     0x0000a7e0   Section        0  results_holder.o(i.inv_get_quaternion)
+    i.inv_get_quaternion_set                 0x0000a814   Section        0  results_holder.o(i.inv_get_quaternion_set)
+    i.inv_get_sensor_type_gravity            0x0000a84c   Section        0  hal_outputs.o(i.inv_get_sensor_type_gravity)
+    i.inv_get_sensor_type_linear_acceleration 0x0000a8ac   Section        0  hal_outputs.o(i.inv_get_sensor_type_linear_acceleration)
+    i.inv_get_sensor_type_quat               0x0000a91c   Section        0  empl_outputs.o(i.inv_get_sensor_type_quat)
+    i.inv_got_compass_bias                   0x0000a938   Section        0  results_holder.o(i.inv_got_compass_bias)
+    i.inv_init_data_builder                  0x0000a944   Section        0  data_builder.o(i.inv_init_data_builder)
+    i.inv_init_mpl                           0x0000a980   Section        0  mpl.o(i.inv_init_mpl)
+    i.inv_init_results_holder                0x0000aa08   Section        0  results_holder.o(i.inv_init_results_holder)
+    i.inv_init_start_manager                 0x0000aa38   Section        0  start_manager.o(i.inv_init_start_manager)
+    i.inv_init_storage_manager               0x0000aa4c   Section        0  storage_manager.o(i.inv_init_storage_manager)
+    i.inv_orientation_matrix_to_scalar       0x0000aa64   Section        0  ml_math_func.o(i.inv_orientation_matrix_to_scalar)
+    i.inv_q29_mult                           0x0000aa86   Section        0  ml_math_func.o(i.inv_q29_mult)
+    i.inv_q30_mult                           0x0000aa92   Section        0  ml_math_func.o(i.inv_q30_mult)
+    i.inv_q_add                              0x0000aa9e   Section        0  ml_math_func.o(i.inv_q_add)
+    i.inv_q_addf                             0x0000aac2   Section        0  ml_math_func.o(i.inv_q_addf)
+    i.inv_q_invert                           0x0000ab04   Section        0  ml_math_func.o(i.inv_q_invert)
+    i.inv_q_invertf                          0x0000ab1c   Section        0  ml_math_func.o(i.inv_q_invertf)
+    i.inv_q_mult                             0x0000ab4a   Section        0  ml_math_func.o(i.inv_q_mult)
+    i.inv_q_multf                            0x0000abfa   Section        0  ml_math_func.o(i.inv_q_multf)
+    i.inv_q_norm4                            0x0000accc   Section        0  ml_math_func.o(i.inv_q_norm4)
+    i.inv_q_normalizef                       0x0000ad50   Section        0  ml_math_func.o(i.inv_q_normalizef)
+    i.inv_q_rotate                           0x0000ae00   Section        0  ml_math_func.o(i.inv_q_rotate)
+    i.inv_quaternion_to_rotation             0x0000ae3e   Section        0  ml_math_func.o(i.inv_quaternion_to_rotation)
+    i.inv_register_data_cb                   0x0000af18   Section        0  data_builder.o(i.inv_register_data_cb)
+    i.inv_register_load_store                0x0000afbc   Section        0  storage_manager.o(i.inv_register_load_store)
+    i.inv_register_mpl_start_notification    0x0000b028   Section        0  start_manager.o(i.inv_register_mpl_start_notification)
+    i.inv_reset_compass_soft_iron_matrix     0x0000b048   Section        0  data_builder.o(i.inv_reset_compass_soft_iron_matrix)
+    i.inv_row_2_scale                        0x0000b09c   Section        0  ml_math_func.o(i.inv_row_2_scale)
+    inv_row_2_scale                          0x0000b09d   Thumb Code    72  ml_math_func.o(i.inv_row_2_scale)
+    i.inv_set_accel_accuracy                 0x0000b0e4   Section        0  data_builder.o(i.inv_set_accel_accuracy)
+    i.inv_set_accel_bias                     0x0000b100   Section        0  data_builder.o(i.inv_set_accel_bias)
+    i.inv_set_accel_bias_found               0x0000b148   Section        0  results_holder.o(i.inv_set_accel_bias_found)
+    i.inv_set_accel_bias_mask                0x0000b154   Section        0  data_builder.o(i.inv_set_accel_bias_mask)
+    i.inv_set_accel_orientation_and_scale    0x0000b1a4   Section        0  data_builder.o(i.inv_set_accel_orientation_and_scale)
+    i.inv_set_accel_sample_rate              0x0000b1b0   Section        0  data_builder.o(i.inv_set_accel_sample_rate)
+    i.inv_set_compass_bias                   0x0000b1dc   Section        0  data_builder.o(i.inv_set_compass_bias)
+    i.inv_set_compass_bias_error             0x0000b224   Section        0  results_holder.o(i.inv_set_compass_bias_error)
+    i.inv_set_compass_bias_found             0x0000b234   Section        0  results_holder.o(i.inv_set_compass_bias_found)
+    i.inv_set_compass_correction             0x0000b240   Section        0  results_holder.o(i.inv_set_compass_correction)
+    i.inv_set_compass_disturbance            0x0000b260   Section        0  data_builder.o(i.inv_set_compass_disturbance)
+    i.inv_set_compass_orientation_and_scale  0x0000b26c   Section        0  data_builder.o(i.inv_set_compass_orientation_and_scale)
+    i.inv_set_compass_sample_rate            0x0000b27c   Section        0  data_builder.o(i.inv_set_compass_sample_rate)
+    i.inv_set_compass_soft_iron_input_data   0x0000b2a8   Section        0  data_builder.o(i.inv_set_compass_soft_iron_input_data)
+    i.inv_set_compass_state                  0x0000b2f8   Section        0  results_holder.o(i.inv_set_compass_state)
+    i.inv_set_contiguous                     0x0000b304   Section        0  data_builder.o(i.inv_set_contiguous)
+    inv_set_contiguous                       0x0000b305   Thumb Code   124  data_builder.o(i.inv_set_contiguous)
+    i.inv_set_gyro_bias                      0x0000b384   Section        0  data_builder.o(i.inv_set_gyro_bias)
+    i.inv_set_gyro_orientation_and_scale     0x0000b3e0   Section        0  data_builder.o(i.inv_set_gyro_orientation_and_scale)
+    i.inv_set_gyro_sample_rate               0x0000b3ec   Section        0  data_builder.o(i.inv_set_gyro_sample_rate)
+    i.inv_set_message                        0x0000b414   Section        0  message_layer.o(i.inv_set_message)
+    i.inv_set_motion_state                   0x0000b428   Section        0  results_holder.o(i.inv_set_motion_state)
+    i.inv_set_quat_sample_rate               0x0000b45c   Section        0  data_builder.o(i.inv_set_quat_sample_rate)
+    i.inv_start_eMPL_outputs                 0x0000b474   Section        0  empl_outputs.o(i.inv_start_eMPL_outputs)
+    inv_start_eMPL_outputs                   0x0000b475   Thumb Code    12  empl_outputs.o(i.inv_start_eMPL_outputs)
+    i.inv_start_mpl                          0x0000b484   Section        0  mpl.o(i.inv_start_mpl)
+    i.inv_start_results_holder               0x0000b4d0   Section        0  results_holder.o(i.inv_start_results_holder)
+    i.inv_store_gaming_quaternion            0x0000b4e8   Section        0  results_holder.o(i.inv_store_gaming_quaternion)
+    i.inv_unregister_data_cb                 0x0000b508   Section        0  data_builder.o(i.inv_unregister_data_cb)
+    i.inv_unregister_mpl_start_notification  0x0000b554   Section        0  start_manager.o(i.inv_unregister_mpl_start_notification)
+    i.irq_handler_twim                       0x0000b59c   Section        0  nrf_drv_twi.o(i.irq_handler_twim)
+    irq_handler_twim                         0x0000b59d   Thumb Code   334  nrf_drv_twi.o(i.irq_handler_twim)
+    i.item_enqueue                           0x0000b6ea   Section        0  nrf_drv_clock.o(i.item_enqueue)
+    item_enqueue                             0x0000b6eb   Thumb Code    22  nrf_drv_clock.o(i.item_enqueue)
+    i.list_insertions_handler                0x0000b700   Section        0  app_timer_1.o(i.list_insertions_handler)
+    list_insertions_handler                  0x0000b701   Thumb Code   234  app_timer_1.o(i.list_insertions_handler)
+    i.magn_setup                             0x0000b7f8   Section        0  main.o(i.magn_setup)
+    i.main                                   0x0000b81c   Section        0  main.o(i.main)
+    i.malloc                                 0x0000bc20   Section        0  malloc.o(i.malloc)
+    i.millis                                 0x0000bc8c   Section        0  nrf_drv_inv_dmp.o(i.millis)
+    i.mlMatrixVectorMult                     0x0000bcaa   Section        0  ml_math_func.o(i.mlMatrixVectorMult)
+    i.mpu_config                             0x0000bcdc   Section        0  app_mpu.o(i.mpu_config)
+    i.mpu_configure_fifo                     0x0000bce8   Section        0  inv_mpu.o(i.mpu_configure_fifo)
+    i.mpu_get_accel_fsr                      0x0000bd3c   Section        0  inv_mpu.o(i.mpu_get_accel_fsr)
+    i.mpu_get_accel_sens                     0x0000bd78   Section        0  inv_mpu.o(i.mpu_get_accel_sens)
+    i.mpu_get_compass_fsr                    0x0000bdbc   Section        0  inv_mpu.o(i.mpu_get_compass_fsr)
+    i.mpu_get_compass_reg                    0x0000bdcc   Section        0  inv_mpu.o(i.mpu_get_compass_reg)
+    i.mpu_get_gyro_fsr                       0x0000be80   Section        0  inv_mpu.o(i.mpu_get_gyro_fsr)
+    i.mpu_get_gyro_sens                      0x0000beb4   Section        0  inv_mpu.o(i.mpu_get_gyro_sens)
+    i.mpu_get_lpf                            0x0000bf00   Section        0  inv_mpu.o(i.mpu_get_lpf)
+    i.mpu_get_sample_rate                    0x0000bf38   Section        0  inv_mpu.o(i.mpu_get_sample_rate)
+    i.mpu_init                               0x0000bf54   Section        0  app_mpu.o(i.mpu_init)
+    i.mpu_init_inv                           0x0000bf78   Section        0  inv_mpu.o(i.mpu_init_inv)
+    i.mpu_int_cfg_pin                        0x0000c050   Section        0  app_mpu.o(i.mpu_int_cfg_pin)
+    i.mpu_load_firmware                      0x0000c058   Section        0  inv_mpu.o(i.mpu_load_firmware)
+    i.mpu_lp_accel_mode                      0x0000c140   Section        0  inv_mpu.o(i.mpu_lp_accel_mode)
+    i.mpu_magnetometer_init                  0x0000c22c   Section        0  app_mpu.o(i.mpu_magnetometer_init)
+    i.mpu_read_fifo_stream                   0x0000c25c   Section        0  inv_mpu.o(i.mpu_read_fifo_stream)
+    i.mpu_read_mem                           0x0000c330   Section        0  inv_mpu.o(i.mpu_read_mem)
+    i.mpu_reset_fifo                         0x0000c384   Section        0  inv_mpu.o(i.mpu_reset_fifo)
+    i.mpu_run_6500_self_test                 0x0000c4e4   Section        0  inv_mpu.o(i.mpu_run_6500_self_test)
+    i.mpu_set_accel_fsr                      0x0000c7a0   Section        0  inv_mpu.o(i.mpu_set_accel_fsr)
+    i.mpu_set_bypass                         0x0000c808   Section        0  inv_mpu.o(i.mpu_set_bypass)
+    i.mpu_set_compass_sample_rate            0x0000c8e4   Section        0  inv_mpu.o(i.mpu_set_compass_sample_rate)
+    i.mpu_set_dmp_state                      0x0000c934   Section        0  inv_mpu.o(i.mpu_set_dmp_state)
+    i.mpu_set_gyro_fsr                       0x0000c9ac   Section        0  inv_mpu.o(i.mpu_set_gyro_fsr)
+    i.mpu_set_int_latched                    0x0000ca18   Section        0  inv_mpu.o(i.mpu_set_int_latched)
+    i.mpu_set_lpf                            0x0000ca7c   Section        0  inv_mpu.o(i.mpu_set_lpf)
+    i.mpu_set_sample_rate                    0x0000cb04   Section        0  inv_mpu.o(i.mpu_set_sample_rate)
+    i.mpu_set_sensors                        0x0000cb94   Section        0  inv_mpu.o(i.mpu_set_sensors)
+    i.mpu_setup                              0x0000ccc8   Section        0  main.o(i.mpu_setup)
+    i.mpu_twi_read_test                      0x0000cd50   Section        0  nrf_drv_mpu_twi.o(i.mpu_twi_read_test)
+    i.mpu_write_mem                          0x0000ce08   Section        0  inv_mpu.o(i.mpu_write_mem)
+    i.nrf_bitmask_bit_is_set                 0x0000ce74   Section        0  nrf_drv_gpiote.o(i.nrf_bitmask_bit_is_set)
+    nrf_bitmask_bit_is_set                   0x0000ce75   Thumb Code    16  nrf_drv_gpiote.o(i.nrf_bitmask_bit_is_set)
+    i.nrf_clock_event_check                  0x0000ce84   Section        0  nrf_drv_clock.o(i.nrf_clock_event_check)
+    nrf_clock_event_check                    0x0000ce85   Thumb Code    14  nrf_drv_clock.o(i.nrf_clock_event_check)
+    i.nrf_clock_event_clear                  0x0000ce92   Section        0  nrf_drv_clock.o(i.nrf_clock_event_clear)
+    nrf_clock_event_clear                    0x0000ce93   Thumb Code    16  nrf_drv_clock.o(i.nrf_clock_event_clear)
+    i.nrf_clock_hf_is_running                0x0000cea4   Section        0  nrf_drv_clock.o(i.nrf_clock_hf_is_running)
+    nrf_clock_hf_is_running                  0x0000cea5   Thumb Code    24  nrf_drv_clock.o(i.nrf_clock_hf_is_running)
+    i.nrf_delay_ms                           0x0000cec0   Section        0  inv_mpu.o(i.nrf_delay_ms)
+    nrf_delay_ms                             0x0000cec1   Thumb Code    10  inv_mpu.o(i.nrf_delay_ms)
+    i.nrf_delay_us                           0x0000cecc   Section        0  main.o(i.nrf_delay_us)
+    nrf_delay_us                             0x0000cecd   Thumb Code   132  main.o(i.nrf_delay_us)
+    i.nrf_delay_us                           0x0000cf58   Section        0  nrf_drv_twi.o(i.nrf_delay_us)
+    nrf_delay_us                             0x0000cf59   Thumb Code   132  nrf_drv_twi.o(i.nrf_delay_us)
+    i.nrf_delay_us                           0x0000cfe4   Section        0  app_timer_1.o(i.nrf_delay_us)
+    nrf_delay_us                             0x0000cfe5   Thumb Code   132  app_timer_1.o(i.nrf_delay_us)
+    i.nrf_delay_us                           0x0000d070   Section        0  inv_mpu.o(i.nrf_delay_us)
+    nrf_delay_us                             0x0000d071   Thumb Code   132  inv_mpu.o(i.nrf_delay_us)
+    i.nrf_drv_clock_hfclk_release            0x0000d0fc   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_release)
+    i.nrf_drv_clock_hfclk_request            0x0000d124   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_request)
+    i.nrf_drv_clock_init                     0x0000d17c   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_init)
+    i.nrf_drv_clock_lfclk_request            0x0000d1c8   Section        0  nrf_drv_clock.o(i.nrf_drv_clock_lfclk_request)
+    i.nrf_drv_common_irq_disable             0x0000d228   Section        0  nrf_drv_uart.o(i.nrf_drv_common_irq_disable)
+    nrf_drv_common_irq_disable               0x0000d229   Thumb Code    22  nrf_drv_uart.o(i.nrf_drv_common_irq_disable)
+    i.nrf_drv_common_irq_enable              0x0000d23e   Section        0  nrf_drv_common.o(i.nrf_drv_common_irq_enable)
+    i.nrf_drv_get_IRQn                       0x0000d276   Section        0  nrf_drv_uart.o(i.nrf_drv_get_IRQn)
+    nrf_drv_get_IRQn                         0x0000d277   Thumb Code     6  nrf_drv_uart.o(i.nrf_drv_get_IRQn)
+    i.nrf_drv_gpiote_in_event_enable         0x0000d27c   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable)
+    i.nrf_drv_gpiote_in_init                 0x0000d314   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init)
+    i.nrf_drv_gpiote_init                    0x0000d414   Section        0  nrf_drv_gpiote.o(i.nrf_drv_gpiote_init)
+    i.nrf_drv_is_in_RAM                      0x0000d4f4   Section        0  nrf_drv_twi.o(i.nrf_drv_is_in_RAM)
+    nrf_drv_is_in_RAM                        0x0000d4f5   Thumb Code    16  nrf_drv_twi.o(i.nrf_drv_is_in_RAM)
+    i.nrf_drv_is_in_RAM                      0x0000d504   Section        0  nrf_drv_uart.o(i.nrf_drv_is_in_RAM)
+    nrf_drv_is_in_RAM                        0x0000d505   Thumb Code    16  nrf_drv_uart.o(i.nrf_drv_is_in_RAM)
+    i.nrf_drv_mpu_init                       0x0000d514   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_init)
+    i.nrf_drv_mpu_read_registers             0x0000d548   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_read_registers)
+    i.nrf_drv_mpu_twi_event_handler          0x0000d5b4   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_twi_event_handler)
+    nrf_drv_mpu_twi_event_handler            0x0000d5b5   Thumb Code    34  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_twi_event_handler)
+    i.nrf_drv_mpu_write_magnetometer_register 0x0000d5dc   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_magnetometer_register)
+    i.nrf_drv_mpu_write_registers            0x0000d61c   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_registers)
+    i.nrf_drv_mpu_write_single_register      0x0000d674   Section        0  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_single_register)
+    i.nrf_drv_twi_enable                     0x0000d6b4   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_enable)
+    i.nrf_drv_twi_init                       0x0000d6d4   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_init)
+    i.nrf_drv_twi_rx                         0x0000d760   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_rx)
+    i.nrf_drv_twi_tx                         0x0000d784   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_tx)
+    i.nrf_drv_twi_xfer                       0x0000d7a8   Section        0  nrf_drv_twi.o(i.nrf_drv_twi_xfer)
+    i.nrf_drv_uart_init                      0x0000d7cc   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_init)
+    i.nrf_drv_uart_rx                        0x0000d834   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx)
+    i.nrf_drv_uart_rx_enable                 0x0000d8e4   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_enable)
+    i.nrf_drv_uart_rx_for_uart               0x0000d914   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uart)
+    nrf_drv_uart_rx_for_uart                 0x0000d915   Thumb Code   162  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uart)
+    i.nrf_drv_uart_rx_for_uarte              0x0000d9bc   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uarte)
+    nrf_drv_uart_rx_for_uarte                0x0000d9bd   Thumb Code   172  nrf_drv_uart.o(i.nrf_drv_uart_rx_for_uarte)
+    i.nrf_drv_uart_tx                        0x0000da6c   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_tx)
+    i.nrf_drv_uart_tx_in_progress            0x0000db78   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_tx_in_progress)
+    i.nrf_drv_uart_uninit                    0x0000db90   Section        0  nrf_drv_uart.o(i.nrf_drv_uart_uninit)
+    i.nrf_gpio_cfg                           0x0000dbe4   Section        0  boards.o(i.nrf_gpio_cfg)
+    nrf_gpio_cfg                             0x0000dbe5   Thumb Code    50  boards.o(i.nrf_gpio_cfg)
+    i.nrf_gpio_cfg                           0x0000dc16   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg)
+    nrf_gpio_cfg                             0x0000dc17   Thumb Code    50  nrf_drv_uart.o(i.nrf_gpio_cfg)
+    i.nrf_gpio_cfg                           0x0000dc48   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_cfg)
+    nrf_gpio_cfg                             0x0000dc49   Thumb Code    50  nrf_drv_gpiote.o(i.nrf_gpio_cfg)
+    i.nrf_gpio_cfg_default                   0x0000dc7a   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_default)
+    nrf_gpio_cfg_default                     0x0000dc7b   Thumb Code    18  nrf_drv_uart.o(i.nrf_gpio_cfg_default)
+    i.nrf_gpio_cfg_input                     0x0000dc8c   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_input)
+    nrf_gpio_cfg_input                       0x0000dc8d   Thumb Code    18  nrf_drv_uart.o(i.nrf_gpio_cfg_input)
+    i.nrf_gpio_cfg_output                    0x0000dc9e   Section        0  nrf_drv_uart.o(i.nrf_gpio_cfg_output)
+    nrf_gpio_cfg_output                      0x0000dc9f   Thumb Code    20  nrf_drv_uart.o(i.nrf_gpio_cfg_output)
+    i.nrf_gpio_cfg_sense_set                 0x0000dcb2   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_cfg_sense_set)
+    nrf_gpio_cfg_sense_set                   0x0000dcb3   Thumb Code    48  nrf_drv_gpiote.o(i.nrf_gpio_cfg_sense_set)
+    i.nrf_gpio_pin_clear                     0x0000dce2   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_clear)
+    nrf_gpio_pin_clear                       0x0000dce3   Thumb Code    20  nrf_drv_twi.o(i.nrf_gpio_pin_clear)
+    i.nrf_gpio_pin_port_decode               0x0000dcf8   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_port_decode)
+    nrf_gpio_pin_port_decode                 0x0000dcf9   Thumb Code    22  nrf_drv_twi.o(i.nrf_gpio_pin_port_decode)
+    i.nrf_gpio_pin_port_decode               0x0000dd14   Section        0  boards.o(i.nrf_gpio_pin_port_decode)
+    nrf_gpio_pin_port_decode                 0x0000dd15   Thumb Code    22  boards.o(i.nrf_gpio_pin_port_decode)
+    i.nrf_gpio_pin_port_decode               0x0000dd30   Section        0  nrf_drv_uart.o(i.nrf_gpio_pin_port_decode)
+    nrf_gpio_pin_port_decode                 0x0000dd31   Thumb Code    22  nrf_drv_uart.o(i.nrf_gpio_pin_port_decode)
+    i.nrf_gpio_pin_port_decode               0x0000dd4c   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_pin_port_decode)
+    nrf_gpio_pin_port_decode                 0x0000dd4d   Thumb Code    22  nrf_drv_gpiote.o(i.nrf_gpio_pin_port_decode)
+    i.nrf_gpio_pin_read                      0x0000dd68   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_pin_read)
+    nrf_gpio_pin_read                        0x0000dd69   Thumb Code    22  nrf_drv_gpiote.o(i.nrf_gpio_pin_read)
+    i.nrf_gpio_pin_set                       0x0000dd7e   Section        0  nrf_drv_twi.o(i.nrf_gpio_pin_set)
+    nrf_gpio_pin_set                         0x0000dd7f   Thumb Code    20  nrf_drv_twi.o(i.nrf_gpio_pin_set)
+    i.nrf_gpio_pin_set                       0x0000dd92   Section        0  nrf_drv_uart.o(i.nrf_gpio_pin_set)
+    nrf_gpio_pin_set                         0x0000dd93   Thumb Code    20  nrf_drv_uart.o(i.nrf_gpio_pin_set)
+    i.nrf_gpio_pin_write                     0x0000dda6   Section        0  boards.o(i.nrf_gpio_pin_write)
+    nrf_gpio_pin_write                       0x0000dda7   Thumb Code    38  boards.o(i.nrf_gpio_pin_write)
+    i.nrf_gpio_ports_read                    0x0000ddcc   Section        0  nrf_drv_gpiote.o(i.nrf_gpio_ports_read)
+    nrf_gpio_ports_read                      0x0000ddcd   Thumb Code    38  nrf_drv_gpiote.o(i.nrf_gpio_ports_read)
+    i.nrf_gpiote_event_clear                 0x0000ddf8   Section        0  nrf_drv_gpiote.o(i.nrf_gpiote_event_clear)
+    nrf_gpiote_event_clear                   0x0000ddf9   Thumb Code    16  nrf_drv_gpiote.o(i.nrf_gpiote_event_clear)
+    i.nrf_gpiote_event_is_set                0x0000de0c   Section        0  nrf_drv_gpiote.o(i.nrf_gpiote_event_is_set)
+    nrf_gpiote_event_is_set                  0x0000de0d   Thumb Code    12  nrf_drv_gpiote.o(i.nrf_gpiote_event_is_set)
+    i.nrf_log_backend_hexdump_handler_get    0x0000de1c   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_hexdump_handler_get)
+    i.nrf_log_backend_init                   0x0000de24   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_init)
+    i.nrf_log_backend_serial_hexdump_handler 0x0000de94   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_serial_hexdump_handler)
+    nrf_log_backend_serial_hexdump_handler   0x0000de95   Thumb Code   302  nrf_log_backend_serial.o(i.nrf_log_backend_serial_hexdump_handler)
+    i.nrf_log_backend_serial_std_handler     0x0000dfc2   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_serial_std_handler)
+    nrf_log_backend_serial_std_handler       0x0000dfc3   Thumb Code   276  nrf_log_backend_serial.o(i.nrf_log_backend_serial_std_handler)
+    i.nrf_log_backend_std_handler_get        0x0000e0d8   Section        0  nrf_log_backend_serial.o(i.nrf_log_backend_std_handler_get)
+    i.nrf_log_blocking_backend_set           0x0000e0e0   Section        0  nrf_log_frontend.o(i.nrf_log_blocking_backend_set)
+    i.nrf_log_frontend_dequeue               0x0000e0e8   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_dequeue)
+    i.nrf_log_frontend_init                  0x0000e22c   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_init)
+    i.nrf_log_frontend_std_0                 0x0000e244   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_0)
+    i.nrf_log_frontend_std_1                 0x0000e290   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_1)
+    i.nrf_log_frontend_std_2                 0x0000e2e8   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_2)
+    i.nrf_log_frontend_std_3                 0x0000e350   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_3)
+    i.nrf_log_frontend_std_4                 0x0000e3cc   Section        0  nrf_log_frontend.o(i.nrf_log_frontend_std_4)
+    i.nrf_log_handlers_set                   0x0000e454   Section        0  nrf_log_frontend.o(i.nrf_log_handlers_set)
+    i.nrf_log_init                           0x0000e460   Section        0  nrf_log_frontend.o(i.nrf_log_init)
+    i.nrf_log_push                           0x0000e484   Section        0  nrf_log_frontend.o(i.nrf_log_push)
+    i.nrf_strerror_find                      0x0000e4e4   Section        0  nrf_strerror.o(i.nrf_strerror_find)
+    i.nrf_strerror_get                       0x0000e51c   Section        0  nrf_strerror.o(i.nrf_strerror_get)
+    i.nrf_twim_event_check                   0x0000e530   Section        0  nrf_drv_twi.o(i.nrf_twim_event_check)
+    nrf_twim_event_check                     0x0000e531   Thumb Code    10  nrf_drv_twi.o(i.nrf_twim_event_check)
+    i.nrf_twim_event_clear                   0x0000e53a   Section        0  nrf_drv_twi.o(i.nrf_twim_event_clear)
+    nrf_twim_event_clear                     0x0000e53b   Thumb Code    12  nrf_drv_twi.o(i.nrf_twim_event_clear)
+    i.nrf_uart_event_check                   0x0000e546   Section        0  nrf_drv_uart.o(i.nrf_uart_event_check)
+    nrf_uart_event_check                     0x0000e547   Thumb Code    10  nrf_drv_uart.o(i.nrf_uart_event_check)
+    i.nrf_uart_event_clear                   0x0000e550   Section        0  nrf_drv_uart.o(i.nrf_uart_event_clear)
+    nrf_uart_event_clear                     0x0000e551   Thumb Code    12  nrf_drv_uart.o(i.nrf_uart_event_clear)
+    i.nrf_uart_int_enable_check              0x0000e55c   Section        0  nrf_drv_uart.o(i.nrf_uart_int_enable_check)
+    nrf_uart_int_enable_check                0x0000e55d   Thumb Code    12  nrf_drv_uart.o(i.nrf_uart_int_enable_check)
+    i.nrf_uarte_event_check                  0x0000e568   Section        0  nrf_drv_uart.o(i.nrf_uarte_event_check)
+    nrf_uarte_event_check                    0x0000e569   Thumb Code    10  nrf_drv_uart.o(i.nrf_uarte_event_check)
+    i.nrf_uarte_event_clear                  0x0000e572   Section        0  nrf_drv_uart.o(i.nrf_uarte_event_clear)
+    nrf_uarte_event_clear                    0x0000e573   Thumb Code    12  nrf_drv_uart.o(i.nrf_uarte_event_clear)
+    i.pin_in_read                            0x0000e580   Section        0  main.o(i.pin_in_read)
+    pin_in_read                              0x0000e581   Thumb Code     8  main.o(i.pin_in_read)
+    i.pin_in_use_by_port                     0x0000e58c   Section        0  nrf_drv_gpiote.o(i.pin_in_use_by_port)
+    pin_in_use_by_port                       0x0000e58d   Thumb Code    20  nrf_drv_gpiote.o(i.pin_in_use_by_port)
+    i.pin_in_use_by_te                       0x0000e5a4   Section        0  nrf_drv_gpiote.o(i.pin_in_use_by_te)
+    pin_in_use_by_te                         0x0000e5a5   Thumb Code    20  nrf_drv_gpiote.o(i.pin_in_use_by_te)
+    i.pins_to_default                        0x0000e5bc   Section        0  nrf_drv_uart.o(i.pins_to_default)
+    pins_to_default                          0x0000e5bd   Thumb Code   114  nrf_drv_uart.o(i.pins_to_default)
+    i.read_from_mpl                          0x0000e634   Section        0  main.o(i.read_from_mpl)
+    read_from_mpl                            0x0000e635   Thumb Code  1100  main.o(i.read_from_mpl)
+    i.rtc1_stop                              0x0000ea80   Section        0  app_timer_1.o(i.rtc1_stop)
+    rtc1_stop                                0x0000ea81   Thumb Code    52  app_timer_1.o(i.rtc1_stop)
+    i.run_self_test                          0x0000eabc   Section        0  main.o(i.run_self_test)
+    run_self_test                            0x0000eabd   Thumb Code   186  main.o(i.run_self_test)
+    i.rx_byte                                0x0000ebc0   Section        0  nrf_drv_uart.o(i.rx_byte)
+    rx_byte                                  0x0000ebc1   Thumb Code    50  nrf_drv_uart.o(i.rx_byte)
+    i.rx_done_event                          0x0000ebf2   Section        0  nrf_drv_uart.o(i.rx_done_event)
+    rx_done_event                            0x0000ebf3   Thumb Code    24  nrf_drv_uart.o(i.rx_done_event)
+    i.rx_enable                              0x0000ec0a   Section        0  nrf_drv_uart.o(i.rx_enable)
+    rx_enable                                0x0000ec0b   Thumb Code    32  nrf_drv_uart.o(i.rx_enable)
+    i.serial_is_busy                         0x0000ec2c   Section        0  nrf_log_backend_serial.o(i.serial_is_busy)
+    serial_is_busy                           0x0000ec2d   Thumb Code     6  nrf_log_backend_serial.o(i.serial_is_busy)
+    i.serial_tx                              0x0000ec38   Section        0  nrf_log_backend_serial.o(i.serial_tx)
+    serial_tx                                0x0000ec39   Thumb Code    34  nrf_log_backend_serial.o(i.serial_tx)
+    i.set_int_enable                         0x0000ec64   Section        0  inv_mpu.o(i.set_int_enable)
+    set_int_enable                           0x0000ec65   Thumb Code    84  inv_mpu.o(i.set_int_enable)
+    i.setup_compass                          0x0000ecbc   Section        0  inv_mpu.o(i.setup_compass)
+    setup_compass                            0x0000ecbd   Thumb Code   450  inv_mpu.o(i.setup_compass)
+    i.sqrtf                                  0x0000eea0   Section        0  sqrtf.o(i.sqrtf)
+    i.tap_cb                                 0x0000eede   Section        0  main.o(i.tap_cb)
+    tap_cb                                   0x0000eedf   Thumb Code     2  main.o(i.tap_cb)
+    i.timer_a_handler                        0x0000eee0   Section        0  main.o(i.timer_a_handler)
+    timer_a_handler                          0x0000eee1   Thumb Code     2  main.o(i.timer_a_handler)
+    i.timer_list_handler                     0x0000eee4   Section        0  app_timer_1.o(i.timer_list_handler)
+    timer_list_handler                       0x0000eee5   Thumb Code   122  app_timer_1.o(i.timer_list_handler)
+    i.timer_list_insert                      0x0000ef64   Section        0  app_timer_1.o(i.timer_list_insert)
+    timer_list_insert                        0x0000ef65   Thumb Code    56  app_timer_1.o(i.timer_list_insert)
+    i.timer_list_remove                      0x0000efa0   Section        0  app_timer_1.o(i.timer_list_remove)
+    timer_list_remove                        0x0000efa1   Thumb Code    88  app_timer_1.o(i.timer_list_remove)
+    i.timer_timeouts_check                   0x0000f000   Section        0  app_timer_1.o(i.timer_timeouts_check)
+    timer_timeouts_check                     0x0000f001   Thumb Code   106  app_timer_1.o(i.timer_timeouts_check)
+    i.timestamp_process                      0x0000f074   Section        0  nrf_log_backend_serial.o(i.timestamp_process)
+    timestamp_process                        0x0000f075   Thumb Code    44  nrf_log_backend_serial.o(i.timestamp_process)
+    i.twi_clear_bus                          0x0000f0a8   Section        0  nrf_drv_twi.o(i.twi_clear_bus)
+    twi_clear_bus                            0x0000f0a9   Thumb Code   164  nrf_drv_twi.o(i.twi_clear_bus)
+    i.twim_xfer                              0x0000f14c   Section        0  nrf_drv_twi.o(i.twim_xfer)
+    twim_xfer                                0x0000f14d   Thumb Code   570  nrf_drv_twi.o(i.twim_xfer)
+    i.tx_byte                                0x0000f38c   Section        0  nrf_drv_uart.o(i.tx_byte)
+    tx_byte                                  0x0000f38d   Thumb Code    32  nrf_drv_uart.o(i.tx_byte)
+    i.tx_done_event                          0x0000f3ac   Section        0  nrf_drv_uart.o(i.tx_done_event)
+    tx_done_event                            0x0000f3ad   Thumb Code    28  nrf_drv_uart.o(i.tx_done_event)
+    i.uart_config                            0x0000f3c8   Section        0  main.o(i.uart_config)
+    i.uart_error_handle                      0x0000f418   Section        0  main.o(i.uart_error_handle)
+    i.uart_event_handler                     0x0000f42c   Section        0  app_uart_fifo.o(i.uart_event_handler)
+    uart_event_handler                       0x0000f42d   Thumb Code   152  app_uart_fifo.o(i.uart_event_handler)
+    i.uart_event_handler                     0x0000f4cc   Section        0  nrf_log_backend_serial.o(i.uart_event_handler)
+    uart_event_handler                       0x0000f4cd   Thumb Code    12  nrf_log_backend_serial.o(i.uart_event_handler)
+    i.uart_irq_handler                       0x0000f4dc   Section        0  nrf_drv_uart.o(i.uart_irq_handler)
+    uart_irq_handler                         0x0000f4dd   Thumb Code   286  nrf_drv_uart.o(i.uart_irq_handler)
+    i.uarte_irq_handler                      0x0000f5fa   Section        0  nrf_drv_uart.o(i.uarte_irq_handler)
+    uarte_irq_handler                        0x0000f5fb   Thumb Code   240  nrf_drv_uart.o(i.uarte_irq_handler)
+    i.user_op_alloc                          0x0000f6ec   Section        0  app_timer_1.o(i.user_op_alloc)
+    user_op_alloc                            0x0000f6ed   Thumb Code    42  app_timer_1.o(i.user_op_alloc)
+    .constdata                               0x0000f71c   Section       36  main.o(.constdata)
+    timer1                                   0x0000f71c   Data           4  main.o(.constdata)
+    .constdata                               0x0000f740   Section       12  nrf_drv_twi.o(.constdata)
+    .constdata                               0x0000f74c   Section       24  nrf_drv_mpu_twi.o(.constdata)
+    m_twi_instance                           0x0000f74c   Data           8  nrf_drv_mpu_twi.o(.constdata)
+    .constdata                               0x0000f764   Section        8  boards.o(.constdata)
+    m_board_led_list                         0x0000f764   Data           4  boards.o(.constdata)
+    m_board_btn_list                         0x0000f768   Data           4  boards.o(.constdata)
+    .constdata                               0x0000f76c   Section       75  nrf_drv_gpiote.o(.constdata)
+    __func__                                 0x0000f774   Data          20  nrf_drv_gpiote.o(.constdata)
+    __func__                                 0x0000f788   Data          24  nrf_drv_gpiote.o(.constdata)
+    __func__                                 0x0000f7a0   Data          23  nrf_drv_gpiote.o(.constdata)
+    .constdata                               0x0000f7b8   Section       32  app_uart_fifo.o(.constdata)
+    .constdata                               0x0000f7d8   Section      260  nrf_strerror.o(.constdata)
+    m_unknown_str                            0x0000f7d8   Data          19  nrf_strerror.o(.constdata)
+    nrf_strerror_array                       0x0000f7ec   Data         240  nrf_strerror.o(.constdata)
+    .constdata                               0x0000f8dc   Section       32  nrf_log_backend_serial.o(.constdata)
+    .constdata                               0x0000f8fc   Section       36  nrf_log_frontend.o(.constdata)
+    .constdata                               0x0000f920   Section       47  mpl.o(.constdata)
+    __func__                                 0x0000f934   Data          13  mpl.o(.constdata)
+    __func__                                 0x0000f941   Data          14  mpl.o(.constdata)
+    .constdata                               0x0000f94f   Section     3062  inv_mpu_dmp_motion_driver.o(.constdata)
+    dmp_memory                               0x0000f94f   Data        3062  inv_mpu_dmp_motion_driver.o(.constdata)
+    .constdata                               0x00010545   Section       42  inv_mpu.o(.constdata)
+    .constdata                               0x00010570   Section       14  inv_mpu.o(.constdata)
+    .constdata                               0x00010580   Section       48  inv_mpu.o(.constdata)
+    .constdata                               0x000105b0   Section      512  inv_mpu.o(.constdata)
+    mpu_6500_st_tb                           0x000105b0   Data         512  inv_mpu.o(.constdata)
     .constdata                               0x000107b0   Section       56  log.o(.constdata)
     Lg2                                      0x000107b0   Data          24  log.o(.constdata)
     Lg                                       0x000107c8   Data          32  log.o(.constdata)
@@ -3750,194 +3750,194 @@ Image Symbol Table
     dmp_enable_lp_quat                       0x00008fbd   Thumb Code    58  inv_mpu_dmp_motion_driver.o(i.dmp_enable_lp_quat)
     dmp_load_motion_driver_firmware          0x00008ff9   Thumb Code    16  inv_mpu_dmp_motion_driver.o(i.dmp_load_motion_driver_firmware)
     dmp_read_fifo                            0x0000900d   Thumb Code   336  inv_mpu_dmp_motion_driver.o(i.dmp_read_fifo)
-    dmp_register_android_orient_cb           0x00009189   Thumb Code     8  inv_mpu_dmp_motion_driver.o(i.dmp_register_android_orient_cb)
-    dmp_register_tap_cb                      0x00009195   Thumb Code     8  inv_mpu_dmp_motion_driver.o(i.dmp_register_tap_cb)
-    dmp_set_fifo_rate                        0x000091a1   Thumb Code    82  inv_mpu_dmp_motion_driver.o(i.dmp_set_fifo_rate)
-    dmp_set_orientation                      0x00009205   Thumb Code   246  inv_mpu_dmp_motion_driver.o(i.dmp_set_orientation)
-    dmp_set_shake_reject_thresh              0x00009311   Thumb Code    48  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_thresh)
-    dmp_set_shake_reject_time                0x00009341   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_time)
-    dmp_set_shake_reject_timeout             0x00009361   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_timeout)
-    dmp_set_tap_axes                         0x00009381   Thumb Code    64  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_axes)
-    dmp_set_tap_count                        0x000093c1   Thumb Code    34  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_count)
-    dmp_set_tap_thresh                       0x000093e5   Thumb Code   314  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_thresh)
-    dmp_set_tap_time                         0x00009545   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time)
-    dmp_set_tap_time_multi                   0x00009565   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time_multi)
-    fabs                                     0x000095c5   Thumb Code    24  fabs.o(i.fabs)
-    fputc                                    0x00009603   Thumb Code    14  retarget.o(i.fputc)
-    free                                     0x00009611   Thumb Code    76  malloc.o(i.free)
-    i2c_write_porting                        0x00009fb9   Thumb Code   100  nrf_drv_mpu_twi.o(i.i2c_write_porting)
-    inv_apply_calibration                    0x0000a0b1   Thumb Code   106  data_builder.o(i.inv_apply_calibration)
-    inv_build_accel                          0x0000a11d   Thumb Code    96  data_builder.o(i.inv_build_accel)
-    inv_build_compass                        0x0000a185   Thumb Code   124  data_builder.o(i.inv_build_compass)
-    inv_build_gyro                           0x0000a209   Thumb Code    42  data_builder.o(i.inv_build_gyro)
-    inv_build_quat                           0x0000a239   Thumb Code    40  data_builder.o(i.inv_build_quat)
-    inv_compass_angle                        0x0000a265   Thumb Code   162  ml_math_func.o(i.inv_compass_angle)
-    inv_convert_to_body_with_scale           0x0000a311   Thumb Code    92  ml_math_func.o(i.inv_convert_to_body_with_scale)
-    inv_enable_eMPL_outputs                  0x0000a3bd   Thumb Code    20  empl_outputs.o(i.inv_enable_eMPL_outputs)
-    inv_enable_results_holder                0x0000a3d9   Thumb Code    22  results_holder.o(i.inv_enable_results_holder)
-    inv_execute_mpl_start_notification       0x0000a3f5   Thumb Code    38  start_manager.o(i.inv_execute_mpl_start_notification)
-    inv_execute_on_data                      0x0000a421   Thumb Code   120  data_builder.o(i.inv_execute_on_data)
-    inv_generate_results                     0x0000a545   Thumb Code    10  results_holder.o(i.inv_generate_results)
-    inv_get_6axis_quaternion                 0x0000a555   Thumb Code    14  results_holder.o(i.inv_get_6axis_quaternion)
-    inv_get_acc_state                        0x0000a569   Thumb Code     6  results_holder.o(i.inv_get_acc_state)
-    inv_get_accel_accuracy                   0x0000a575   Thumb Code     6  data_builder.o(i.inv_get_accel_accuracy)
-    inv_get_accel_on                         0x0000a581   Thumb Code    12  data_builder.o(i.inv_get_accel_on)
-    inv_get_accel_set                        0x0000a591   Thumb Code    34  data_builder.o(i.inv_get_accel_set)
-    inv_get_compass_bias                     0x0000a5b9   Thumb Code    14  data_builder.o(i.inv_get_compass_bias)
-    inv_get_compass_correction               0x0000a5cd   Thumb Code    20  results_holder.o(i.inv_get_compass_correction)
-    inv_get_compass_on                       0x0000a5e5   Thumb Code    12  data_builder.o(i.inv_get_compass_on)
-    inv_get_compass_soft_iron_output_data    0x0000a5f5   Thumb Code    24  data_builder.o(i.inv_get_compass_soft_iron_output_data)
-    inv_get_compass_state                    0x0000a611   Thumb Code     6  results_holder.o(i.inv_get_compass_state)
-    inv_get_gravity                          0x0000a61d   Thumb Code    80  results_holder.o(i.inv_get_gravity)
-    inv_get_gyro                             0x0000a671   Thumb Code    10  data_builder.o(i.inv_get_gyro)
-    inv_get_gyro_accuracy                    0x0000a681   Thumb Code     6  data_builder.o(i.inv_get_gyro_accuracy)
-    inv_get_gyro_bias                        0x0000a68d   Thumb Code    26  data_builder.o(i.inv_get_gyro_bias)
-    inv_get_gyro_on                          0x0000a6b1   Thumb Code    10  data_builder.o(i.inv_get_gyro_on)
-    inv_get_gyro_sum_of_sqr                  0x0000a6c1   Thumb Code    26  ml_math_func.o(i.inv_get_gyro_sum_of_sqr)
-    inv_get_large_mag_field                  0x0000a6dd   Thumb Code     6  results_holder.o(i.inv_get_large_mag_field)
-    inv_get_last_timestamp                   0x0000a6e9   Thumb Code    66  data_builder.o(i.inv_get_last_timestamp)
-    inv_get_linear_accel                     0x0000a731   Thumb Code    58  results_holder.o(i.inv_get_linear_accel)
-    inv_get_linear_accel_float               0x0000a76d   Thumb Code    64  results_holder.o(i.inv_get_linear_accel_float)
-    inv_get_local_field                      0x0000a7b1   Thumb Code    10  results_holder.o(i.inv_get_local_field)
-    inv_get_mag_accuracy                     0x0000a7c1   Thumb Code    20  data_builder.o(i.inv_get_mag_accuracy)
-    inv_get_quaternion                       0x0000a7dd   Thumb Code    48  results_holder.o(i.inv_get_quaternion)
-    inv_get_quaternion_set                   0x0000a811   Thumb Code    56  results_holder.o(i.inv_get_quaternion_set)
-    inv_get_sensor_type_gravity              0x0000a849   Thumb Code    88  hal_outputs.o(i.inv_get_sensor_type_gravity)
-    inv_get_sensor_type_linear_acceleration  0x0000a8a9   Thumb Code   106  hal_outputs.o(i.inv_get_sensor_type_linear_acceleration)
-    inv_get_sensor_type_quat                 0x0000a919   Thumb Code    24  empl_outputs.o(i.inv_get_sensor_type_quat)
-    inv_got_compass_bias                     0x0000a935   Thumb Code     6  results_holder.o(i.inv_got_compass_bias)
-    inv_init_data_builder                    0x0000a941   Thumb Code    44  data_builder.o(i.inv_init_data_builder)
-    inv_init_mpl                             0x0000a97d   Thumb Code    94  mpl.o(i.inv_init_mpl)
-    inv_init_results_holder                  0x0000aa05   Thumb Code    40  results_holder.o(i.inv_init_results_holder)
-    inv_init_start_manager                   0x0000aa35   Thumb Code    14  start_manager.o(i.inv_init_start_manager)
-    inv_init_storage_manager                 0x0000aa49   Thumb Code    20  storage_manager.o(i.inv_init_storage_manager)
-    inv_orientation_matrix_to_scalar         0x0000aa61   Thumb Code    34  ml_math_func.o(i.inv_orientation_matrix_to_scalar)
-    inv_q29_mult                             0x0000aa83   Thumb Code    12  ml_math_func.o(i.inv_q29_mult)
-    inv_q30_mult                             0x0000aa8f   Thumb Code    12  ml_math_func.o(i.inv_q30_mult)
-    inv_q_add                                0x0000aa9b   Thumb Code    36  ml_math_func.o(i.inv_q_add)
-    inv_q_addf                               0x0000aabf   Thumb Code    66  ml_math_func.o(i.inv_q_addf)
-    inv_q_invert                             0x0000ab01   Thumb Code    24  ml_math_func.o(i.inv_q_invert)
-    inv_q_invertf                            0x0000ab19   Thumb Code    46  ml_math_func.o(i.inv_q_invertf)
-    inv_q_mult                               0x0000ab47   Thumb Code   176  ml_math_func.o(i.inv_q_mult)
-    inv_q_multf                              0x0000abf7   Thumb Code   210  ml_math_func.o(i.inv_q_multf)
-    inv_q_norm4                              0x0000acc9   Thumb Code   126  ml_math_func.o(i.inv_q_norm4)
-    inv_q_normalizef                         0x0000ad4d   Thumb Code   170  ml_math_func.o(i.inv_q_normalizef)
-    inv_q_rotate                             0x0000adfd   Thumb Code    62  ml_math_func.o(i.inv_q_rotate)
-    inv_quaternion_to_rotation               0x0000ae3b   Thumb Code   218  ml_math_func.o(i.inv_quaternion_to_rotation)
-    inv_register_data_cb                     0x0000af15   Thumb Code   150  data_builder.o(i.inv_register_data_cb)
-    inv_register_load_store                  0x0000afb9   Thumb Code   102  storage_manager.o(i.inv_register_load_store)
-    inv_register_mpl_start_notification      0x0000b025   Thumb Code    28  start_manager.o(i.inv_register_mpl_start_notification)
-    inv_reset_compass_soft_iron_matrix       0x0000b045   Thumb Code    70  data_builder.o(i.inv_reset_compass_soft_iron_matrix)
-    inv_set_accel_accuracy                   0x0000b0e1   Thumb Code    22  data_builder.o(i.inv_set_accel_accuracy)
-    inv_set_accel_bias                       0x0000b0fd   Thumb Code    68  data_builder.o(i.inv_set_accel_bias)
-    inv_set_accel_bias_found                 0x0000b145   Thumb Code     6  results_holder.o(i.inv_set_accel_bias_found)
-    inv_set_accel_bias_mask                  0x0000b151   Thumb Code    72  data_builder.o(i.inv_set_accel_bias_mask)
-    inv_set_accel_orientation_and_scale      0x0000b1a1   Thumb Code     8  data_builder.o(i.inv_set_accel_orientation_and_scale)
-    inv_set_accel_sample_rate                0x0000b1ad   Thumb Code    34  data_builder.o(i.inv_set_accel_sample_rate)
-    inv_set_compass_bias                     0x0000b1d9   Thumb Code    68  data_builder.o(i.inv_set_compass_bias)
-    inv_set_compass_bias_error               0x0000b221   Thumb Code    10  results_holder.o(i.inv_set_compass_bias_error)
-    inv_set_compass_bias_found               0x0000b231   Thumb Code     6  results_holder.o(i.inv_set_compass_bias_found)
-    inv_set_compass_correction               0x0000b23d   Thumb Code    28  results_holder.o(i.inv_set_compass_correction)
-    inv_set_compass_disturbance              0x0000b25d   Thumb Code     8  data_builder.o(i.inv_set_compass_disturbance)
-    inv_set_compass_orientation_and_scale    0x0000b269   Thumb Code    12  data_builder.o(i.inv_set_compass_orientation_and_scale)
-    inv_set_compass_sample_rate              0x0000b279   Thumb Code    34  data_builder.o(i.inv_set_compass_sample_rate)
-    inv_set_compass_soft_iron_input_data     0x0000b2a5   Thumb Code    72  data_builder.o(i.inv_set_compass_soft_iron_input_data)
-    inv_set_compass_state                    0x0000b2f5   Thumb Code     6  results_holder.o(i.inv_set_compass_state)
-    inv_set_gyro_bias                        0x0000b381   Thumb Code    88  data_builder.o(i.inv_set_gyro_bias)
-    inv_set_gyro_orientation_and_scale       0x0000b3dd   Thumb Code     8  data_builder.o(i.inv_set_gyro_orientation_and_scale)
-    inv_set_gyro_sample_rate                 0x0000b3e9   Thumb Code    30  data_builder.o(i.inv_set_gyro_sample_rate)
-    inv_set_message                          0x0000b411   Thumb Code    16  message_layer.o(i.inv_set_message)
-    inv_set_motion_state                     0x0000b425   Thumb Code    48  results_holder.o(i.inv_set_motion_state)
-    inv_set_quat_sample_rate                 0x0000b459   Thumb Code    20  data_builder.o(i.inv_set_quat_sample_rate)
-    inv_start_mpl                            0x0000b481   Thumb Code    34  mpl.o(i.inv_start_mpl)
-    inv_start_results_holder                 0x0000b4cd   Thumb Code    18  results_holder.o(i.inv_start_results_holder)
-    inv_store_gaming_quaternion              0x0000b4e5   Thumb Code    28  results_holder.o(i.inv_store_gaming_quaternion)
-    inv_unregister_data_cb                   0x0000b505   Thumb Code    72  data_builder.o(i.inv_unregister_data_cb)
-    inv_unregister_mpl_start_notification    0x0000b551   Thumb Code    68  start_manager.o(i.inv_unregister_mpl_start_notification)
-    magn_setup                               0x0000b7f5   Thumb Code    36  main.o(i.magn_setup)
-    main                                     0x0000b819   Thumb Code   752  main.o(i.main)
-    malloc                                   0x0000bc1d   Thumb Code    92  malloc.o(i.malloc)
-    millis                                   0x0000bc89   Thumb Code    30  nrf_drv_inv_dmp.o(i.millis)
-    mlMatrixVectorMult                       0x0000bca7   Thumb Code    50  ml_math_func.o(i.mlMatrixVectorMult)
-    mpu_config                               0x0000bcd9   Thumb Code    10  app_mpu.o(i.mpu_config)
-    mpu_configure_fifo                       0x0000bce5   Thumb Code    78  inv_mpu.o(i.mpu_configure_fifo)
-    mpu_get_accel_fsr                        0x0000bd39   Thumb Code    54  inv_mpu.o(i.mpu_get_accel_fsr)
-    mpu_get_accel_sens                       0x0000bd75   Thumb Code    62  inv_mpu.o(i.mpu_get_accel_sens)
-    mpu_get_compass_fsr                      0x0000bdb9   Thumb Code    12  inv_mpu.o(i.mpu_get_compass_fsr)
-    mpu_get_compass_reg                      0x0000bdc9   Thumb Code   148  inv_mpu.o(i.mpu_get_compass_reg)
-    mpu_get_gyro_fsr                         0x0000be7d   Thumb Code    48  inv_mpu.o(i.mpu_get_gyro_fsr)
-    mpu_get_gyro_sens                        0x0000beb1   Thumb Code    54  inv_mpu.o(i.mpu_get_gyro_sens)
-    mpu_get_lpf                              0x0000befd   Thumb Code    52  inv_mpu.o(i.mpu_get_lpf)
-    mpu_get_sample_rate                      0x0000bf35   Thumb Code    22  inv_mpu.o(i.mpu_get_sample_rate)
-    mpu_init                                 0x0000bf51   Thumb Code    36  app_mpu.o(i.mpu_init)
-    mpu_init_inv                             0x0000bf75   Thumb Code   212  inv_mpu.o(i.mpu_init_inv)
-    mpu_int_cfg_pin                          0x0000c04d   Thumb Code     8  app_mpu.o(i.mpu_int_cfg_pin)
-    mpu_load_firmware                        0x0000c055   Thumb Code   186  inv_mpu.o(i.mpu_load_firmware)
-    mpu_lp_accel_mode                        0x0000c13d   Thumb Code   232  inv_mpu.o(i.mpu_lp_accel_mode)
-    mpu_magnetometer_init                    0x0000c229   Thumb Code    46  app_mpu.o(i.mpu_magnetometer_init)
-    mpu_read_fifo_stream                     0x0000c259   Thumb Code   174  inv_mpu.o(i.mpu_read_fifo_stream)
-    mpu_read_mem                             0x0000c32d   Thumb Code    80  inv_mpu.o(i.mpu_read_mem)
-    mpu_reset_fifo                           0x0000c381   Thumb Code   346  inv_mpu.o(i.mpu_reset_fifo)
-    mpu_run_6500_self_test                   0x0000c4e1   Thumb Code   368  inv_mpu.o(i.mpu_run_6500_self_test)
-    mpu_set_accel_fsr                        0x0000c79d   Thumb Code    98  inv_mpu.o(i.mpu_set_accel_fsr)
-    mpu_set_bypass                           0x0000c805   Thumb Code   214  inv_mpu.o(i.mpu_set_bypass)
-    mpu_set_compass_sample_rate              0x0000c8e1   Thumb Code    76  inv_mpu.o(i.mpu_set_compass_sample_rate)
-    mpu_set_dmp_state                        0x0000c931   Thumb Code   114  inv_mpu.o(i.mpu_set_dmp_state)
-    mpu_set_gyro_fsr                         0x0000c9a9   Thumb Code   104  inv_mpu.o(i.mpu_set_gyro_fsr)
-    mpu_set_int_latched                      0x0000ca15   Thumb Code    94  inv_mpu.o(i.mpu_set_int_latched)
-    mpu_set_lpf                              0x0000ca79   Thumb Code   132  inv_mpu.o(i.mpu_set_lpf)
-    mpu_set_sample_rate                      0x0000cb01   Thumb Code   138  inv_mpu.o(i.mpu_set_sample_rate)
-    mpu_set_sensors                          0x0000cb91   Thumb Code   304  inv_mpu.o(i.mpu_set_sensors)
-    mpu_setup                                0x0000ccc5   Thumb Code    84  main.o(i.mpu_setup)
-    mpu_twi_read_test                        0x0000cd4d   Thumb Code   116  nrf_drv_mpu_twi.o(i.mpu_twi_read_test)
-    mpu_write_mem                            0x0000ce05   Thumb Code   102  inv_mpu.o(i.mpu_write_mem)
-    nrf_drv_clock_hfclk_release              0x0000d0f9   Thumb Code    34  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_release)
-    nrf_drv_clock_hfclk_request              0x0000d121   Thumb Code    82  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_request)
-    nrf_drv_clock_init                       0x0000d179   Thumb Code    66  nrf_drv_clock.o(i.nrf_drv_clock_init)
-    nrf_drv_clock_lfclk_request              0x0000d1c5   Thumb Code    86  nrf_drv_clock.o(i.nrf_drv_clock_lfclk_request)
-    nrf_drv_common_irq_enable                0x0000d23b   Thumb Code    56  nrf_drv_common.o(i.nrf_drv_common_irq_enable)
-    nrf_drv_gpiote_in_event_enable           0x0000d279   Thumb Code   144  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable)
-    nrf_drv_gpiote_in_init                   0x0000d311   Thumb Code   196  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init)
-    nrf_drv_gpiote_init                      0x0000d411   Thumb Code   118  nrf_drv_gpiote.o(i.nrf_drv_gpiote_init)
-    nrf_drv_mpu_init                         0x0000d511   Thumb Code    42  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_init)
-    nrf_drv_mpu_read_registers               0x0000d545   Thumb Code    96  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_read_registers)
-    nrf_drv_mpu_write_magnetometer_register  0x0000d5d9   Thumb Code    52  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_magnetometer_register)
-    nrf_drv_mpu_write_registers              0x0000d619   Thumb Code    70  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_registers)
-    nrf_drv_mpu_write_single_register        0x0000d671   Thumb Code    52  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_single_register)
-    nrf_drv_twi_enable                       0x0000d6b1   Thumb Code    28  nrf_drv_twi.o(i.nrf_drv_twi_enable)
-    nrf_drv_twi_init                         0x0000d6d1   Thumb Code   134  nrf_drv_twi.o(i.nrf_drv_twi_init)
-    nrf_drv_twi_rx                           0x0000d75d   Thumb Code    32  nrf_drv_twi.o(i.nrf_drv_twi_rx)
-    nrf_drv_twi_tx                           0x0000d781   Thumb Code    36  nrf_drv_twi.o(i.nrf_drv_twi_tx)
-    nrf_drv_twi_xfer                         0x0000d7a5   Thumb Code    30  nrf_drv_twi.o(i.nrf_drv_twi_xfer)
-    nrf_drv_uart_init                        0x0000d7c9   Thumb Code    98  nrf_drv_uart.o(i.nrf_drv_uart_init)
-    nrf_drv_uart_rx                          0x0000d831   Thumb Code   170  nrf_drv_uart.o(i.nrf_drv_uart_rx)
-    nrf_drv_uart_rx_enable                   0x0000d8e1   Thumb Code    42  nrf_drv_uart.o(i.nrf_drv_uart_rx_enable)
-    nrf_drv_uart_tx                          0x0000da69   Thumb Code   262  nrf_drv_uart.o(i.nrf_drv_uart_tx)
-    nrf_drv_uart_tx_in_progress              0x0000db75   Thumb Code    18  nrf_drv_uart.o(i.nrf_drv_uart_tx_in_progress)
-    nrf_drv_uart_uninit                      0x0000db8d   Thumb Code    74  nrf_drv_uart.o(i.nrf_drv_uart_uninit)
-    nrf_log_backend_hexdump_handler_get      0x0000de19   Thumb Code     4  nrf_log_backend_serial.o(i.nrf_log_backend_hexdump_handler_get)
-    nrf_log_backend_init                     0x0000de21   Thumb Code   100  nrf_log_backend_serial.o(i.nrf_log_backend_init)
-    nrf_log_backend_std_handler_get          0x0000e0d5   Thumb Code     4  nrf_log_backend_serial.o(i.nrf_log_backend_std_handler_get)
-    nrf_log_blocking_backend_set             0x0000e0dd   Thumb Code     6  nrf_log_frontend.o(i.nrf_log_blocking_backend_set)
-    nrf_log_frontend_dequeue                 0x0000e0e5   Thumb Code   314  nrf_log_frontend.o(i.nrf_log_frontend_dequeue)
-    nrf_log_frontend_init                    0x0000e229   Thumb Code    18  nrf_log_frontend.o(i.nrf_log_frontend_init)
-    nrf_log_frontend_std_0                   0x0000e241   Thumb Code    68  nrf_log_frontend.o(i.nrf_log_frontend_std_0)
-    nrf_log_frontend_std_1                   0x0000e28d   Thumb Code    80  nrf_log_frontend.o(i.nrf_log_frontend_std_1)
-    nrf_log_frontend_std_2                   0x0000e2e5   Thumb Code    96  nrf_log_frontend.o(i.nrf_log_frontend_std_2)
-    nrf_log_frontend_std_3                   0x0000e34d   Thumb Code   114  nrf_log_frontend.o(i.nrf_log_frontend_std_3)
-    nrf_log_frontend_std_4                   0x0000e3c9   Thumb Code   128  nrf_log_frontend.o(i.nrf_log_frontend_std_4)
-    nrf_log_handlers_set                     0x0000e451   Thumb Code     8  nrf_log_frontend.o(i.nrf_log_handlers_set)
-    nrf_log_init                             0x0000e45d   Thumb Code    36  nrf_log_frontend.o(i.nrf_log_init)
-    nrf_log_push                             0x0000e481   Thumb Code    90  nrf_log_frontend.o(i.nrf_log_push)
-    nrf_strerror_find                        0x0000e4e1   Thumb Code    52  nrf_strerror.o(i.nrf_strerror_find)
-    nrf_strerror_get                         0x0000e519   Thumb Code    14  nrf_strerror.o(i.nrf_strerror_get)
-    sqrtf                                    0x0000ee9d   Thumb Code    62  sqrtf.o(i.sqrtf)
-    uart_config                              0x0000f3c5   Thumb Code    62  main.o(i.uart_config)
-    uart_error_handle                        0x0000f415   Thumb Code    18  main.o(i.uart_error_handle)
-    ml_ver                                   0x0000f91c   Data          20  mpl.o(.constdata)
-    reg                                      0x00010541   Data          42  inv_mpu.o(.constdata)
-    hw                                       0x0001056c   Data          14  inv_mpu.o(.constdata)
-    test                                     0x0001057c   Data          48  inv_mpu.o(.constdata)
+    dmp_register_android_orient_cb           0x0000918d   Thumb Code     8  inv_mpu_dmp_motion_driver.o(i.dmp_register_android_orient_cb)
+    dmp_register_tap_cb                      0x00009199   Thumb Code     8  inv_mpu_dmp_motion_driver.o(i.dmp_register_tap_cb)
+    dmp_set_fifo_rate                        0x000091a5   Thumb Code    82  inv_mpu_dmp_motion_driver.o(i.dmp_set_fifo_rate)
+    dmp_set_orientation                      0x00009209   Thumb Code   246  inv_mpu_dmp_motion_driver.o(i.dmp_set_orientation)
+    dmp_set_shake_reject_thresh              0x00009315   Thumb Code    48  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_thresh)
+    dmp_set_shake_reject_time                0x00009345   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_time)
+    dmp_set_shake_reject_timeout             0x00009365   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_shake_reject_timeout)
+    dmp_set_tap_axes                         0x00009385   Thumb Code    64  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_axes)
+    dmp_set_tap_count                        0x000093c5   Thumb Code    34  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_count)
+    dmp_set_tap_thresh                       0x000093e9   Thumb Code   314  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_thresh)
+    dmp_set_tap_time                         0x00009549   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time)
+    dmp_set_tap_time_multi                   0x00009569   Thumb Code    32  inv_mpu_dmp_motion_driver.o(i.dmp_set_tap_time_multi)
+    fabs                                     0x000095c9   Thumb Code    24  fabs.o(i.fabs)
+    fputc                                    0x00009607   Thumb Code    14  retarget.o(i.fputc)
+    free                                     0x00009615   Thumb Code    76  malloc.o(i.free)
+    i2c_write_porting                        0x00009fbd   Thumb Code   100  nrf_drv_mpu_twi.o(i.i2c_write_porting)
+    inv_apply_calibration                    0x0000a0b5   Thumb Code   106  data_builder.o(i.inv_apply_calibration)
+    inv_build_accel                          0x0000a121   Thumb Code    96  data_builder.o(i.inv_build_accel)
+    inv_build_compass                        0x0000a189   Thumb Code   124  data_builder.o(i.inv_build_compass)
+    inv_build_gyro                           0x0000a20d   Thumb Code    42  data_builder.o(i.inv_build_gyro)
+    inv_build_quat                           0x0000a23d   Thumb Code    40  data_builder.o(i.inv_build_quat)
+    inv_compass_angle                        0x0000a269   Thumb Code   162  ml_math_func.o(i.inv_compass_angle)
+    inv_convert_to_body_with_scale           0x0000a315   Thumb Code    92  ml_math_func.o(i.inv_convert_to_body_with_scale)
+    inv_enable_eMPL_outputs                  0x0000a3c1   Thumb Code    20  empl_outputs.o(i.inv_enable_eMPL_outputs)
+    inv_enable_results_holder                0x0000a3dd   Thumb Code    22  results_holder.o(i.inv_enable_results_holder)
+    inv_execute_mpl_start_notification       0x0000a3f9   Thumb Code    38  start_manager.o(i.inv_execute_mpl_start_notification)
+    inv_execute_on_data                      0x0000a425   Thumb Code   120  data_builder.o(i.inv_execute_on_data)
+    inv_generate_results                     0x0000a549   Thumb Code    10  results_holder.o(i.inv_generate_results)
+    inv_get_6axis_quaternion                 0x0000a559   Thumb Code    14  results_holder.o(i.inv_get_6axis_quaternion)
+    inv_get_acc_state                        0x0000a56d   Thumb Code     6  results_holder.o(i.inv_get_acc_state)
+    inv_get_accel_accuracy                   0x0000a579   Thumb Code     6  data_builder.o(i.inv_get_accel_accuracy)
+    inv_get_accel_on                         0x0000a585   Thumb Code    12  data_builder.o(i.inv_get_accel_on)
+    inv_get_accel_set                        0x0000a595   Thumb Code    34  data_builder.o(i.inv_get_accel_set)
+    inv_get_compass_bias                     0x0000a5bd   Thumb Code    14  data_builder.o(i.inv_get_compass_bias)
+    inv_get_compass_correction               0x0000a5d1   Thumb Code    20  results_holder.o(i.inv_get_compass_correction)
+    inv_get_compass_on                       0x0000a5e9   Thumb Code    12  data_builder.o(i.inv_get_compass_on)
+    inv_get_compass_soft_iron_output_data    0x0000a5f9   Thumb Code    24  data_builder.o(i.inv_get_compass_soft_iron_output_data)
+    inv_get_compass_state                    0x0000a615   Thumb Code     6  results_holder.o(i.inv_get_compass_state)
+    inv_get_gravity                          0x0000a621   Thumb Code    80  results_holder.o(i.inv_get_gravity)
+    inv_get_gyro                             0x0000a675   Thumb Code    10  data_builder.o(i.inv_get_gyro)
+    inv_get_gyro_accuracy                    0x0000a685   Thumb Code     6  data_builder.o(i.inv_get_gyro_accuracy)
+    inv_get_gyro_bias                        0x0000a691   Thumb Code    26  data_builder.o(i.inv_get_gyro_bias)
+    inv_get_gyro_on                          0x0000a6b5   Thumb Code    10  data_builder.o(i.inv_get_gyro_on)
+    inv_get_gyro_sum_of_sqr                  0x0000a6c5   Thumb Code    26  ml_math_func.o(i.inv_get_gyro_sum_of_sqr)
+    inv_get_large_mag_field                  0x0000a6e1   Thumb Code     6  results_holder.o(i.inv_get_large_mag_field)
+    inv_get_last_timestamp                   0x0000a6ed   Thumb Code    66  data_builder.o(i.inv_get_last_timestamp)
+    inv_get_linear_accel                     0x0000a735   Thumb Code    58  results_holder.o(i.inv_get_linear_accel)
+    inv_get_linear_accel_float               0x0000a771   Thumb Code    64  results_holder.o(i.inv_get_linear_accel_float)
+    inv_get_local_field                      0x0000a7b5   Thumb Code    10  results_holder.o(i.inv_get_local_field)
+    inv_get_mag_accuracy                     0x0000a7c5   Thumb Code    20  data_builder.o(i.inv_get_mag_accuracy)
+    inv_get_quaternion                       0x0000a7e1   Thumb Code    48  results_holder.o(i.inv_get_quaternion)
+    inv_get_quaternion_set                   0x0000a815   Thumb Code    56  results_holder.o(i.inv_get_quaternion_set)
+    inv_get_sensor_type_gravity              0x0000a84d   Thumb Code    88  hal_outputs.o(i.inv_get_sensor_type_gravity)
+    inv_get_sensor_type_linear_acceleration  0x0000a8ad   Thumb Code   106  hal_outputs.o(i.inv_get_sensor_type_linear_acceleration)
+    inv_get_sensor_type_quat                 0x0000a91d   Thumb Code    24  empl_outputs.o(i.inv_get_sensor_type_quat)
+    inv_got_compass_bias                     0x0000a939   Thumb Code     6  results_holder.o(i.inv_got_compass_bias)
+    inv_init_data_builder                    0x0000a945   Thumb Code    44  data_builder.o(i.inv_init_data_builder)
+    inv_init_mpl                             0x0000a981   Thumb Code    94  mpl.o(i.inv_init_mpl)
+    inv_init_results_holder                  0x0000aa09   Thumb Code    40  results_holder.o(i.inv_init_results_holder)
+    inv_init_start_manager                   0x0000aa39   Thumb Code    14  start_manager.o(i.inv_init_start_manager)
+    inv_init_storage_manager                 0x0000aa4d   Thumb Code    20  storage_manager.o(i.inv_init_storage_manager)
+    inv_orientation_matrix_to_scalar         0x0000aa65   Thumb Code    34  ml_math_func.o(i.inv_orientation_matrix_to_scalar)
+    inv_q29_mult                             0x0000aa87   Thumb Code    12  ml_math_func.o(i.inv_q29_mult)
+    inv_q30_mult                             0x0000aa93   Thumb Code    12  ml_math_func.o(i.inv_q30_mult)
+    inv_q_add                                0x0000aa9f   Thumb Code    36  ml_math_func.o(i.inv_q_add)
+    inv_q_addf                               0x0000aac3   Thumb Code    66  ml_math_func.o(i.inv_q_addf)
+    inv_q_invert                             0x0000ab05   Thumb Code    24  ml_math_func.o(i.inv_q_invert)
+    inv_q_invertf                            0x0000ab1d   Thumb Code    46  ml_math_func.o(i.inv_q_invertf)
+    inv_q_mult                               0x0000ab4b   Thumb Code   176  ml_math_func.o(i.inv_q_mult)
+    inv_q_multf                              0x0000abfb   Thumb Code   210  ml_math_func.o(i.inv_q_multf)
+    inv_q_norm4                              0x0000accd   Thumb Code   126  ml_math_func.o(i.inv_q_norm4)
+    inv_q_normalizef                         0x0000ad51   Thumb Code   170  ml_math_func.o(i.inv_q_normalizef)
+    inv_q_rotate                             0x0000ae01   Thumb Code    62  ml_math_func.o(i.inv_q_rotate)
+    inv_quaternion_to_rotation               0x0000ae3f   Thumb Code   218  ml_math_func.o(i.inv_quaternion_to_rotation)
+    inv_register_data_cb                     0x0000af19   Thumb Code   150  data_builder.o(i.inv_register_data_cb)
+    inv_register_load_store                  0x0000afbd   Thumb Code   102  storage_manager.o(i.inv_register_load_store)
+    inv_register_mpl_start_notification      0x0000b029   Thumb Code    28  start_manager.o(i.inv_register_mpl_start_notification)
+    inv_reset_compass_soft_iron_matrix       0x0000b049   Thumb Code    70  data_builder.o(i.inv_reset_compass_soft_iron_matrix)
+    inv_set_accel_accuracy                   0x0000b0e5   Thumb Code    22  data_builder.o(i.inv_set_accel_accuracy)
+    inv_set_accel_bias                       0x0000b101   Thumb Code    68  data_builder.o(i.inv_set_accel_bias)
+    inv_set_accel_bias_found                 0x0000b149   Thumb Code     6  results_holder.o(i.inv_set_accel_bias_found)
+    inv_set_accel_bias_mask                  0x0000b155   Thumb Code    72  data_builder.o(i.inv_set_accel_bias_mask)
+    inv_set_accel_orientation_and_scale      0x0000b1a5   Thumb Code     8  data_builder.o(i.inv_set_accel_orientation_and_scale)
+    inv_set_accel_sample_rate                0x0000b1b1   Thumb Code    34  data_builder.o(i.inv_set_accel_sample_rate)
+    inv_set_compass_bias                     0x0000b1dd   Thumb Code    68  data_builder.o(i.inv_set_compass_bias)
+    inv_set_compass_bias_error               0x0000b225   Thumb Code    10  results_holder.o(i.inv_set_compass_bias_error)
+    inv_set_compass_bias_found               0x0000b235   Thumb Code     6  results_holder.o(i.inv_set_compass_bias_found)
+    inv_set_compass_correction               0x0000b241   Thumb Code    28  results_holder.o(i.inv_set_compass_correction)
+    inv_set_compass_disturbance              0x0000b261   Thumb Code     8  data_builder.o(i.inv_set_compass_disturbance)
+    inv_set_compass_orientation_and_scale    0x0000b26d   Thumb Code    12  data_builder.o(i.inv_set_compass_orientation_and_scale)
+    inv_set_compass_sample_rate              0x0000b27d   Thumb Code    34  data_builder.o(i.inv_set_compass_sample_rate)
+    inv_set_compass_soft_iron_input_data     0x0000b2a9   Thumb Code    72  data_builder.o(i.inv_set_compass_soft_iron_input_data)
+    inv_set_compass_state                    0x0000b2f9   Thumb Code     6  results_holder.o(i.inv_set_compass_state)
+    inv_set_gyro_bias                        0x0000b385   Thumb Code    88  data_builder.o(i.inv_set_gyro_bias)
+    inv_set_gyro_orientation_and_scale       0x0000b3e1   Thumb Code     8  data_builder.o(i.inv_set_gyro_orientation_and_scale)
+    inv_set_gyro_sample_rate                 0x0000b3ed   Thumb Code    30  data_builder.o(i.inv_set_gyro_sample_rate)
+    inv_set_message                          0x0000b415   Thumb Code    16  message_layer.o(i.inv_set_message)
+    inv_set_motion_state                     0x0000b429   Thumb Code    48  results_holder.o(i.inv_set_motion_state)
+    inv_set_quat_sample_rate                 0x0000b45d   Thumb Code    20  data_builder.o(i.inv_set_quat_sample_rate)
+    inv_start_mpl                            0x0000b485   Thumb Code    34  mpl.o(i.inv_start_mpl)
+    inv_start_results_holder                 0x0000b4d1   Thumb Code    18  results_holder.o(i.inv_start_results_holder)
+    inv_store_gaming_quaternion              0x0000b4e9   Thumb Code    28  results_holder.o(i.inv_store_gaming_quaternion)
+    inv_unregister_data_cb                   0x0000b509   Thumb Code    72  data_builder.o(i.inv_unregister_data_cb)
+    inv_unregister_mpl_start_notification    0x0000b555   Thumb Code    68  start_manager.o(i.inv_unregister_mpl_start_notification)
+    magn_setup                               0x0000b7f9   Thumb Code    36  main.o(i.magn_setup)
+    main                                     0x0000b81d   Thumb Code   752  main.o(i.main)
+    malloc                                   0x0000bc21   Thumb Code    92  malloc.o(i.malloc)
+    millis                                   0x0000bc8d   Thumb Code    30  nrf_drv_inv_dmp.o(i.millis)
+    mlMatrixVectorMult                       0x0000bcab   Thumb Code    50  ml_math_func.o(i.mlMatrixVectorMult)
+    mpu_config                               0x0000bcdd   Thumb Code    10  app_mpu.o(i.mpu_config)
+    mpu_configure_fifo                       0x0000bce9   Thumb Code    78  inv_mpu.o(i.mpu_configure_fifo)
+    mpu_get_accel_fsr                        0x0000bd3d   Thumb Code    54  inv_mpu.o(i.mpu_get_accel_fsr)
+    mpu_get_accel_sens                       0x0000bd79   Thumb Code    62  inv_mpu.o(i.mpu_get_accel_sens)
+    mpu_get_compass_fsr                      0x0000bdbd   Thumb Code    12  inv_mpu.o(i.mpu_get_compass_fsr)
+    mpu_get_compass_reg                      0x0000bdcd   Thumb Code   148  inv_mpu.o(i.mpu_get_compass_reg)
+    mpu_get_gyro_fsr                         0x0000be81   Thumb Code    48  inv_mpu.o(i.mpu_get_gyro_fsr)
+    mpu_get_gyro_sens                        0x0000beb5   Thumb Code    54  inv_mpu.o(i.mpu_get_gyro_sens)
+    mpu_get_lpf                              0x0000bf01   Thumb Code    52  inv_mpu.o(i.mpu_get_lpf)
+    mpu_get_sample_rate                      0x0000bf39   Thumb Code    22  inv_mpu.o(i.mpu_get_sample_rate)
+    mpu_init                                 0x0000bf55   Thumb Code    36  app_mpu.o(i.mpu_init)
+    mpu_init_inv                             0x0000bf79   Thumb Code   212  inv_mpu.o(i.mpu_init_inv)
+    mpu_int_cfg_pin                          0x0000c051   Thumb Code     8  app_mpu.o(i.mpu_int_cfg_pin)
+    mpu_load_firmware                        0x0000c059   Thumb Code   186  inv_mpu.o(i.mpu_load_firmware)
+    mpu_lp_accel_mode                        0x0000c141   Thumb Code   232  inv_mpu.o(i.mpu_lp_accel_mode)
+    mpu_magnetometer_init                    0x0000c22d   Thumb Code    46  app_mpu.o(i.mpu_magnetometer_init)
+    mpu_read_fifo_stream                     0x0000c25d   Thumb Code   174  inv_mpu.o(i.mpu_read_fifo_stream)
+    mpu_read_mem                             0x0000c331   Thumb Code    80  inv_mpu.o(i.mpu_read_mem)
+    mpu_reset_fifo                           0x0000c385   Thumb Code   346  inv_mpu.o(i.mpu_reset_fifo)
+    mpu_run_6500_self_test                   0x0000c4e5   Thumb Code   368  inv_mpu.o(i.mpu_run_6500_self_test)
+    mpu_set_accel_fsr                        0x0000c7a1   Thumb Code    98  inv_mpu.o(i.mpu_set_accel_fsr)
+    mpu_set_bypass                           0x0000c809   Thumb Code   214  inv_mpu.o(i.mpu_set_bypass)
+    mpu_set_compass_sample_rate              0x0000c8e5   Thumb Code    76  inv_mpu.o(i.mpu_set_compass_sample_rate)
+    mpu_set_dmp_state                        0x0000c935   Thumb Code   114  inv_mpu.o(i.mpu_set_dmp_state)
+    mpu_set_gyro_fsr                         0x0000c9ad   Thumb Code   104  inv_mpu.o(i.mpu_set_gyro_fsr)
+    mpu_set_int_latched                      0x0000ca19   Thumb Code    94  inv_mpu.o(i.mpu_set_int_latched)
+    mpu_set_lpf                              0x0000ca7d   Thumb Code   132  inv_mpu.o(i.mpu_set_lpf)
+    mpu_set_sample_rate                      0x0000cb05   Thumb Code   138  inv_mpu.o(i.mpu_set_sample_rate)
+    mpu_set_sensors                          0x0000cb95   Thumb Code   304  inv_mpu.o(i.mpu_set_sensors)
+    mpu_setup                                0x0000ccc9   Thumb Code    84  main.o(i.mpu_setup)
+    mpu_twi_read_test                        0x0000cd51   Thumb Code   116  nrf_drv_mpu_twi.o(i.mpu_twi_read_test)
+    mpu_write_mem                            0x0000ce09   Thumb Code   102  inv_mpu.o(i.mpu_write_mem)
+    nrf_drv_clock_hfclk_release              0x0000d0fd   Thumb Code    34  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_release)
+    nrf_drv_clock_hfclk_request              0x0000d125   Thumb Code    82  nrf_drv_clock.o(i.nrf_drv_clock_hfclk_request)
+    nrf_drv_clock_init                       0x0000d17d   Thumb Code    66  nrf_drv_clock.o(i.nrf_drv_clock_init)
+    nrf_drv_clock_lfclk_request              0x0000d1c9   Thumb Code    86  nrf_drv_clock.o(i.nrf_drv_clock_lfclk_request)
+    nrf_drv_common_irq_enable                0x0000d23f   Thumb Code    56  nrf_drv_common.o(i.nrf_drv_common_irq_enable)
+    nrf_drv_gpiote_in_event_enable           0x0000d27d   Thumb Code   144  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_event_enable)
+    nrf_drv_gpiote_in_init                   0x0000d315   Thumb Code   196  nrf_drv_gpiote.o(i.nrf_drv_gpiote_in_init)
+    nrf_drv_gpiote_init                      0x0000d415   Thumb Code   118  nrf_drv_gpiote.o(i.nrf_drv_gpiote_init)
+    nrf_drv_mpu_init                         0x0000d515   Thumb Code    42  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_init)
+    nrf_drv_mpu_read_registers               0x0000d549   Thumb Code    96  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_read_registers)
+    nrf_drv_mpu_write_magnetometer_register  0x0000d5dd   Thumb Code    52  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_magnetometer_register)
+    nrf_drv_mpu_write_registers              0x0000d61d   Thumb Code    70  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_registers)
+    nrf_drv_mpu_write_single_register        0x0000d675   Thumb Code    52  nrf_drv_mpu_twi.o(i.nrf_drv_mpu_write_single_register)
+    nrf_drv_twi_enable                       0x0000d6b5   Thumb Code    28  nrf_drv_twi.o(i.nrf_drv_twi_enable)
+    nrf_drv_twi_init                         0x0000d6d5   Thumb Code   134  nrf_drv_twi.o(i.nrf_drv_twi_init)
+    nrf_drv_twi_rx                           0x0000d761   Thumb Code    32  nrf_drv_twi.o(i.nrf_drv_twi_rx)
+    nrf_drv_twi_tx                           0x0000d785   Thumb Code    36  nrf_drv_twi.o(i.nrf_drv_twi_tx)
+    nrf_drv_twi_xfer                         0x0000d7a9   Thumb Code    30  nrf_drv_twi.o(i.nrf_drv_twi_xfer)
+    nrf_drv_uart_init                        0x0000d7cd   Thumb Code    98  nrf_drv_uart.o(i.nrf_drv_uart_init)
+    nrf_drv_uart_rx                          0x0000d835   Thumb Code   170  nrf_drv_uart.o(i.nrf_drv_uart_rx)
+    nrf_drv_uart_rx_enable                   0x0000d8e5   Thumb Code    42  nrf_drv_uart.o(i.nrf_drv_uart_rx_enable)
+    nrf_drv_uart_tx                          0x0000da6d   Thumb Code   262  nrf_drv_uart.o(i.nrf_drv_uart_tx)
+    nrf_drv_uart_tx_in_progress              0x0000db79   Thumb Code    18  nrf_drv_uart.o(i.nrf_drv_uart_tx_in_progress)
+    nrf_drv_uart_uninit                      0x0000db91   Thumb Code    74  nrf_drv_uart.o(i.nrf_drv_uart_uninit)
+    nrf_log_backend_hexdump_handler_get      0x0000de1d   Thumb Code     4  nrf_log_backend_serial.o(i.nrf_log_backend_hexdump_handler_get)
+    nrf_log_backend_init                     0x0000de25   Thumb Code   100  nrf_log_backend_serial.o(i.nrf_log_backend_init)
+    nrf_log_backend_std_handler_get          0x0000e0d9   Thumb Code     4  nrf_log_backend_serial.o(i.nrf_log_backend_std_handler_get)
+    nrf_log_blocking_backend_set             0x0000e0e1   Thumb Code     6  nrf_log_frontend.o(i.nrf_log_blocking_backend_set)
+    nrf_log_frontend_dequeue                 0x0000e0e9   Thumb Code   314  nrf_log_frontend.o(i.nrf_log_frontend_dequeue)
+    nrf_log_frontend_init                    0x0000e22d   Thumb Code    18  nrf_log_frontend.o(i.nrf_log_frontend_init)
+    nrf_log_frontend_std_0                   0x0000e245   Thumb Code    68  nrf_log_frontend.o(i.nrf_log_frontend_std_0)
+    nrf_log_frontend_std_1                   0x0000e291   Thumb Code    80  nrf_log_frontend.o(i.nrf_log_frontend_std_1)
+    nrf_log_frontend_std_2                   0x0000e2e9   Thumb Code    96  nrf_log_frontend.o(i.nrf_log_frontend_std_2)
+    nrf_log_frontend_std_3                   0x0000e351   Thumb Code   114  nrf_log_frontend.o(i.nrf_log_frontend_std_3)
+    nrf_log_frontend_std_4                   0x0000e3cd   Thumb Code   128  nrf_log_frontend.o(i.nrf_log_frontend_std_4)
+    nrf_log_handlers_set                     0x0000e455   Thumb Code     8  nrf_log_frontend.o(i.nrf_log_handlers_set)
+    nrf_log_init                             0x0000e461   Thumb Code    36  nrf_log_frontend.o(i.nrf_log_init)
+    nrf_log_push                             0x0000e485   Thumb Code    90  nrf_log_frontend.o(i.nrf_log_push)
+    nrf_strerror_find                        0x0000e4e5   Thumb Code    52  nrf_strerror.o(i.nrf_strerror_find)
+    nrf_strerror_get                         0x0000e51d   Thumb Code    14  nrf_strerror.o(i.nrf_strerror_get)
+    sqrtf                                    0x0000eea1   Thumb Code    62  sqrtf.o(i.sqrtf)
+    uart_config                              0x0000f3c9   Thumb Code    62  main.o(i.uart_config)
+    uart_error_handle                        0x0000f419   Thumb Code    18  main.o(i.uart_error_handle)
+    ml_ver                                   0x0000f920   Data          20  mpl.o(.constdata)
+    reg                                      0x00010545   Data          42  inv_mpu.o(.constdata)
+    hw                                       0x00010570   Data          14  inv_mpu.o(.constdata)
+    test                                     0x00010580   Data          48  inv_mpu.o(.constdata)
     __ctype_table                            0x000107e8   Data         129  ctype_o.o(.constdata)
     __mathlib_zero                           0x000108a0   Data           8  qnan.o(.constdata)
     Region$$Table$$Base                      0x00010d1c   Number         0  anon$$obj.o(Region$$Table)
@@ -4117,316 +4117,315 @@ Memory Map of the image
     0x00008fbc   0x0000003a   Code   RO         3830    i.dmp_enable_lp_quat  inv_mpu_dmp_motion_driver.o
     0x00008ff6   0x00000002   PAD
     0x00008ff8   0x00000014   Code   RO         3835    i.dmp_load_motion_driver_firmware  inv_mpu_dmp_motion_driver.o
-    0x0000900c   0x0000017c   Code   RO         3836    i.dmp_read_fifo     inv_mpu_dmp_motion_driver.o
-    0x00009188   0x0000000c   Code   RO         3837    i.dmp_register_android_orient_cb  inv_mpu_dmp_motion_driver.o
-    0x00009194   0x0000000c   Code   RO         3838    i.dmp_register_tap_cb  inv_mpu_dmp_motion_driver.o
-    0x000091a0   0x00000064   Code   RO         3840    i.dmp_set_fifo_rate  inv_mpu_dmp_motion_driver.o
-    0x00009204   0x0000010c   Code   RO         3843    i.dmp_set_orientation  inv_mpu_dmp_motion_driver.o
-    0x00009310   0x00000030   Code   RO         3846    i.dmp_set_shake_reject_thresh  inv_mpu_dmp_motion_driver.o
-    0x00009340   0x00000020   Code   RO         3847    i.dmp_set_shake_reject_time  inv_mpu_dmp_motion_driver.o
-    0x00009360   0x00000020   Code   RO         3848    i.dmp_set_shake_reject_timeout  inv_mpu_dmp_motion_driver.o
-    0x00009380   0x00000040   Code   RO         3849    i.dmp_set_tap_axes  inv_mpu_dmp_motion_driver.o
-    0x000093c0   0x00000022   Code   RO         3850    i.dmp_set_tap_count  inv_mpu_dmp_motion_driver.o
-    0x000093e2   0x00000002   PAD
-    0x000093e4   0x00000160   Code   RO         3851    i.dmp_set_tap_thresh  inv_mpu_dmp_motion_driver.o
-    0x00009544   0x00000020   Code   RO         3852    i.dmp_set_tap_time  inv_mpu_dmp_motion_driver.o
-    0x00009564   0x00000020   Code   RO         3853    i.dmp_set_tap_time_multi  inv_mpu_dmp_motion_driver.o
-    0x00009584   0x00000040   Code   RO         1633    i.elapsed_ticks_acquire  app_timer_1.o
-    0x000095c4   0x00000018   Code   RO         4810    i.fabs              m_wm.l(fabs.o)
-    0x000095dc   0x00000014   Code   RO         1861    i.fifo_get          app_fifo.o
-    0x000095f0   0x00000012   Code   RO         1862    i.fifo_put          app_fifo.o
-    0x00009602   0x0000000e   Code   RO         2122    i.fputc             retarget.o
-    0x00009610   0x00000050   Code   RO         5210    i.free              mc_w.l(malloc.o)
-    0x00009660   0x000004c8   Code   RO         4019    i.get_st_6500_biases  inv_mpu.o
-    0x00009b28   0x00000470   Code   RO         4021    i.gyro_6500_self_test  inv_mpu.o
-    0x00009f98   0x00000020   Code   RO          918    i.hfclk_stop        nrf_drv_clock.o
-    0x00009fb8   0x00000080   Code   RO          526    i.i2c_write_porting  nrf_drv_mpu_twi.o
-    0x0000a038   0x00000078   Code   RO         1115    i.interrupts_enable  nrf_drv_uart.o
-    0x0000a0b0   0x0000006a   Code   RO         2539    i.inv_apply_calibration  data_builder.o
-    0x0000a11a   0x00000002   PAD
-    0x0000a11c   0x00000068   Code   RO         2540    i.inv_build_accel   data_builder.o
-    0x0000a184   0x00000084   Code   RO         2541    i.inv_build_compass  data_builder.o
-    0x0000a208   0x00000030   Code   RO         2542    i.inv_build_gyro    data_builder.o
-    0x0000a238   0x0000002c   Code   RO         2543    i.inv_build_quat    data_builder.o
-    0x0000a264   0x000000ac   Code   RO         3131    i.inv_compass_angle  ml_math_func.o
-    0x0000a310   0x0000005c   Code   RO         3133    i.inv_convert_to_body_with_scale  ml_math_func.o
-    0x0000a36c   0x0000003c   Code   RO         2546    i.inv_db_load_func  data_builder.o
-    0x0000a3a8   0x00000014   Code   RO         2547    i.inv_db_save_func  data_builder.o
-    0x0000a3bc   0x0000001c   Code   RO         4360    i.inv_enable_eMPL_outputs  empl_outputs.o
-    0x0000a3d8   0x0000001c   Code   RO         3519    i.inv_enable_results_holder  results_holder.o
-    0x0000a3f4   0x0000002c   Code   RO         3754    i.inv_execute_mpl_start_notification  start_manager.o
-    0x0000a420   0x00000080   Code   RO         2550    i.inv_execute_on_data  data_builder.o
-    0x0000a4a0   0x000000a4   Code   RO         4361    i.inv_generate_eMPL_outputs  empl_outputs.o
-    0x0000a544   0x00000010   Code   RO         3520    i.inv_generate_results  results_holder.o
-    0x0000a554   0x00000014   Code   RO         3521    i.inv_get_6axis_quaternion  results_holder.o
-    0x0000a568   0x0000000c   Code   RO         3522    i.inv_get_acc_state  results_holder.o
-    0x0000a574   0x0000000c   Code   RO         2551    i.inv_get_accel_accuracy  data_builder.o
-    0x0000a580   0x00000010   Code   RO         2553    i.inv_get_accel_on  data_builder.o
-    0x0000a590   0x00000028   Code   RO         2557    i.inv_get_accel_set  data_builder.o
-    0x0000a5b8   0x00000014   Code   RO         2558    i.inv_get_compass_bias  data_builder.o
-    0x0000a5cc   0x00000018   Code   RO         3526    i.inv_get_compass_correction  results_holder.o
-    0x0000a5e4   0x00000010   Code   RO         2560    i.inv_get_compass_on  data_builder.o
-    0x0000a5f4   0x0000001c   Code   RO         2567    i.inv_get_compass_soft_iron_output_data  data_builder.o
-    0x0000a610   0x0000000c   Code   RO         3527    i.inv_get_compass_state  results_holder.o
-    0x0000a61c   0x00000054   Code   RO         3528    i.inv_get_gravity   results_holder.o
-    0x0000a670   0x00000010   Code   RO         2568    i.inv_get_gyro      data_builder.o
-    0x0000a680   0x0000000c   Code   RO         2569    i.inv_get_gyro_accuracy  data_builder.o
-    0x0000a68c   0x00000024   Code   RO         2570    i.inv_get_gyro_bias  data_builder.o
-    0x0000a6b0   0x00000010   Code   RO         2572    i.inv_get_gyro_on   data_builder.o
-    0x0000a6c0   0x0000001a   Code   RO         3137    i.inv_get_gyro_sum_of_sqr  ml_math_func.o
-    0x0000a6da   0x00000002   PAD
-    0x0000a6dc   0x0000000c   Code   RO         3531    i.inv_get_large_mag_field  results_holder.o
-    0x0000a6e8   0x00000048   Code   RO         2578    i.inv_get_last_timestamp  data_builder.o
-    0x0000a730   0x0000003a   Code   RO         3532    i.inv_get_linear_accel  results_holder.o
-    0x0000a76a   0x00000002   PAD
-    0x0000a76c   0x00000044   Code   RO         3533    i.inv_get_linear_accel_float  results_holder.o
-    0x0000a7b0   0x00000010   Code   RO         3534    i.inv_get_local_field  results_holder.o
-    0x0000a7c0   0x0000001c   Code   RO         2579    i.inv_get_mag_accuracy  data_builder.o
-    0x0000a7dc   0x00000034   Code   RO         3537    i.inv_get_quaternion  results_holder.o
-    0x0000a810   0x00000038   Code   RO         3539    i.inv_get_quaternion_set  results_holder.o
-    0x0000a848   0x00000060   Code   RO         3001    i.inv_get_sensor_type_gravity  hal_outputs.o
-    0x0000a8a8   0x00000070   Code   RO         3004    i.inv_get_sensor_type_linear_acceleration  hal_outputs.o
-    0x0000a918   0x0000001c   Code   RO         4367    i.inv_get_sensor_type_quat  empl_outputs.o
-    0x0000a934   0x0000000c   Code   RO         3541    i.inv_got_compass_bias  results_holder.o
-    0x0000a940   0x0000003c   Code   RO         2582    i.inv_init_data_builder  data_builder.o
-    0x0000a97c   0x00000088   Code   RO         3486    i.inv_init_mpl      mpl.o
-    0x0000aa04   0x00000030   Code   RO         3542    i.inv_init_results_holder  results_holder.o
-    0x0000aa34   0x00000014   Code   RO         3755    i.inv_init_start_manager  start_manager.o
-    0x0000aa48   0x00000018   Code   RO         3787    i.inv_init_storage_manager  storage_manager.o
-    0x0000aa60   0x00000022   Code   RO         3146    i.inv_orientation_matrix_to_scalar  ml_math_func.o
-    0x0000aa82   0x0000000c   Code   RO         3147    i.inv_q29_mult      ml_math_func.o
-    0x0000aa8e   0x0000000c   Code   RO         3149    i.inv_q30_mult      ml_math_func.o
-    0x0000aa9a   0x00000024   Code   RO         3151    i.inv_q_add         ml_math_func.o
-    0x0000aabe   0x00000042   Code   RO         3152    i.inv_q_addf        ml_math_func.o
-    0x0000ab00   0x00000018   Code   RO         3153    i.inv_q_invert      ml_math_func.o
-    0x0000ab18   0x0000002e   Code   RO         3154    i.inv_q_invertf     ml_math_func.o
-    0x0000ab46   0x000000b0   Code   RO         3155    i.inv_q_mult        ml_math_func.o
-    0x0000abf6   0x000000d2   Code   RO         3156    i.inv_q_multf       ml_math_func.o
-    0x0000acc8   0x00000084   Code   RO         3157    i.inv_q_norm4       ml_math_func.o
-    0x0000ad4c   0x000000b0   Code   RO         3159    i.inv_q_normalizef  ml_math_func.o
-    0x0000adfc   0x0000003e   Code   RO         3160    i.inv_q_rotate      ml_math_func.o
-    0x0000ae3a   0x000000da   Code   RO         3162    i.inv_quaternion_to_rotation  ml_math_func.o
-    0x0000af14   0x000000a4   Code   RO         2585    i.inv_register_data_cb  data_builder.o
-    0x0000afb8   0x0000006c   Code   RO         3789    i.inv_register_load_store  storage_manager.o
-    0x0000b024   0x00000020   Code   RO         3756    i.inv_register_mpl_start_notification  start_manager.o
-    0x0000b044   0x00000054   Code   RO         2586    i.inv_reset_compass_soft_iron_matrix  data_builder.o
-    0x0000b098   0x00000048   Code   RO         3164    i.inv_row_2_scale   ml_math_func.o
-    0x0000b0e0   0x0000001c   Code   RO         2587    i.inv_set_accel_accuracy  data_builder.o
-    0x0000b0fc   0x00000048   Code   RO         2589    i.inv_set_accel_bias  data_builder.o
-    0x0000b144   0x0000000c   Code   RO         3545    i.inv_set_accel_bias_found  results_holder.o
-    0x0000b150   0x00000050   Code   RO         2590    i.inv_set_accel_bias_mask  data_builder.o
-    0x0000b1a0   0x0000000c   Code   RO         2591    i.inv_set_accel_orientation_and_scale  data_builder.o
-    0x0000b1ac   0x0000002c   Code   RO         2592    i.inv_set_accel_sample_rate  data_builder.o
-    0x0000b1d8   0x00000048   Code   RO         2594    i.inv_set_compass_bias  data_builder.o
-    0x0000b220   0x00000010   Code   RO         3546    i.inv_set_compass_bias_error  results_holder.o
-    0x0000b230   0x0000000c   Code   RO         3547    i.inv_set_compass_bias_found  results_holder.o
-    0x0000b23c   0x00000020   Code   RO         3548    i.inv_set_compass_correction  results_holder.o
-    0x0000b25c   0x0000000c   Code   RO         2595    i.inv_set_compass_disturbance  data_builder.o
-    0x0000b268   0x00000010   Code   RO         2596    i.inv_set_compass_orientation_and_scale  data_builder.o
-    0x0000b278   0x0000002c   Code   RO         2597    i.inv_set_compass_sample_rate  data_builder.o
-    0x0000b2a4   0x00000050   Code   RO         2598    i.inv_set_compass_soft_iron_input_data  data_builder.o
-    0x0000b2f4   0x0000000c   Code   RO         3549    i.inv_set_compass_state  results_holder.o
-    0x0000b300   0x00000080   Code   RO         2601    i.inv_set_contiguous  data_builder.o
-    0x0000b380   0x0000005c   Code   RO         2603    i.inv_set_gyro_bias  data_builder.o
-    0x0000b3dc   0x0000000c   Code   RO         2604    i.inv_set_gyro_orientation_and_scale  data_builder.o
-    0x0000b3e8   0x00000028   Code   RO         2605    i.inv_set_gyro_sample_rate  data_builder.o
-    0x0000b410   0x00000014   Code   RO         3106    i.inv_set_message   message_layer.o
-    0x0000b424   0x00000034   Code   RO         3554    i.inv_set_motion_state  results_holder.o
-    0x0000b458   0x00000018   Code   RO         2606    i.inv_set_quat_sample_rate  data_builder.o
-    0x0000b470   0x00000010   Code   RO         4369    i.inv_start_eMPL_outputs  empl_outputs.o
-    0x0000b480   0x0000004c   Code   RO         3487    i.inv_start_mpl     mpl.o
-    0x0000b4cc   0x00000018   Code   RO         3555    i.inv_start_results_holder  results_holder.o
-    0x0000b4e4   0x00000020   Code   RO         3556    i.inv_store_gaming_quaternion  results_holder.o
-    0x0000b504   0x0000004c   Code   RO         2608    i.inv_unregister_data_cb  data_builder.o
-    0x0000b550   0x00000048   Code   RO         3757    i.inv_unregister_mpl_start_notification  start_manager.o
-    0x0000b598   0x0000014e   Code   RO          330    i.irq_handler_twim  nrf_drv_twi.o
-    0x0000b6e6   0x00000016   Code   RO          919    i.item_enqueue      nrf_drv_clock.o
-    0x0000b6fc   0x000000f8   Code   RO         1634    i.list_insertions_handler  app_timer_1.o
-    0x0000b7f4   0x00000024   Code   RO            5    i.magn_setup        main.o
-    0x0000b818   0x00000404   Code   RO            6    i.main              main.o
-    0x0000bc1c   0x0000006c   Code   RO         5211    i.malloc            mc_w.l(malloc.o)
-    0x0000bc88   0x0000001e   Code   RO          750    i.millis            nrf_drv_inv_dmp.o
-    0x0000bca6   0x00000032   Code   RO         3169    i.mlMatrixVectorMult  ml_math_func.o
-    0x0000bcd8   0x0000000a   Code   RO          659    i.mpu_config        app_mpu.o
-    0x0000bce2   0x00000002   PAD
-    0x0000bce4   0x00000054   Code   RO         4022    i.mpu_configure_fifo  inv_mpu.o
-    0x0000bd38   0x0000003c   Code   RO         4023    i.mpu_get_accel_fsr  inv_mpu.o
-    0x0000bd74   0x00000044   Code   RO         4025    i.mpu_get_accel_sens  inv_mpu.o
-    0x0000bdb8   0x00000010   Code   RO         4026    i.mpu_get_compass_fsr  inv_mpu.o
-    0x0000bdc8   0x000000b4   Code   RO         4027    i.mpu_get_compass_reg  inv_mpu.o
-    0x0000be7c   0x00000034   Code   RO         4031    i.mpu_get_gyro_fsr  inv_mpu.o
-    0x0000beb0   0x0000004c   Code   RO         4033    i.mpu_get_gyro_sens  inv_mpu.o
-    0x0000befc   0x00000038   Code   RO         4035    i.mpu_get_lpf       inv_mpu.o
-    0x0000bf34   0x0000001c   Code   RO         4037    i.mpu_get_sample_rate  inv_mpu.o
-    0x0000bf50   0x00000024   Code   RO          660    i.mpu_init          app_mpu.o
-    0x0000bf74   0x000000d8   Code   RO         4039    i.mpu_init_inv      inv_mpu.o
-    0x0000c04c   0x00000008   Code   RO          661    i.mpu_int_cfg_pin   app_mpu.o
-    0x0000c054   0x000000e8   Code   RO         4040    i.mpu_load_firmware  inv_mpu.o
-    0x0000c13c   0x000000ec   Code   RO         4041    i.mpu_lp_accel_mode  inv_mpu.o
-    0x0000c228   0x0000002e   Code   RO          663    i.mpu_magnetometer_init  app_mpu.o
-    0x0000c256   0x00000002   PAD
-    0x0000c258   0x000000d4   Code   RO         4047    i.mpu_read_fifo_stream  inv_mpu.o
-    0x0000c32c   0x00000054   Code   RO         4048    i.mpu_read_mem      inv_mpu.o
-    0x0000c380   0x00000160   Code   RO         4051    i.mpu_reset_fifo    inv_mpu.o
-    0x0000c4e0   0x000002bc   Code   RO         4052    i.mpu_run_6500_self_test  inv_mpu.o
-    0x0000c79c   0x00000068   Code   RO         4056    i.mpu_set_accel_fsr  inv_mpu.o
-    0x0000c804   0x000000dc   Code   RO         4057    i.mpu_set_bypass    inv_mpu.o
-    0x0000c8e0   0x00000050   Code   RO         4058    i.mpu_set_compass_sample_rate  inv_mpu.o
-    0x0000c930   0x00000078   Code   RO         4059    i.mpu_set_dmp_state  inv_mpu.o
-    0x0000c9a8   0x0000006c   Code   RO         4061    i.mpu_set_gyro_fsr  inv_mpu.o
-    0x0000ca14   0x00000064   Code   RO         4062    i.mpu_set_int_latched  inv_mpu.o
-    0x0000ca78   0x00000088   Code   RO         4064    i.mpu_set_lpf       inv_mpu.o
-    0x0000cb00   0x00000090   Code   RO         4065    i.mpu_set_sample_rate  inv_mpu.o
-    0x0000cb90   0x00000134   Code   RO         4066    i.mpu_set_sensors   inv_mpu.o
-    0x0000ccc4   0x00000088   Code   RO            7    i.mpu_setup         main.o
-    0x0000cd4c   0x000000b8   Code   RO          527    i.mpu_twi_read_test  nrf_drv_mpu_twi.o
-    0x0000ce04   0x0000006c   Code   RO         4067    i.mpu_write_mem     inv_mpu.o
-    0x0000ce70   0x00000010   Code   RO         1358    i.nrf_bitmask_bit_is_set  nrf_drv_gpiote.o
-    0x0000ce80   0x0000000e   Code   RO          921    i.nrf_clock_event_check  nrf_drv_clock.o
-    0x0000ce8e   0x00000010   Code   RO          922    i.nrf_clock_event_clear  nrf_drv_clock.o
-    0x0000ce9e   0x00000002   PAD
-    0x0000cea0   0x0000001c   Code   RO          923    i.nrf_clock_hf_is_running  nrf_drv_clock.o
-    0x0000cebc   0x0000000a   Code   RO         4068    i.nrf_delay_ms      inv_mpu.o
-    0x0000cec6   0x00000002   PAD
-    0x0000cec8   0x0000008c   Code   RO            8    i.nrf_delay_us      main.o
-    0x0000cf54   0x0000008c   Code   RO          331    i.nrf_delay_us      nrf_drv_twi.o
-    0x0000cfe0   0x0000008c   Code   RO         1635    i.nrf_delay_us      app_timer_1.o
-    0x0000d06c   0x0000008c   Code   RO         4069    i.nrf_delay_us      inv_mpu.o
-    0x0000d0f8   0x00000028   Code   RO          927    i.nrf_drv_clock_hfclk_release  nrf_drv_clock.o
-    0x0000d120   0x00000058   Code   RO          928    i.nrf_drv_clock_hfclk_request  nrf_drv_clock.o
-    0x0000d178   0x0000004c   Code   RO          929    i.nrf_drv_clock_init  nrf_drv_clock.o
-    0x0000d1c4   0x00000060   Code   RO          934    i.nrf_drv_clock_lfclk_request  nrf_drv_clock.o
-    0x0000d224   0x00000016   Code   RO         1116    i.nrf_drv_common_irq_disable  nrf_drv_uart.o
-    0x0000d23a   0x00000038   Code   RO         1067    i.nrf_drv_common_irq_enable  nrf_drv_common.o
-    0x0000d272   0x00000006   Code   RO         1117    i.nrf_drv_get_IRQn  nrf_drv_uart.o
-    0x0000d278   0x00000098   Code   RO         1363    i.nrf_drv_gpiote_in_event_enable  nrf_drv_gpiote.o
-    0x0000d310   0x00000100   Code   RO         1364    i.nrf_drv_gpiote_in_init  nrf_drv_gpiote.o
-    0x0000d410   0x000000e0   Code   RO         1367    i.nrf_drv_gpiote_init  nrf_drv_gpiote.o
-    0x0000d4f0   0x00000010   Code   RO          332    i.nrf_drv_is_in_RAM  nrf_drv_twi.o
-    0x0000d500   0x00000010   Code   RO         1118    i.nrf_drv_is_in_RAM  nrf_drv_uart.o
-    0x0000d510   0x00000034   Code   RO          530    i.nrf_drv_mpu_init  nrf_drv_mpu_twi.o
-    0x0000d544   0x0000006c   Code   RO          532    i.nrf_drv_mpu_read_registers  nrf_drv_mpu_twi.o
-    0x0000d5b0   0x00000028   Code   RO          533    i.nrf_drv_mpu_twi_event_handler  nrf_drv_mpu_twi.o
-    0x0000d5d8   0x00000040   Code   RO          534    i.nrf_drv_mpu_write_magnetometer_register  nrf_drv_mpu_twi.o
-    0x0000d618   0x00000058   Code   RO          535    i.nrf_drv_mpu_write_registers  nrf_drv_mpu_twi.o
-    0x0000d670   0x00000040   Code   RO          536    i.nrf_drv_mpu_write_single_register  nrf_drv_mpu_twi.o
-    0x0000d6b0   0x00000020   Code   RO          335    i.nrf_drv_twi_enable  nrf_drv_twi.o
-    0x0000d6d0   0x0000008c   Code   RO          336    i.nrf_drv_twi_init  nrf_drv_twi.o
-    0x0000d75c   0x00000024   Code   RO          338    i.nrf_drv_twi_rx    nrf_drv_twi.o
-    0x0000d780   0x00000024   Code   RO          341    i.nrf_drv_twi_tx    nrf_drv_twi.o
-    0x0000d7a4   0x00000024   Code   RO          343    i.nrf_drv_twi_xfer  nrf_drv_twi.o
-    0x0000d7c8   0x00000068   Code   RO         1120    i.nrf_drv_uart_init  nrf_drv_uart.o
-    0x0000d830   0x000000b0   Code   RO         1121    i.nrf_drv_uart_rx   nrf_drv_uart.o
-    0x0000d8e0   0x00000030   Code   RO         1124    i.nrf_drv_uart_rx_enable  nrf_drv_uart.o
-    0x0000d910   0x000000a8   Code   RO         1125    i.nrf_drv_uart_rx_for_uart  nrf_drv_uart.o
-    0x0000d9b8   0x000000b0   Code   RO         1126    i.nrf_drv_uart_rx_for_uarte  nrf_drv_uart.o
-    0x0000da68   0x0000010c   Code   RO         1128    i.nrf_drv_uart_tx   nrf_drv_uart.o
-    0x0000db74   0x00000018   Code   RO         1130    i.nrf_drv_uart_tx_in_progress  nrf_drv_uart.o
-    0x0000db8c   0x00000054   Code   RO         1131    i.nrf_drv_uart_uninit  nrf_drv_uart.o
-    0x0000dbe0   0x00000032   Code   RO          814    i.nrf_gpio_cfg      boards.o
-    0x0000dc12   0x00000032   Code   RO         1132    i.nrf_gpio_cfg      nrf_drv_uart.o
-    0x0000dc44   0x00000032   Code   RO         1382    i.nrf_gpio_cfg      nrf_drv_gpiote.o
-    0x0000dc76   0x00000012   Code   RO         1133    i.nrf_gpio_cfg_default  nrf_drv_uart.o
-    0x0000dc88   0x00000012   Code   RO         1134    i.nrf_gpio_cfg_input  nrf_drv_uart.o
-    0x0000dc9a   0x00000014   Code   RO         1135    i.nrf_gpio_cfg_output  nrf_drv_uart.o
-    0x0000dcae   0x00000030   Code   RO         1384    i.nrf_gpio_cfg_sense_set  nrf_drv_gpiote.o
-    0x0000dcde   0x00000014   Code   RO          344    i.nrf_gpio_pin_clear  nrf_drv_twi.o
-    0x0000dcf2   0x00000002   PAD
-    0x0000dcf4   0x0000001c   Code   RO          345    i.nrf_gpio_pin_port_decode  nrf_drv_twi.o
-    0x0000dd10   0x0000001c   Code   RO          815    i.nrf_gpio_pin_port_decode  boards.o
-    0x0000dd2c   0x0000001c   Code   RO         1136    i.nrf_gpio_pin_port_decode  nrf_drv_uart.o
-    0x0000dd48   0x0000001c   Code   RO         1386    i.nrf_gpio_pin_port_decode  nrf_drv_gpiote.o
-    0x0000dd64   0x00000016   Code   RO         1387    i.nrf_gpio_pin_read  nrf_drv_gpiote.o
-    0x0000dd7a   0x00000014   Code   RO          346    i.nrf_gpio_pin_set  nrf_drv_twi.o
-    0x0000dd8e   0x00000014   Code   RO         1137    i.nrf_gpio_pin_set  nrf_drv_uart.o
-    0x0000dda2   0x00000026   Code   RO          816    i.nrf_gpio_pin_write  boards.o
-    0x0000ddc8   0x0000002c   Code   RO         1389    i.nrf_gpio_ports_read  nrf_drv_gpiote.o
-    0x0000ddf4   0x00000014   Code   RO         1390    i.nrf_gpiote_event_clear  nrf_drv_gpiote.o
-    0x0000de08   0x00000010   Code   RO         1391    i.nrf_gpiote_event_is_set  nrf_drv_gpiote.o
-    0x0000de18   0x00000008   Code   RO         2161    i.nrf_log_backend_hexdump_handler_get  nrf_log_backend_serial.o
-    0x0000de20   0x00000070   Code   RO         2162    i.nrf_log_backend_init  nrf_log_backend_serial.o
-    0x0000de90   0x0000012e   Code   RO         2163    i.nrf_log_backend_serial_hexdump_handler  nrf_log_backend_serial.o
-    0x0000dfbe   0x00000114   Code   RO         2164    i.nrf_log_backend_serial_std_handler  nrf_log_backend_serial.o
-    0x0000e0d2   0x00000002   PAD
-    0x0000e0d4   0x00000008   Code   RO         2165    i.nrf_log_backend_std_handler_get  nrf_log_backend_serial.o
-    0x0000e0dc   0x00000006   Code   RO         2257    i.nrf_log_blocking_backend_set  nrf_log_frontend.o
-    0x0000e0e2   0x00000002   PAD
-    0x0000e0e4   0x00000144   Code   RO         2258    i.nrf_log_frontend_dequeue  nrf_log_frontend.o
-    0x0000e228   0x00000018   Code   RO         2260    i.nrf_log_frontend_init  nrf_log_frontend.o
-    0x0000e240   0x0000004c   Code   RO         2261    i.nrf_log_frontend_std_0  nrf_log_frontend.o
-    0x0000e28c   0x00000058   Code   RO         2262    i.nrf_log_frontend_std_1  nrf_log_frontend.o
-    0x0000e2e4   0x00000068   Code   RO         2263    i.nrf_log_frontend_std_2  nrf_log_frontend.o
-    0x0000e34c   0x0000007c   Code   RO         2264    i.nrf_log_frontend_std_3  nrf_log_frontend.o
-    0x0000e3c8   0x00000088   Code   RO         2265    i.nrf_log_frontend_std_4  nrf_log_frontend.o
-    0x0000e450   0x0000000c   Code   RO         2269    i.nrf_log_handlers_set  nrf_log_frontend.o
-    0x0000e45c   0x00000024   Code   RO         2270    i.nrf_log_init      nrf_log_frontend.o
-    0x0000e480   0x00000060   Code   RO         2271    i.nrf_log_push      nrf_log_frontend.o
-    0x0000e4e0   0x00000038   Code   RO         2088    i.nrf_strerror_find  nrf_strerror.o
-    0x0000e518   0x00000014   Code   RO         2089    i.nrf_strerror_get  nrf_strerror.o
-    0x0000e52c   0x0000000a   Code   RO          347    i.nrf_twim_event_check  nrf_drv_twi.o
-    0x0000e536   0x0000000c   Code   RO          348    i.nrf_twim_event_clear  nrf_drv_twi.o
-    0x0000e542   0x0000000a   Code   RO         1138    i.nrf_uart_event_check  nrf_drv_uart.o
-    0x0000e54c   0x0000000c   Code   RO         1139    i.nrf_uart_event_clear  nrf_drv_uart.o
-    0x0000e558   0x0000000c   Code   RO         1140    i.nrf_uart_int_enable_check  nrf_drv_uart.o
-    0x0000e564   0x0000000a   Code   RO         1141    i.nrf_uarte_event_check  nrf_drv_uart.o
-    0x0000e56e   0x0000000c   Code   RO         1142    i.nrf_uarte_event_clear  nrf_drv_uart.o
-    0x0000e57a   0x00000002   PAD
-    0x0000e57c   0x0000000c   Code   RO            9    i.pin_in_read       main.o
-    0x0000e588   0x00000018   Code   RO         1392    i.pin_in_use_by_port  nrf_drv_gpiote.o
-    0x0000e5a0   0x00000018   Code   RO         1393    i.pin_in_use_by_te  nrf_drv_gpiote.o
-    0x0000e5b8   0x00000078   Code   RO         1143    i.pins_to_default   nrf_drv_uart.o
-    0x0000e630   0x0000044c   Code   RO           10    i.read_from_mpl     main.o
-    0x0000ea7c   0x0000003c   Code   RO         1636    i.rtc1_stop         app_timer_1.o
-    0x0000eab8   0x00000104   Code   RO           11    i.run_self_test     main.o
-    0x0000ebbc   0x00000032   Code   RO         1144    i.rx_byte           nrf_drv_uart.o
-    0x0000ebee   0x00000018   Code   RO         1145    i.rx_done_event     nrf_drv_uart.o
-    0x0000ec06   0x00000020   Code   RO         1146    i.rx_enable         nrf_drv_uart.o
-    0x0000ec26   0x00000002   PAD
-    0x0000ec28   0x0000000c   Code   RO         2166    i.serial_is_busy    nrf_log_backend_serial.o
-    0x0000ec34   0x0000002c   Code   RO         2167    i.serial_tx         nrf_log_backend_serial.o
-    0x0000ec60   0x00000058   Code   RO         4070    i.set_int_enable    inv_mpu.o
-    0x0000ecb8   0x000001e4   Code   RO         4071    i.setup_compass     inv_mpu.o
-    0x0000ee9c   0x0000003e   Code   RO         4886    i.sqrtf             m_wm.l(sqrtf.o)
-    0x0000eeda   0x00000002   Code   RO           12    i.tap_cb            main.o
-    0x0000eedc   0x00000002   Code   RO           13    i.timer_a_handler   main.o
-    0x0000eede   0x00000002   PAD
-    0x0000eee0   0x00000080   Code   RO         1637    i.timer_list_handler  app_timer_1.o
-    0x0000ef60   0x0000003c   Code   RO         1638    i.timer_list_insert  app_timer_1.o
-    0x0000ef9c   0x00000060   Code   RO         1639    i.timer_list_remove  app_timer_1.o
-    0x0000effc   0x00000074   Code   RO         1641    i.timer_timeouts_check  app_timer_1.o
-    0x0000f070   0x00000034   Code   RO         2168    i.timestamp_process  nrf_log_backend_serial.o
-    0x0000f0a4   0x000000a4   Code   RO          349    i.twi_clear_bus     nrf_drv_twi.o
-    0x0000f148   0x00000240   Code   RO          350    i.twim_xfer         nrf_drv_twi.o
-    0x0000f388   0x00000020   Code   RO         1147    i.tx_byte           nrf_drv_uart.o
-    0x0000f3a8   0x0000001c   Code   RO         1148    i.tx_done_event     nrf_drv_uart.o
-    0x0000f3c4   0x00000050   Code   RO           14    i.uart_config       main.o
-    0x0000f414   0x00000012   Code   RO           15    i.uart_error_handle  main.o
-    0x0000f426   0x00000002   PAD
-    0x0000f428   0x000000a0   Code   RO         1932    i.uart_event_handler  app_uart_fifo.o
-    0x0000f4c8   0x00000010   Code   RO         2169    i.uart_event_handler  nrf_log_backend_serial.o
-    0x0000f4d8   0x0000011e   Code   RO         1149    i.uart_irq_handler  nrf_drv_uart.o
-    0x0000f5f6   0x000000f0   Code   RO         1150    i.uarte_irq_handler  nrf_drv_uart.o
-    0x0000f6e6   0x00000002   PAD
-    0x0000f6e8   0x00000030   Code   RO         1642    i.user_op_alloc     app_timer_1.o
-    0x0000f718   0x00000024   Data   RO           18    .constdata          main.o
-    0x0000f73c   0x0000000c   Data   RO          355    .constdata          nrf_drv_twi.o
-    0x0000f748   0x00000018   Data   RO          538    .constdata          nrf_drv_mpu_twi.o
-    0x0000f760   0x00000008   Data   RO          817    .constdata          boards.o
-    0x0000f768   0x0000004b   Data   RO         1395    .constdata          nrf_drv_gpiote.o
-    0x0000f7b3   0x00000001   PAD
-    0x0000f7b4   0x00000020   Data   RO         1934    .constdata          app_uart_fifo.o
-    0x0000f7d4   0x00000104   Data   RO         2090    .constdata          nrf_strerror.o
-    0x0000f8d8   0x00000020   Data   RO         2172    .constdata          nrf_log_backend_serial.o
-    0x0000f8f8   0x00000024   Data   RO         2273    .constdata          nrf_log_frontend.o
-    0x0000f91c   0x0000002f   Data   RO         3488    .constdata          mpl.o
-    0x0000f94b   0x00000bf6   Data   RO         3856    .constdata          inv_mpu_dmp_motion_driver.o
-    0x00010541   0x0000002a   Data   RO         4072    .constdata          inv_mpu.o
-    0x0001056b   0x00000001   PAD
-    0x0001056c   0x0000000e   Data   RO         4073    .constdata          inv_mpu.o
-    0x0001057a   0x00000002   PAD
-    0x0001057c   0x00000030   Data   RO         4074    .constdata          inv_mpu.o
-    0x000105ac   0x00000200   Data   RO         4075    .constdata          inv_mpu.o
-    0x000107ac   0x00000004   PAD
+    0x0000900c   0x00000180   Code   RO         3836    i.dmp_read_fifo     inv_mpu_dmp_motion_driver.o
+    0x0000918c   0x0000000c   Code   RO         3837    i.dmp_register_android_orient_cb  inv_mpu_dmp_motion_driver.o
+    0x00009198   0x0000000c   Code   RO         3838    i.dmp_register_tap_cb  inv_mpu_dmp_motion_driver.o
+    0x000091a4   0x00000064   Code   RO         3840    i.dmp_set_fifo_rate  inv_mpu_dmp_motion_driver.o
+    0x00009208   0x0000010c   Code   RO         3843    i.dmp_set_orientation  inv_mpu_dmp_motion_driver.o
+    0x00009314   0x00000030   Code   RO         3846    i.dmp_set_shake_reject_thresh  inv_mpu_dmp_motion_driver.o
+    0x00009344   0x00000020   Code   RO         3847    i.dmp_set_shake_reject_time  inv_mpu_dmp_motion_driver.o
+    0x00009364   0x00000020   Code   RO         3848    i.dmp_set_shake_reject_timeout  inv_mpu_dmp_motion_driver.o
+    0x00009384   0x00000040   Code   RO         3849    i.dmp_set_tap_axes  inv_mpu_dmp_motion_driver.o
+    0x000093c4   0x00000022   Code   RO         3850    i.dmp_set_tap_count  inv_mpu_dmp_motion_driver.o
+    0x000093e6   0x00000002   PAD
+    0x000093e8   0x00000160   Code   RO         3851    i.dmp_set_tap_thresh  inv_mpu_dmp_motion_driver.o
+    0x00009548   0x00000020   Code   RO         3852    i.dmp_set_tap_time  inv_mpu_dmp_motion_driver.o
+    0x00009568   0x00000020   Code   RO         3853    i.dmp_set_tap_time_multi  inv_mpu_dmp_motion_driver.o
+    0x00009588   0x00000040   Code   RO         1633    i.elapsed_ticks_acquire  app_timer_1.o
+    0x000095c8   0x00000018   Code   RO         4810    i.fabs              m_wm.l(fabs.o)
+    0x000095e0   0x00000014   Code   RO         1861    i.fifo_get          app_fifo.o
+    0x000095f4   0x00000012   Code   RO         1862    i.fifo_put          app_fifo.o
+    0x00009606   0x0000000e   Code   RO         2122    i.fputc             retarget.o
+    0x00009614   0x00000050   Code   RO         5210    i.free              mc_w.l(malloc.o)
+    0x00009664   0x000004c8   Code   RO         4019    i.get_st_6500_biases  inv_mpu.o
+    0x00009b2c   0x00000470   Code   RO         4021    i.gyro_6500_self_test  inv_mpu.o
+    0x00009f9c   0x00000020   Code   RO          918    i.hfclk_stop        nrf_drv_clock.o
+    0x00009fbc   0x00000080   Code   RO          526    i.i2c_write_porting  nrf_drv_mpu_twi.o
+    0x0000a03c   0x00000078   Code   RO         1115    i.interrupts_enable  nrf_drv_uart.o
+    0x0000a0b4   0x0000006a   Code   RO         2539    i.inv_apply_calibration  data_builder.o
+    0x0000a11e   0x00000002   PAD
+    0x0000a120   0x00000068   Code   RO         2540    i.inv_build_accel   data_builder.o
+    0x0000a188   0x00000084   Code   RO         2541    i.inv_build_compass  data_builder.o
+    0x0000a20c   0x00000030   Code   RO         2542    i.inv_build_gyro    data_builder.o
+    0x0000a23c   0x0000002c   Code   RO         2543    i.inv_build_quat    data_builder.o
+    0x0000a268   0x000000ac   Code   RO         3131    i.inv_compass_angle  ml_math_func.o
+    0x0000a314   0x0000005c   Code   RO         3133    i.inv_convert_to_body_with_scale  ml_math_func.o
+    0x0000a370   0x0000003c   Code   RO         2546    i.inv_db_load_func  data_builder.o
+    0x0000a3ac   0x00000014   Code   RO         2547    i.inv_db_save_func  data_builder.o
+    0x0000a3c0   0x0000001c   Code   RO         4360    i.inv_enable_eMPL_outputs  empl_outputs.o
+    0x0000a3dc   0x0000001c   Code   RO         3519    i.inv_enable_results_holder  results_holder.o
+    0x0000a3f8   0x0000002c   Code   RO         3754    i.inv_execute_mpl_start_notification  start_manager.o
+    0x0000a424   0x00000080   Code   RO         2550    i.inv_execute_on_data  data_builder.o
+    0x0000a4a4   0x000000a4   Code   RO         4361    i.inv_generate_eMPL_outputs  empl_outputs.o
+    0x0000a548   0x00000010   Code   RO         3520    i.inv_generate_results  results_holder.o
+    0x0000a558   0x00000014   Code   RO         3521    i.inv_get_6axis_quaternion  results_holder.o
+    0x0000a56c   0x0000000c   Code   RO         3522    i.inv_get_acc_state  results_holder.o
+    0x0000a578   0x0000000c   Code   RO         2551    i.inv_get_accel_accuracy  data_builder.o
+    0x0000a584   0x00000010   Code   RO         2553    i.inv_get_accel_on  data_builder.o
+    0x0000a594   0x00000028   Code   RO         2557    i.inv_get_accel_set  data_builder.o
+    0x0000a5bc   0x00000014   Code   RO         2558    i.inv_get_compass_bias  data_builder.o
+    0x0000a5d0   0x00000018   Code   RO         3526    i.inv_get_compass_correction  results_holder.o
+    0x0000a5e8   0x00000010   Code   RO         2560    i.inv_get_compass_on  data_builder.o
+    0x0000a5f8   0x0000001c   Code   RO         2567    i.inv_get_compass_soft_iron_output_data  data_builder.o
+    0x0000a614   0x0000000c   Code   RO         3527    i.inv_get_compass_state  results_holder.o
+    0x0000a620   0x00000054   Code   RO         3528    i.inv_get_gravity   results_holder.o
+    0x0000a674   0x00000010   Code   RO         2568    i.inv_get_gyro      data_builder.o
+    0x0000a684   0x0000000c   Code   RO         2569    i.inv_get_gyro_accuracy  data_builder.o
+    0x0000a690   0x00000024   Code   RO         2570    i.inv_get_gyro_bias  data_builder.o
+    0x0000a6b4   0x00000010   Code   RO         2572    i.inv_get_gyro_on   data_builder.o
+    0x0000a6c4   0x0000001a   Code   RO         3137    i.inv_get_gyro_sum_of_sqr  ml_math_func.o
+    0x0000a6de   0x00000002   PAD
+    0x0000a6e0   0x0000000c   Code   RO         3531    i.inv_get_large_mag_field  results_holder.o
+    0x0000a6ec   0x00000048   Code   RO         2578    i.inv_get_last_timestamp  data_builder.o
+    0x0000a734   0x0000003a   Code   RO         3532    i.inv_get_linear_accel  results_holder.o
+    0x0000a76e   0x00000002   PAD
+    0x0000a770   0x00000044   Code   RO         3533    i.inv_get_linear_accel_float  results_holder.o
+    0x0000a7b4   0x00000010   Code   RO         3534    i.inv_get_local_field  results_holder.o
+    0x0000a7c4   0x0000001c   Code   RO         2579    i.inv_get_mag_accuracy  data_builder.o
+    0x0000a7e0   0x00000034   Code   RO         3537    i.inv_get_quaternion  results_holder.o
+    0x0000a814   0x00000038   Code   RO         3539    i.inv_get_quaternion_set  results_holder.o
+    0x0000a84c   0x00000060   Code   RO         3001    i.inv_get_sensor_type_gravity  hal_outputs.o
+    0x0000a8ac   0x00000070   Code   RO         3004    i.inv_get_sensor_type_linear_acceleration  hal_outputs.o
+    0x0000a91c   0x0000001c   Code   RO         4367    i.inv_get_sensor_type_quat  empl_outputs.o
+    0x0000a938   0x0000000c   Code   RO         3541    i.inv_got_compass_bias  results_holder.o
+    0x0000a944   0x0000003c   Code   RO         2582    i.inv_init_data_builder  data_builder.o
+    0x0000a980   0x00000088   Code   RO         3486    i.inv_init_mpl      mpl.o
+    0x0000aa08   0x00000030   Code   RO         3542    i.inv_init_results_holder  results_holder.o
+    0x0000aa38   0x00000014   Code   RO         3755    i.inv_init_start_manager  start_manager.o
+    0x0000aa4c   0x00000018   Code   RO         3787    i.inv_init_storage_manager  storage_manager.o
+    0x0000aa64   0x00000022   Code   RO         3146    i.inv_orientation_matrix_to_scalar  ml_math_func.o
+    0x0000aa86   0x0000000c   Code   RO         3147    i.inv_q29_mult      ml_math_func.o
+    0x0000aa92   0x0000000c   Code   RO         3149    i.inv_q30_mult      ml_math_func.o
+    0x0000aa9e   0x00000024   Code   RO         3151    i.inv_q_add         ml_math_func.o
+    0x0000aac2   0x00000042   Code   RO         3152    i.inv_q_addf        ml_math_func.o
+    0x0000ab04   0x00000018   Code   RO         3153    i.inv_q_invert      ml_math_func.o
+    0x0000ab1c   0x0000002e   Code   RO         3154    i.inv_q_invertf     ml_math_func.o
+    0x0000ab4a   0x000000b0   Code   RO         3155    i.inv_q_mult        ml_math_func.o
+    0x0000abfa   0x000000d2   Code   RO         3156    i.inv_q_multf       ml_math_func.o
+    0x0000accc   0x00000084   Code   RO         3157    i.inv_q_norm4       ml_math_func.o
+    0x0000ad50   0x000000b0   Code   RO         3159    i.inv_q_normalizef  ml_math_func.o
+    0x0000ae00   0x0000003e   Code   RO         3160    i.inv_q_rotate      ml_math_func.o
+    0x0000ae3e   0x000000da   Code   RO         3162    i.inv_quaternion_to_rotation  ml_math_func.o
+    0x0000af18   0x000000a4   Code   RO         2585    i.inv_register_data_cb  data_builder.o
+    0x0000afbc   0x0000006c   Code   RO         3789    i.inv_register_load_store  storage_manager.o
+    0x0000b028   0x00000020   Code   RO         3756    i.inv_register_mpl_start_notification  start_manager.o
+    0x0000b048   0x00000054   Code   RO         2586    i.inv_reset_compass_soft_iron_matrix  data_builder.o
+    0x0000b09c   0x00000048   Code   RO         3164    i.inv_row_2_scale   ml_math_func.o
+    0x0000b0e4   0x0000001c   Code   RO         2587    i.inv_set_accel_accuracy  data_builder.o
+    0x0000b100   0x00000048   Code   RO         2589    i.inv_set_accel_bias  data_builder.o
+    0x0000b148   0x0000000c   Code   RO         3545    i.inv_set_accel_bias_found  results_holder.o
+    0x0000b154   0x00000050   Code   RO         2590    i.inv_set_accel_bias_mask  data_builder.o
+    0x0000b1a4   0x0000000c   Code   RO         2591    i.inv_set_accel_orientation_and_scale  data_builder.o
+    0x0000b1b0   0x0000002c   Code   RO         2592    i.inv_set_accel_sample_rate  data_builder.o
+    0x0000b1dc   0x00000048   Code   RO         2594    i.inv_set_compass_bias  data_builder.o
+    0x0000b224   0x00000010   Code   RO         3546    i.inv_set_compass_bias_error  results_holder.o
+    0x0000b234   0x0000000c   Code   RO         3547    i.inv_set_compass_bias_found  results_holder.o
+    0x0000b240   0x00000020   Code   RO         3548    i.inv_set_compass_correction  results_holder.o
+    0x0000b260   0x0000000c   Code   RO         2595    i.inv_set_compass_disturbance  data_builder.o
+    0x0000b26c   0x00000010   Code   RO         2596    i.inv_set_compass_orientation_and_scale  data_builder.o
+    0x0000b27c   0x0000002c   Code   RO         2597    i.inv_set_compass_sample_rate  data_builder.o
+    0x0000b2a8   0x00000050   Code   RO         2598    i.inv_set_compass_soft_iron_input_data  data_builder.o
+    0x0000b2f8   0x0000000c   Code   RO         3549    i.inv_set_compass_state  results_holder.o
+    0x0000b304   0x00000080   Code   RO         2601    i.inv_set_contiguous  data_builder.o
+    0x0000b384   0x0000005c   Code   RO         2603    i.inv_set_gyro_bias  data_builder.o
+    0x0000b3e0   0x0000000c   Code   RO         2604    i.inv_set_gyro_orientation_and_scale  data_builder.o
+    0x0000b3ec   0x00000028   Code   RO         2605    i.inv_set_gyro_sample_rate  data_builder.o
+    0x0000b414   0x00000014   Code   RO         3106    i.inv_set_message   message_layer.o
+    0x0000b428   0x00000034   Code   RO         3554    i.inv_set_motion_state  results_holder.o
+    0x0000b45c   0x00000018   Code   RO         2606    i.inv_set_quat_sample_rate  data_builder.o
+    0x0000b474   0x00000010   Code   RO         4369    i.inv_start_eMPL_outputs  empl_outputs.o
+    0x0000b484   0x0000004c   Code   RO         3487    i.inv_start_mpl     mpl.o
+    0x0000b4d0   0x00000018   Code   RO         3555    i.inv_start_results_holder  results_holder.o
+    0x0000b4e8   0x00000020   Code   RO         3556    i.inv_store_gaming_quaternion  results_holder.o
+    0x0000b508   0x0000004c   Code   RO         2608    i.inv_unregister_data_cb  data_builder.o
+    0x0000b554   0x00000048   Code   RO         3757    i.inv_unregister_mpl_start_notification  start_manager.o
+    0x0000b59c   0x0000014e   Code   RO          330    i.irq_handler_twim  nrf_drv_twi.o
+    0x0000b6ea   0x00000016   Code   RO          919    i.item_enqueue      nrf_drv_clock.o
+    0x0000b700   0x000000f8   Code   RO         1634    i.list_insertions_handler  app_timer_1.o
+    0x0000b7f8   0x00000024   Code   RO            5    i.magn_setup        main.o
+    0x0000b81c   0x00000404   Code   RO            6    i.main              main.o
+    0x0000bc20   0x0000006c   Code   RO         5211    i.malloc            mc_w.l(malloc.o)
+    0x0000bc8c   0x0000001e   Code   RO          750    i.millis            nrf_drv_inv_dmp.o
+    0x0000bcaa   0x00000032   Code   RO         3169    i.mlMatrixVectorMult  ml_math_func.o
+    0x0000bcdc   0x0000000a   Code   RO          659    i.mpu_config        app_mpu.o
+    0x0000bce6   0x00000002   PAD
+    0x0000bce8   0x00000054   Code   RO         4022    i.mpu_configure_fifo  inv_mpu.o
+    0x0000bd3c   0x0000003c   Code   RO         4023    i.mpu_get_accel_fsr  inv_mpu.o
+    0x0000bd78   0x00000044   Code   RO         4025    i.mpu_get_accel_sens  inv_mpu.o
+    0x0000bdbc   0x00000010   Code   RO         4026    i.mpu_get_compass_fsr  inv_mpu.o
+    0x0000bdcc   0x000000b4   Code   RO         4027    i.mpu_get_compass_reg  inv_mpu.o
+    0x0000be80   0x00000034   Code   RO         4031    i.mpu_get_gyro_fsr  inv_mpu.o
+    0x0000beb4   0x0000004c   Code   RO         4033    i.mpu_get_gyro_sens  inv_mpu.o
+    0x0000bf00   0x00000038   Code   RO         4035    i.mpu_get_lpf       inv_mpu.o
+    0x0000bf38   0x0000001c   Code   RO         4037    i.mpu_get_sample_rate  inv_mpu.o
+    0x0000bf54   0x00000024   Code   RO          660    i.mpu_init          app_mpu.o
+    0x0000bf78   0x000000d8   Code   RO         4039    i.mpu_init_inv      inv_mpu.o
+    0x0000c050   0x00000008   Code   RO          661    i.mpu_int_cfg_pin   app_mpu.o
+    0x0000c058   0x000000e8   Code   RO         4040    i.mpu_load_firmware  inv_mpu.o
+    0x0000c140   0x000000ec   Code   RO         4041    i.mpu_lp_accel_mode  inv_mpu.o
+    0x0000c22c   0x0000002e   Code   RO          663    i.mpu_magnetometer_init  app_mpu.o
+    0x0000c25a   0x00000002   PAD
+    0x0000c25c   0x000000d4   Code   RO         4047    i.mpu_read_fifo_stream  inv_mpu.o
+    0x0000c330   0x00000054   Code   RO         4048    i.mpu_read_mem      inv_mpu.o
+    0x0000c384   0x00000160   Code   RO         4051    i.mpu_reset_fifo    inv_mpu.o
+    0x0000c4e4   0x000002bc   Code   RO         4052    i.mpu_run_6500_self_test  inv_mpu.o
+    0x0000c7a0   0x00000068   Code   RO         4056    i.mpu_set_accel_fsr  inv_mpu.o
+    0x0000c808   0x000000dc   Code   RO         4057    i.mpu_set_bypass    inv_mpu.o
+    0x0000c8e4   0x00000050   Code   RO         4058    i.mpu_set_compass_sample_rate  inv_mpu.o
+    0x0000c934   0x00000078   Code   RO         4059    i.mpu_set_dmp_state  inv_mpu.o
+    0x0000c9ac   0x0000006c   Code   RO         4061    i.mpu_set_gyro_fsr  inv_mpu.o
+    0x0000ca18   0x00000064   Code   RO         4062    i.mpu_set_int_latched  inv_mpu.o
+    0x0000ca7c   0x00000088   Code   RO         4064    i.mpu_set_lpf       inv_mpu.o
+    0x0000cb04   0x00000090   Code   RO         4065    i.mpu_set_sample_rate  inv_mpu.o
+    0x0000cb94   0x00000134   Code   RO         4066    i.mpu_set_sensors   inv_mpu.o
+    0x0000ccc8   0x00000088   Code   RO            7    i.mpu_setup         main.o
+    0x0000cd50   0x000000b8   Code   RO          527    i.mpu_twi_read_test  nrf_drv_mpu_twi.o
+    0x0000ce08   0x0000006c   Code   RO         4067    i.mpu_write_mem     inv_mpu.o
+    0x0000ce74   0x00000010   Code   RO         1358    i.nrf_bitmask_bit_is_set  nrf_drv_gpiote.o
+    0x0000ce84   0x0000000e   Code   RO          921    i.nrf_clock_event_check  nrf_drv_clock.o
+    0x0000ce92   0x00000010   Code   RO          922    i.nrf_clock_event_clear  nrf_drv_clock.o
+    0x0000cea2   0x00000002   PAD
+    0x0000cea4   0x0000001c   Code   RO          923    i.nrf_clock_hf_is_running  nrf_drv_clock.o
+    0x0000cec0   0x0000000a   Code   RO         4068    i.nrf_delay_ms      inv_mpu.o
+    0x0000ceca   0x00000002   PAD
+    0x0000cecc   0x0000008c   Code   RO            8    i.nrf_delay_us      main.o
+    0x0000cf58   0x0000008c   Code   RO          331    i.nrf_delay_us      nrf_drv_twi.o
+    0x0000cfe4   0x0000008c   Code   RO         1635    i.nrf_delay_us      app_timer_1.o
+    0x0000d070   0x0000008c   Code   RO         4069    i.nrf_delay_us      inv_mpu.o
+    0x0000d0fc   0x00000028   Code   RO          927    i.nrf_drv_clock_hfclk_release  nrf_drv_clock.o
+    0x0000d124   0x00000058   Code   RO          928    i.nrf_drv_clock_hfclk_request  nrf_drv_clock.o
+    0x0000d17c   0x0000004c   Code   RO          929    i.nrf_drv_clock_init  nrf_drv_clock.o
+    0x0000d1c8   0x00000060   Code   RO          934    i.nrf_drv_clock_lfclk_request  nrf_drv_clock.o
+    0x0000d228   0x00000016   Code   RO         1116    i.nrf_drv_common_irq_disable  nrf_drv_uart.o
+    0x0000d23e   0x00000038   Code   RO         1067    i.nrf_drv_common_irq_enable  nrf_drv_common.o
+    0x0000d276   0x00000006   Code   RO         1117    i.nrf_drv_get_IRQn  nrf_drv_uart.o
+    0x0000d27c   0x00000098   Code   RO         1363    i.nrf_drv_gpiote_in_event_enable  nrf_drv_gpiote.o
+    0x0000d314   0x00000100   Code   RO         1364    i.nrf_drv_gpiote_in_init  nrf_drv_gpiote.o
+    0x0000d414   0x000000e0   Code   RO         1367    i.nrf_drv_gpiote_init  nrf_drv_gpiote.o
+    0x0000d4f4   0x00000010   Code   RO          332    i.nrf_drv_is_in_RAM  nrf_drv_twi.o
+    0x0000d504   0x00000010   Code   RO         1118    i.nrf_drv_is_in_RAM  nrf_drv_uart.o
+    0x0000d514   0x00000034   Code   RO          530    i.nrf_drv_mpu_init  nrf_drv_mpu_twi.o
+    0x0000d548   0x0000006c   Code   RO          532    i.nrf_drv_mpu_read_registers  nrf_drv_mpu_twi.o
+    0x0000d5b4   0x00000028   Code   RO          533    i.nrf_drv_mpu_twi_event_handler  nrf_drv_mpu_twi.o
+    0x0000d5dc   0x00000040   Code   RO          534    i.nrf_drv_mpu_write_magnetometer_register  nrf_drv_mpu_twi.o
+    0x0000d61c   0x00000058   Code   RO          535    i.nrf_drv_mpu_write_registers  nrf_drv_mpu_twi.o
+    0x0000d674   0x00000040   Code   RO          536    i.nrf_drv_mpu_write_single_register  nrf_drv_mpu_twi.o
+    0x0000d6b4   0x00000020   Code   RO          335    i.nrf_drv_twi_enable  nrf_drv_twi.o
+    0x0000d6d4   0x0000008c   Code   RO          336    i.nrf_drv_twi_init  nrf_drv_twi.o
+    0x0000d760   0x00000024   Code   RO          338    i.nrf_drv_twi_rx    nrf_drv_twi.o
+    0x0000d784   0x00000024   Code   RO          341    i.nrf_drv_twi_tx    nrf_drv_twi.o
+    0x0000d7a8   0x00000024   Code   RO          343    i.nrf_drv_twi_xfer  nrf_drv_twi.o
+    0x0000d7cc   0x00000068   Code   RO         1120    i.nrf_drv_uart_init  nrf_drv_uart.o
+    0x0000d834   0x000000b0   Code   RO         1121    i.nrf_drv_uart_rx   nrf_drv_uart.o
+    0x0000d8e4   0x00000030   Code   RO         1124    i.nrf_drv_uart_rx_enable  nrf_drv_uart.o
+    0x0000d914   0x000000a8   Code   RO         1125    i.nrf_drv_uart_rx_for_uart  nrf_drv_uart.o
+    0x0000d9bc   0x000000b0   Code   RO         1126    i.nrf_drv_uart_rx_for_uarte  nrf_drv_uart.o
+    0x0000da6c   0x0000010c   Code   RO         1128    i.nrf_drv_uart_tx   nrf_drv_uart.o
+    0x0000db78   0x00000018   Code   RO         1130    i.nrf_drv_uart_tx_in_progress  nrf_drv_uart.o
+    0x0000db90   0x00000054   Code   RO         1131    i.nrf_drv_uart_uninit  nrf_drv_uart.o
+    0x0000dbe4   0x00000032   Code   RO          814    i.nrf_gpio_cfg      boards.o
+    0x0000dc16   0x00000032   Code   RO         1132    i.nrf_gpio_cfg      nrf_drv_uart.o
+    0x0000dc48   0x00000032   Code   RO         1382    i.nrf_gpio_cfg      nrf_drv_gpiote.o
+    0x0000dc7a   0x00000012   Code   RO         1133    i.nrf_gpio_cfg_default  nrf_drv_uart.o
+    0x0000dc8c   0x00000012   Code   RO         1134    i.nrf_gpio_cfg_input  nrf_drv_uart.o
+    0x0000dc9e   0x00000014   Code   RO         1135    i.nrf_gpio_cfg_output  nrf_drv_uart.o
+    0x0000dcb2   0x00000030   Code   RO         1384    i.nrf_gpio_cfg_sense_set  nrf_drv_gpiote.o
+    0x0000dce2   0x00000014   Code   RO          344    i.nrf_gpio_pin_clear  nrf_drv_twi.o
+    0x0000dcf6   0x00000002   PAD
+    0x0000dcf8   0x0000001c   Code   RO          345    i.nrf_gpio_pin_port_decode  nrf_drv_twi.o
+    0x0000dd14   0x0000001c   Code   RO          815    i.nrf_gpio_pin_port_decode  boards.o
+    0x0000dd30   0x0000001c   Code   RO         1136    i.nrf_gpio_pin_port_decode  nrf_drv_uart.o
+    0x0000dd4c   0x0000001c   Code   RO         1386    i.nrf_gpio_pin_port_decode  nrf_drv_gpiote.o
+    0x0000dd68   0x00000016   Code   RO         1387    i.nrf_gpio_pin_read  nrf_drv_gpiote.o
+    0x0000dd7e   0x00000014   Code   RO          346    i.nrf_gpio_pin_set  nrf_drv_twi.o
+    0x0000dd92   0x00000014   Code   RO         1137    i.nrf_gpio_pin_set  nrf_drv_uart.o
+    0x0000dda6   0x00000026   Code   RO          816    i.nrf_gpio_pin_write  boards.o
+    0x0000ddcc   0x0000002c   Code   RO         1389    i.nrf_gpio_ports_read  nrf_drv_gpiote.o
+    0x0000ddf8   0x00000014   Code   RO         1390    i.nrf_gpiote_event_clear  nrf_drv_gpiote.o
+    0x0000de0c   0x00000010   Code   RO         1391    i.nrf_gpiote_event_is_set  nrf_drv_gpiote.o
+    0x0000de1c   0x00000008   Code   RO         2161    i.nrf_log_backend_hexdump_handler_get  nrf_log_backend_serial.o
+    0x0000de24   0x00000070   Code   RO         2162    i.nrf_log_backend_init  nrf_log_backend_serial.o
+    0x0000de94   0x0000012e   Code   RO         2163    i.nrf_log_backend_serial_hexdump_handler  nrf_log_backend_serial.o
+    0x0000dfc2   0x00000114   Code   RO         2164    i.nrf_log_backend_serial_std_handler  nrf_log_backend_serial.o
+    0x0000e0d6   0x00000002   PAD
+    0x0000e0d8   0x00000008   Code   RO         2165    i.nrf_log_backend_std_handler_get  nrf_log_backend_serial.o
+    0x0000e0e0   0x00000006   Code   RO         2257    i.nrf_log_blocking_backend_set  nrf_log_frontend.o
+    0x0000e0e6   0x00000002   PAD
+    0x0000e0e8   0x00000144   Code   RO         2258    i.nrf_log_frontend_dequeue  nrf_log_frontend.o
+    0x0000e22c   0x00000018   Code   RO         2260    i.nrf_log_frontend_init  nrf_log_frontend.o
+    0x0000e244   0x0000004c   Code   RO         2261    i.nrf_log_frontend_std_0  nrf_log_frontend.o
+    0x0000e290   0x00000058   Code   RO         2262    i.nrf_log_frontend_std_1  nrf_log_frontend.o
+    0x0000e2e8   0x00000068   Code   RO         2263    i.nrf_log_frontend_std_2  nrf_log_frontend.o
+    0x0000e350   0x0000007c   Code   RO         2264    i.nrf_log_frontend_std_3  nrf_log_frontend.o
+    0x0000e3cc   0x00000088   Code   RO         2265    i.nrf_log_frontend_std_4  nrf_log_frontend.o
+    0x0000e454   0x0000000c   Code   RO         2269    i.nrf_log_handlers_set  nrf_log_frontend.o
+    0x0000e460   0x00000024   Code   RO         2270    i.nrf_log_init      nrf_log_frontend.o
+    0x0000e484   0x00000060   Code   RO         2271    i.nrf_log_push      nrf_log_frontend.o
+    0x0000e4e4   0x00000038   Code   RO         2088    i.nrf_strerror_find  nrf_strerror.o
+    0x0000e51c   0x00000014   Code   RO         2089    i.nrf_strerror_get  nrf_strerror.o
+    0x0000e530   0x0000000a   Code   RO          347    i.nrf_twim_event_check  nrf_drv_twi.o
+    0x0000e53a   0x0000000c   Code   RO          348    i.nrf_twim_event_clear  nrf_drv_twi.o
+    0x0000e546   0x0000000a   Code   RO         1138    i.nrf_uart_event_check  nrf_drv_uart.o
+    0x0000e550   0x0000000c   Code   RO         1139    i.nrf_uart_event_clear  nrf_drv_uart.o
+    0x0000e55c   0x0000000c   Code   RO         1140    i.nrf_uart_int_enable_check  nrf_drv_uart.o
+    0x0000e568   0x0000000a   Code   RO         1141    i.nrf_uarte_event_check  nrf_drv_uart.o
+    0x0000e572   0x0000000c   Code   RO         1142    i.nrf_uarte_event_clear  nrf_drv_uart.o
+    0x0000e57e   0x00000002   PAD
+    0x0000e580   0x0000000c   Code   RO            9    i.pin_in_read       main.o
+    0x0000e58c   0x00000018   Code   RO         1392    i.pin_in_use_by_port  nrf_drv_gpiote.o
+    0x0000e5a4   0x00000018   Code   RO         1393    i.pin_in_use_by_te  nrf_drv_gpiote.o
+    0x0000e5bc   0x00000078   Code   RO         1143    i.pins_to_default   nrf_drv_uart.o
+    0x0000e634   0x0000044c   Code   RO           10    i.read_from_mpl     main.o
+    0x0000ea80   0x0000003c   Code   RO         1636    i.rtc1_stop         app_timer_1.o
+    0x0000eabc   0x00000104   Code   RO           11    i.run_self_test     main.o
+    0x0000ebc0   0x00000032   Code   RO         1144    i.rx_byte           nrf_drv_uart.o
+    0x0000ebf2   0x00000018   Code   RO         1145    i.rx_done_event     nrf_drv_uart.o
+    0x0000ec0a   0x00000020   Code   RO         1146    i.rx_enable         nrf_drv_uart.o
+    0x0000ec2a   0x00000002   PAD
+    0x0000ec2c   0x0000000c   Code   RO         2166    i.serial_is_busy    nrf_log_backend_serial.o
+    0x0000ec38   0x0000002c   Code   RO         2167    i.serial_tx         nrf_log_backend_serial.o
+    0x0000ec64   0x00000058   Code   RO         4070    i.set_int_enable    inv_mpu.o
+    0x0000ecbc   0x000001e4   Code   RO         4071    i.setup_compass     inv_mpu.o
+    0x0000eea0   0x0000003e   Code   RO         4886    i.sqrtf             m_wm.l(sqrtf.o)
+    0x0000eede   0x00000002   Code   RO           12    i.tap_cb            main.o
+    0x0000eee0   0x00000002   Code   RO           13    i.timer_a_handler   main.o
+    0x0000eee2   0x00000002   PAD
+    0x0000eee4   0x00000080   Code   RO         1637    i.timer_list_handler  app_timer_1.o
+    0x0000ef64   0x0000003c   Code   RO         1638    i.timer_list_insert  app_timer_1.o
+    0x0000efa0   0x00000060   Code   RO         1639    i.timer_list_remove  app_timer_1.o
+    0x0000f000   0x00000074   Code   RO         1641    i.timer_timeouts_check  app_timer_1.o
+    0x0000f074   0x00000034   Code   RO         2168    i.timestamp_process  nrf_log_backend_serial.o
+    0x0000f0a8   0x000000a4   Code   RO          349    i.twi_clear_bus     nrf_drv_twi.o
+    0x0000f14c   0x00000240   Code   RO          350    i.twim_xfer         nrf_drv_twi.o
+    0x0000f38c   0x00000020   Code   RO         1147    i.tx_byte           nrf_drv_uart.o
+    0x0000f3ac   0x0000001c   Code   RO         1148    i.tx_done_event     nrf_drv_uart.o
+    0x0000f3c8   0x00000050   Code   RO           14    i.uart_config       main.o
+    0x0000f418   0x00000012   Code   RO           15    i.uart_error_handle  main.o
+    0x0000f42a   0x00000002   PAD
+    0x0000f42c   0x000000a0   Code   RO         1932    i.uart_event_handler  app_uart_fifo.o
+    0x0000f4cc   0x00000010   Code   RO         2169    i.uart_event_handler  nrf_log_backend_serial.o
+    0x0000f4dc   0x0000011e   Code   RO         1149    i.uart_irq_handler  nrf_drv_uart.o
+    0x0000f5fa   0x000000f0   Code   RO         1150    i.uarte_irq_handler  nrf_drv_uart.o
+    0x0000f6ea   0x00000002   PAD
+    0x0000f6ec   0x00000030   Code   RO         1642    i.user_op_alloc     app_timer_1.o
+    0x0000f71c   0x00000024   Data   RO           18    .constdata          main.o
+    0x0000f740   0x0000000c   Data   RO          355    .constdata          nrf_drv_twi.o
+    0x0000f74c   0x00000018   Data   RO          538    .constdata          nrf_drv_mpu_twi.o
+    0x0000f764   0x00000008   Data   RO          817    .constdata          boards.o
+    0x0000f76c   0x0000004b   Data   RO         1395    .constdata          nrf_drv_gpiote.o
+    0x0000f7b7   0x00000001   PAD
+    0x0000f7b8   0x00000020   Data   RO         1934    .constdata          app_uart_fifo.o
+    0x0000f7d8   0x00000104   Data   RO         2090    .constdata          nrf_strerror.o
+    0x0000f8dc   0x00000020   Data   RO         2172    .constdata          nrf_log_backend_serial.o
+    0x0000f8fc   0x00000024   Data   RO         2273    .constdata          nrf_log_frontend.o
+    0x0000f920   0x0000002f   Data   RO         3488    .constdata          mpl.o
+    0x0000f94f   0x00000bf6   Data   RO         3856    .constdata          inv_mpu_dmp_motion_driver.o
+    0x00010545   0x0000002a   Data   RO         4072    .constdata          inv_mpu.o
+    0x0001056f   0x00000001   PAD
+    0x00010570   0x0000000e   Data   RO         4073    .constdata          inv_mpu.o
+    0x0001057e   0x00000002   PAD
+    0x00010580   0x00000030   Data   RO         4074    .constdata          inv_mpu.o
+    0x000105b0   0x00000200   Data   RO         4075    .constdata          inv_mpu.o
     0x000107b0   0x00000038   Data   RO         4823    .constdata          m_wm.l(log.o)
     0x000107e8   0x00000081   Data   RO         4906    .constdata          mc_w.l(ctype_o.o)
     0x00010869   0x00000003   PAD
@@ -4516,7 +4515,7 @@ Image component sizes
        236         20          0          0         40       4313   empl_outputs.o
        208         14          0          0        196       4707   hal_outputs.o
       8646       1858        616         56          0      39744   inv_mpu.o
-      2066        168       3062          0         16      23044   inv_mpu_dmp_motion_driver.o
+      2070        172       3062          0         16      23044   inv_mpu_dmp_motion_driver.o
       2816        504         45         22       1348      75407   main.o
         20          4          0          4          0       1522   message_layer.o
       1616         22          0          0          0      16485   ml_math_func.o
@@ -4538,9 +4537,9 @@ Image component sizes
        488         56          0          4          0       2515   system_nrf52840.o
 
     ----------------------------------------------------------------------
-     31390       4160       5660        148      24064     584394   Object Totals
+     31394       4164       5656        148      24064     584394   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        42          0         13          0          4          0   (incl. Padding)
+        42          0          9          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4637,9 +4636,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     62744       5734       6180        176      27672     616941   Grand Totals
-     62744       5734       6180        176      27672     616941   ELF Image Totals
-     62744       5734       6180        176          0          0   ROM Totals
+     62748       5738       6176        176      27672     616941   Grand Totals
+     62748       5738       6176        176      27672     616941   ELF Image Totals
+     62748       5738       6176        176          0          0   ROM Totals
 
 ==============================================================================
 

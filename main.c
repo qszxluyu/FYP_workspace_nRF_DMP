@@ -293,13 +293,13 @@ static inline void run_self_test(void)
     result = mpu_run_self_test(gyro, accel);
 #endif
     if (result == 0x7) {
-	NRF_LOG_RAW_INFO("Self Test Passed!\n");
+	NRF_LOG_RAW_INFO("Self Test Passed!\r\n");
         /*
-				NRF_LOG_RAW_INFO("accel: %7.4f %7.4f %7.4f\n",
+				NRF_LOG_RAW_INFO("accel: %7.4f %7.4f %7.4f\r\n",
                     accel[0]/65536.f,
                     accel[1]/65536.f,
                     accel[2]/65536.f);
-        NRF_LOG_RAW_INFO("gyro: %7.4f %7.4f %7.4f\n",
+        NRF_LOG_RAW_INFO("gyro: %7.4f %7.4f %7.4f\r\n",
                     gyro[0]/65536.f,
                     gyro[1]/65536.f,
                     gyro[2]/65536.f);
@@ -350,11 +350,11 @@ static inline void run_self_test(void)
     }
     else {
             if (!(result & 0x1))
-                NRF_LOG_RAW_INFO("Gyro failed.\n");
+                NRF_LOG_RAW_INFO("Gyro failed.\r\n");
             if (!(result & 0x2))
-                NRF_LOG_RAW_INFO("Accel failed.\n");
+                NRF_LOG_RAW_INFO("Accel failed.\r\n");
             if (!(result & 0x4))
-                NRF_LOG_RAW_INFO("Compass failed.\n");
+                NRF_LOG_RAW_INFO("Compass failed.\r\n");
      }
 
 }
@@ -402,14 +402,11 @@ static void read_from_mpl(void)
 		double quat_print[4] = {0};
 		
 		if (inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
-
 				
 				quat_print[0]= data[0] * 1.0 / (1<<30);
 				quat_print[1]= data[1] * 1.0 / (1<<30);			
 				quat_print[2]= data[2] * 1.0 / (1<<30);
 				quat_print[3]= data[3] * 1.0 / (1<<30);
-
-				//printf("%7.5f,%7.5f,%7.5f,%7.5f,",quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
 				
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[0]));
 				NRF_LOG_FLUSH();
@@ -425,41 +422,17 @@ static void read_from_mpl(void)
 		}
 		
 		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
-				
-				//printf("%7.5f,%7.5f,%7.5f\r\n",float_data[0],float_data[1],float_data[2]);
-				
+			
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[0]));
 				NRF_LOG_FLUSH();
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[1]));
 				NRF_LOG_FLUSH();	
 				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(float_data[2]));
 				NRF_LOG_FLUSH();
-				
 			
 		}
 		
 }
-
-/*
-inv_error_t updateFifo(void)
-{
-		short gyro[3], accel[3], sensors;
-		long quat[4];
-		unsigned long timestamp;
-		unsigned char more;
-		int inv_err_code;
-		inv_err_code =dmp_read_fifo(gyro, accel, quat, &timestamp, &sensors, &more);
-		if (inv_err_code != INV_SUCCESS)
-		{	
-			//NRF_LOG_RAW_INFO("fifo data failed! error code: %d \n",inv_err_code);		
-			return INV_ERROR;
-		} else {
-			NRF_LOG_RAW_INFO("fifo data updated! \n");
-			NRF_LOG_RAW_INFO("accel data: %d \n",accel[0]);
-		}
-		return INV_SUCCESS;
-}
-*/
 
 /**
  * @brief Function for main application entry.
@@ -500,7 +473,7 @@ int main(void)
 		err_code=i2c_write_porting(0x68,0x13, 3, test_data);
 		err_code=mpu_twi_read_test(0x68, 0x13, 3, TempReading);
 		APP_ERROR_CHECK(err_code);
-		NRF_LOG_RAW_INFO("Test result: %d ; %d ; %d \n", TempReading[0],TempReading[1],TempReading[2]);
+		NRF_LOG_RAW_INFO("Test result: %d ; %d ; %d \r\n", TempReading[0],TempReading[1],TempReading[2]);
 		*/
 		
 		// Request LF clock.
@@ -522,13 +495,9 @@ int main(void)
 		
     inv_err_code = mpu_init_inv(&int_param);
     if (inv_err_code) {
-				NRF_LOG_RAW_INFO("Could not initialize the mpu.\n");
+				NRF_LOG_RAW_INFO("Could not initialize the mpu.\r\n");
 		}
-		/*
-		if(!mpu_set_bypass(1)){
-				NRF_LOG_RAW_INFO("Bypass mode enabled! \n");
-		}
-		*/
+		
 		/*******************end of mpu initation**************************/
 		
 		/*********mpl initiation*************/
@@ -536,8 +505,7 @@ int main(void)
 		inv_err_code = inv_init_mpl();
 		
 		if (inv_err_code){
-        //printf("MPL initiated\n");
-				NRF_LOG_RAW_INFO("Could not initialize MPL.\n");
+				NRF_LOG_RAW_INFO("Could not initialize MPL.\r\n");
 		}
 		
 		/******end of mpl initiation*********/
@@ -556,8 +524,7 @@ int main(void)
 		
 		inv_err_code = inv_enable_eMPL_outputs();
 		if(inv_err_code){
-				//printf("enable_eMPL_outputs failed! \n");
-				NRF_LOG_RAW_INFO("enable_eMPL_outputs failed! \n");
+				NRF_LOG_RAW_INFO("enable_eMPL_outputs failed! \r\n");
 		}
 		
 		/*********end of enable modules********/
@@ -568,16 +535,16 @@ int main(void)
 		
     if (inv_err_code == INV_ERROR_NOT_AUTHORIZED) {
         while (1) {
-					 NRF_LOG_RAW_INFO("Not authorized.\n");
+					 NRF_LOG_RAW_INFO("Not authorized.\r\n");
 					 nrf_delay_ms(1000000);
         }
     }
     if (inv_err_code) {
-				NRF_LOG_RAW_INFO("Could not start the MPL.\n");
+				NRF_LOG_RAW_INFO("Could not start the MPL.\r\n");
 				nrf_delay_ms(1000000);
     }
 		if (inv_err_code == INV_SUCCESS){
-				NRF_LOG_RAW_INFO("MPL starts! \n");
+				NRF_LOG_RAW_INFO("MPL starts! \r\n");
 		}
 		
 		NRF_LOG_FLUSH();
@@ -588,36 +555,25 @@ int main(void)
 		/***********set up hardware************/
 		
 		inv_err_code = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
-		//NRF_LOG_RAW_INFO("set sensors, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); //magn data doesn't go to fifo
-    //NRF_LOG_RAW_INFO("set fifo, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
-		//NRF_LOG_RAW_INFO("set sample rate, 0 is pass? %d \n", inv_err_code);
 		
 		inv_err_code = mpu_set_compass_sample_rate(1000 / COMPASS_READ_MS);
-    //NRF_LOG_RAW_INFO("set magn sample rate, 0 is pass? %d \n", inv_err_code);
-		
-		//NRF_LOG_FLUSH();
 		
 		/********end of set up hardware********/
 		
 		/***Read back configuration in case it was set improperly. ***/
 		
     mpu_get_sample_rate(&gyro_rate);
-		//NRF_LOG_RAW_INFO("sample rate: %d \n",gyro_rate);
 		
     mpu_get_gyro_fsr(&gyro_fsr);
-		//NRF_LOG_RAW_INFO("gyro fsr: %d \n",gyro_fsr);
 		
     mpu_get_accel_fsr(&accel_fsr);
-		//NRF_LOG_RAW_INFO("accel fsr: %d \n",accel_fsr);
 		
 		mpu_get_compass_fsr(&compass_fsr);
-		//NRF_LOG_RAW_INFO("magn fsr: %d \n",compass_fsr);
-		
-		//NRF_LOG_FLUSH();
+
 		
 		/**********************end of read back***********************/
 		
@@ -670,17 +626,17 @@ int main(void)
 		
 		inv_err_code = dmp_load_motion_driver_firmware();
 		while(inv_err_code != 0){
-			NRF_LOG_RAW_INFO("Could not load DMP Image, Error Code: %d, retry in 1 sec \n", inv_err_code);
+			NRF_LOG_RAW_INFO("Could not load DMP Image, Error Code: %d, retry in 1 sec \r\n", inv_err_code);
 			NRF_LOG_FLUSH();
 			nrf_delay_ms(1000);
 			inv_err_code = dmp_load_motion_driver_firmware();
 		}
 		
 		if (inv_err_code != 0) {
-			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \n", inv_err_code);
+			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \r\n", inv_err_code);
 			NRF_LOG_FLUSH();
     }else{
-			NRF_LOG_RAW_INFO("DMP downloaded! \n");
+			NRF_LOG_RAW_INFO("DMP downloaded! \r\n");
 			NRF_LOG_FLUSH();
 		}
 		
@@ -751,8 +707,7 @@ int main(void)
 		inv_set_gyro_sample_rate(100000L);
 		inv_set_accel_sample_rate(100000L);
 		*/
-		
-		//__enable_interrupt();
+
 		__enable_irq();
 		
 		run_self_test();
@@ -802,7 +757,7 @@ int main(void)
 						inv_err_code = dmp_read_fifo(gyro, accel_short, quat, &sensor_timestamp, &sensors, &more);
 						
 						if(inv_err_code){
-								//NRF_LOG_RAW_INFO("read fifo failed, err code: %d \n",inv_err_code);
+								//NRF_LOG_RAW_INFO("read fifo failed, err code: %d \r\n",inv_err_code);
 								//NRF_LOG_FLUSH();
 								continue;
 						}
@@ -857,9 +812,7 @@ int main(void)
 						 * rate requested by the host.
 						 */
 						read_from_mpl();
-						
-						//NRF_LOG_FLUSH();
-						
+
 				}
 				
     }

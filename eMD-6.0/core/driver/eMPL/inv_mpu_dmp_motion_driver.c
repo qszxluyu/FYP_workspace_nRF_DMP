@@ -1244,7 +1244,7 @@ int dmp_read_fifo(short *gyro, short *accel, long *quat,
     /* Get a packet. */
 		int err_code_fifo=mpu_read_fifo_stream(dmp.packet_length, fifo_data, more);
     if (err_code_fifo){
-				NRF_LOG_RAW_INFO("read fifo stream failed, err code: %d \n",err_code_fifo);
+				NRF_LOG_RAW_INFO("read fifo stream failed, err code: %d \r\n",err_code_fifo);
         return -1;
 		}
     /* Parse DMP packet. */

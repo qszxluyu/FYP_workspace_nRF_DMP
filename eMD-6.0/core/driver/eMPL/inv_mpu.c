@@ -1786,7 +1786,7 @@ int mpu_read_fifo_stream(unsigned short length, unsigned char *data,
 		int err_code_i2c_read=i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp);
     //if (i2c_read(st.hw->addr, st.reg->fifo_count_h, 2, tmp)){
 		if(err_code_i2c_read){
-				NRF_LOG_RAW_INFO("fifo i2c_read err code: %d \n",err_code_i2c_read);
+				NRF_LOG_RAW_INFO("fifo i2c_read err code: %d \r\n",err_code_i2c_read);
 				//return -1;
 				return -3;
 		}
