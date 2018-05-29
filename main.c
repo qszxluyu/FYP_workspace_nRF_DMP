@@ -671,7 +671,19 @@ int main(void)
 				
 		
 		while(1){
-								
+				
+				/*
+				uint8_t cr;
+				app_uart_get(&cr);
+				app_uart_put(cr);
+				if(cr=='t'){
+						run_self_test();
+					  inv_accel_was_turned_off();
+						inv_gyro_was_turned_off();
+						inv_compass_was_turned_off();
+				}
+				*/
+			
 				unsigned long sensor_timestamp;
 				int new_data = 0;
 
