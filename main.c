@@ -149,9 +149,9 @@ static struct platform_data_s gyro_pdata = {
 };
 
 static struct platform_data_s compass_pdata = {
-    .orientation = {-1, 0, 0,
-                     0,-1, 0,
-                     0, 0, 1}
+    .orientation = { 0, 1, 0,
+                     1, 0, 0,
+                     0, 0, -1}
 };
 
 struct rx_s {
@@ -734,6 +734,8 @@ int main(void)
 								inv_build_quat(quat, 0, sensor_timestamp);
 								new_data = 1;
 						}
+						
+						/*
 						//Debug for DMP quat output
 						double quat_print[4] = {0};
 						quat_print[0]= quat[0] * 1.0 / (1<<30);
@@ -743,7 +745,7 @@ int main(void)
 		
 						printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
 																													, 0.0, 0.0, 0.0);
-						
+						*/
 						
 						
 				}
@@ -778,7 +780,7 @@ int main(void)
 						 * in eMPL_outputs.c. This function only needs to be called at the
 						 * rate requested by the host.
 						 */
-						//read_from_mpl();
+						read_from_mpl();
 
 				}
 				
