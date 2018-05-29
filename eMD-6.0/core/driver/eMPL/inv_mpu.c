@@ -2884,7 +2884,7 @@ int mpu_load_firmware(unsigned short length, const unsigned char *firmware,
         if (err_code)
 				//if (mpu_write_mem(ii, this_write, (unsigned char*)&firmware[ii]))
 				{
-						printf("mpu_write_mem return error code: %d \n", err_code);
+						//printf("mpu_write_mem return error code: %d \r\n", err_code);
             //return -1;
 						return -3;
         }

@@ -236,7 +236,7 @@ uint32_t mpu_twi_read_test(uint8_t slave_addr,
 	
 	  err_code = nrf_drv_twi_tx(&m_twi_instance, slave_addr, &reg_addr, 1, false);
 		if(err_code != NRF_SUCCESS) {
-				NRF_LOG_RAW_INFO("error return from twi tx \n");
+				NRF_LOG_RAW_INFO("error return from twi tx \r\n");
 				return err_code;
 		}
     while((!twi_tx_done) && --timeout);

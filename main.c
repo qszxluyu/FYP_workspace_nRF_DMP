@@ -217,16 +217,11 @@ void uart_config(void)
 
 void mpu_setup(void)
 {
-		NRF_LOG_RAW_INFO("\r\nMPU setup start... \r\n");
+		//NRF_LOG_RAW_INFO("\r\nMPU setup start... \r\n");
 		
     ret_code_t ret_code;
     // Initiate MPU driver
     ret_code = mpu_init();
-
-		NRF_LOG_RAW_INFO("\r\nMPU init complete! \r\n");	
-	
-		//NRF_LOG_FLUSH();
-	
     APP_ERROR_CHECK(ret_code); // Check for errors in return value
     
     // Setup and configure the MPU with intial values
@@ -236,6 +231,8 @@ void mpu_setup(void)
 		p_mpu_config.gyro_config.fs_sel = GFS_2000DPS; //Set gyroscope full scale range 
     ret_code = mpu_config(&p_mpu_config); // Configure the MPU with above values
     APP_ERROR_CHECK(ret_code); // Check for errors in return value 
+	
+		NRF_LOG_RAW_INFO("\r\nMPU init complete! \r\n");
 	
 }
 
@@ -415,27 +412,15 @@ static void read_from_mpl(void)
 				quat_print[2]= data[2] * 1.0 / (1<<30);
 				quat_print[3]= data[3] * 1.0 / (1<<30);
 				
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[0]));
-				NRF_LOG_FLUSH();
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[1]));
-				NRF_LOG_FLUSH();
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[2]));
-				NRF_LOG_FLUSH();
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(quat_print[3]));
-				NRF_LOG_FLUSH();
-				
+				printf("%7.5f,%7.5f,%7.5f,%7.5f", quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
+			
     } else{
 			return;
 		}
 		
 		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
-			
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[0]));
-				NRF_LOG_FLUSH();
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER ",", NRF_LOG_FLOAT(float_data[1]));
-				NRF_LOG_FLUSH();	
-				NRF_LOG_RAW_INFO(NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(float_data[2]));
-				NRF_LOG_FLUSH();
+				
+				printf("%7.5f,%7.5f,%7.5f \r\n",float_data[0],float_data[1],float_data[2]);
 			
 		}
 		
@@ -455,24 +440,30 @@ int main(void)
 	
 	  unsigned char new_compass = 0;
 		unsigned short compass_fsr;
-			
+	
+		// Request LF clock.
+    lfclk_request();
+		// Initialize the application timer module.
+   	err_code = app_timer_init();
+		APP_ERROR_CHECK(err_code);	
+		create_timers();
+		err_code = app_timer_start(timer1, APP_TIMER_TICKS(360000), NULL);
+		APP_ERROR_CHECK(err_code);
+	
 		//set up uart
 		uart_config();
+	
+		//set up NRF logger module
+		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
 	
 		//set up GPIOTE
 		GPIO_setup();
 		
 		//set up mpu acc & gyro
 		mpu_setup();
-		//NRF_LOG_FLUSH();
-		
+
 		//set up mpu magn
 		magn_setup();
-
-
-		//set up NRF logger module
-		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
-
 		
 		//i2c r/w function test
 		/*
@@ -482,19 +473,7 @@ int main(void)
 		APP_ERROR_CHECK(err_code);
 		NRF_LOG_RAW_INFO("Test result: %d ; %d ; %d \r\n", TempReading[0],TempReading[1],TempReading[2]);
 		*/
-		
-		// Request LF clock.
-    lfclk_request();
-		// Initialize the application timer module.
-   	err_code = app_timer_init();
-		APP_ERROR_CHECK(err_code);
-	
-		create_timers();
-	
-		err_code = app_timer_start(timer1, APP_TIMER_TICKS(360000), NULL);
-		APP_ERROR_CHECK(err_code);
-		
-		
+			
 		/************************* DMP MPL setting ***********************/
 		inv_error_t inv_err_code;
 		
@@ -553,8 +532,6 @@ int main(void)
 		if (inv_err_code == INV_SUCCESS){
 				NRF_LOG_RAW_INFO("MPL starts! \r\n");
 		}
-		
-		NRF_LOG_FLUSH();
 		
 		/******end of mpl starting*********/
 		
@@ -634,17 +611,14 @@ int main(void)
 		inv_err_code = dmp_load_motion_driver_firmware();
 		while(inv_err_code != 0){
 			NRF_LOG_RAW_INFO("Could not load DMP Image, Error Code: %d, retry in 1 sec \r\n", inv_err_code);
-			NRF_LOG_FLUSH();
 			nrf_delay_ms(1000);
 			inv_err_code = dmp_load_motion_driver_firmware();
 		}
 		
 		if (inv_err_code != 0) {
 			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \r\n", inv_err_code);
-			NRF_LOG_FLUSH();
     }else{
 			NRF_LOG_RAW_INFO("DMP downloaded! \r\n");
-			NRF_LOG_FLUSH();
 		}
 		
 		dmp_set_orientation(
@@ -718,8 +692,6 @@ int main(void)
 		__enable_irq();
 		
 		run_self_test();
-
-		NRF_LOG_FLUSH();
 		
 		/**********end of initialize the DMP**********/
 				
@@ -759,7 +731,6 @@ int main(void)
 						
 						if(inv_err_code){
 								//NRF_LOG_RAW_INFO("read fifo failed, err code: %d \r\n",inv_err_code);
-								//NRF_LOG_FLUSH();
 								continue;
 						}
 						if (!more){

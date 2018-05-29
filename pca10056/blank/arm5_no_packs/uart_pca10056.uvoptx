@@ -118,7 +118,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>h?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -150,25 +149,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>868</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>48012</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\\../../../main.c\868</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>725</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>47766</Address>
+          <Address>186948</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -178,38 +161,6 @@
           <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\nrf52840_xxaa\../../../main.c\725</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>727</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>47770</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\nrf52840_xxaa\../../../main.c\727</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>429</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>60656</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\瀹?Desktop\FYP_Workspace\Nordic52840\nRF5_SDK_13.0.0_04a0bfd\examples\peripheral\test_mpu_uart\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\nrf52840_xxaa\../../../main.c\429</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
