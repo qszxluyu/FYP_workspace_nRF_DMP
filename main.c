@@ -215,7 +215,7 @@ void uart_config(void)
     APP_ERROR_CHECK(err_code);
 }
 
-void mpu_setup(void)
+void mpu_twi_setup(void)
 {
 		//NRF_LOG_RAW_INFO("\r\nMPU setup start... \r\n");
 		
@@ -224,6 +224,7 @@ void mpu_setup(void)
     ret_code = mpu_init();
     APP_ERROR_CHECK(ret_code); // Check for errors in return value
     
+		/*
     // Setup and configure the MPU with intial values
     mpu_config_t p_mpu_config = MPU_DEFAULT_CONFIG(); // Load default values
     p_mpu_config.smplrt_div = 19;   // Change sampelrate. Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV). 19 gives a sample rate of 50Hz
@@ -231,11 +232,13 @@ void mpu_setup(void)
 		p_mpu_config.gyro_config.fs_sel = GFS_2000DPS; //Set gyroscope full scale range 
     ret_code = mpu_config(&p_mpu_config); // Configure the MPU with above values
     APP_ERROR_CHECK(ret_code); // Check for errors in return value 
+		*/
 	
-		NRF_LOG_RAW_INFO("\r\nMPU init complete! \r\n");
+		NRF_LOG_RAW_INFO("\r\nTWI starts! \r\n");
 	
 }
 
+/*
 void magn_setup()
 {
 		ret_code_t ret_code;
@@ -249,7 +252,7 @@ void magn_setup()
 		APP_ERROR_CHECK(ret_code); // Check for errors in return value
 
 }
-
+*/
 
 // Function starting the internal LFCLK oscillator.
 // This is needed by RTC1 which is used by the application timer
@@ -405,24 +408,22 @@ static void read_from_mpl(void)
     float float_data[3] = {0};
 		double quat_print[4] = {0};
 		
-		if (inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
-				
-				quat_print[0]= data[0] * 1.0 / (1<<30);
-				quat_print[1]= data[1] * 1.0 / (1<<30);			
-				quat_print[2]= data[2] * 1.0 / (1<<30);
-				quat_print[3]= data[3] * 1.0 / (1<<30);
-				
-				printf("%7.5f,%7.5f,%7.5f,%7.5f", quat_print[0],quat_print[1],quat_print[2],quat_print[3]);
-			
-    } else{
-			return;
+		if (!inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
+				return;
+    }
+		
+		if (!inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
+				return;
 		}
 		
-		if (inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
-				
-				printf("%7.5f,%7.5f,%7.5f \r\n",float_data[0],float_data[1],float_data[2]);
-			
-		}
+		quat_print[0]= data[0] * 1.0 / (1<<30);
+		quat_print[1]= data[1] * 1.0 / (1<<30);			
+		quat_print[2]= data[2] * 1.0 / (1<<30);
+		quat_print[3]= data[3] * 1.0 / (1<<30);
+		
+		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
+																													,float_data[0],float_data[1],float_data[2]);
+		//printf("%7.5f,%7.5f,%7.5f \r\n",float_data[0],float_data[1],float_data[2]);
 		
 }
 
@@ -460,10 +461,10 @@ int main(void)
 		GPIO_setup();
 		
 		//set up mpu acc & gyro
-		mpu_setup();
+		mpu_twi_setup();
 
 		//set up mpu magn
-		magn_setup();
+		//magn_setup();
 		
 		//i2c r/w function test
 		/*
@@ -482,6 +483,8 @@ int main(void)
     inv_err_code = mpu_init_inv(&int_param);
     if (inv_err_code) {
 				NRF_LOG_RAW_INFO("Could not initialize the mpu.\r\n");
+		}else{
+				NRF_LOG_RAW_INFO("MPU starts! \r\n");
 		}
 		
 		/*******************end of mpu initation**************************/
@@ -498,15 +501,12 @@ int main(void)
 		
 		/************enable modules************/
 		
-		inv_enable_quaternion();
-		
+		inv_enable_quaternion();		
 		inv_enable_9x_sensor_fusion();
-		
 		inv_enable_fast_nomot();
-		
 		inv_enable_vector_compass_cal();
-    
 		inv_enable_magnetic_disturbance();
+		//inv_enable_in_use_auto_calibration();
 		
 		inv_err_code = inv_enable_eMPL_outputs();
 		if(inv_err_code){
@@ -538,24 +538,18 @@ int main(void)
 		
 		/***********set up hardware************/
 		
-		inv_err_code = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);
-		
+		inv_err_code = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL | INV_XYZ_COMPASS);	
 		inv_err_code = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); //magn data doesn't go to fifo
-		
 		inv_err_code = mpu_set_sample_rate(DEFAULT_MPU_HZ);
-		
 		inv_err_code = mpu_set_compass_sample_rate(1000 / COMPASS_READ_MS);
 		
 		/********end of set up hardware********/
 		
 		/***Read back configuration in case it was set improperly. ***/
 		
-    mpu_get_sample_rate(&gyro_rate);
-		
+    mpu_get_sample_rate(&gyro_rate);	
     mpu_get_gyro_fsr(&gyro_fsr);
-		
     mpu_get_accel_fsr(&accel_fsr);
-		
 		mpu_get_compass_fsr(&compass_fsr);
 
 		
@@ -658,17 +652,6 @@ int main(void)
 		inv_set_accel_sample_rate(10000L);
 		*/
 		
-		/*
-		//40Hz
-		if (hal.dmp_on) {
-				dmp_set_fifo_rate(40);
-				inv_set_quat_sample_rate(25000L);
-		} else
-				mpu_set_sample_rate(40);
-		inv_set_gyro_sample_rate(25000L);
-		inv_set_accel_sample_rate(25000L);
-		*/
-		
 		//50Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(50);
@@ -677,18 +660,8 @@ int main(void)
 				mpu_set_sample_rate(50);
 		inv_set_gyro_sample_rate(20000L);
 		inv_set_accel_sample_rate(20000L);
-
-		/*
-		//10Hz
-		if (hal.dmp_on) {
-				dmp_set_fifo_rate(10);
-				inv_set_quat_sample_rate(100000L);
-		} else
-				mpu_set_sample_rate(10);
-		inv_set_gyro_sample_rate(100000L);
-		inv_set_accel_sample_rate(100000L);
-		*/
-
+		
+		
 		__enable_irq();
 		
 		run_self_test();
@@ -705,6 +678,14 @@ int main(void)
 
 				new_compass = hal.new_gyro;
 				
+				/*
+        if ((timestamp > hal.next_compass_ms) && !hal.lp_accel_mode &&
+            hal.new_gyro && (hal.sensors & COMPASS_ON)) {
+            hal.next_compass_ms = timestamp + COMPASS_READ_MS;
+            new_compass = 1;
+        }
+				*/
+						
 				if (!hal.sensors || !hal.new_gyro || !new_compass) {
 						continue;
 				}    
