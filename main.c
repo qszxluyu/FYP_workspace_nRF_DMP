@@ -286,7 +286,6 @@ static void create_timers()
 static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
 		hal.new_gyro = 1;
-		//Do nothing
 }
 
 static inline void run_self_test(void)
@@ -376,11 +375,13 @@ static void android_orient_cb(unsigned char orientation)
 		//Do nothing
 }
 
+/*
 static void gyro_data_ready_cb(void)
 {
     //hal.new_gyro = 1;
 		//Do nothing, pin_in_read() does the job of this part
 }
+*/
 
 static void GPIO_setup()
 {
@@ -641,7 +642,7 @@ int main(void)
     mpu_set_dmp_state(1);
     hal.dmp_on = 1;
 		
-		/*
+		
 		//100Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(100);
@@ -650,8 +651,8 @@ int main(void)
 				mpu_set_sample_rate(100);
 		inv_set_gyro_sample_rate(10000L);
 		inv_set_accel_sample_rate(10000L);
-		*/
 		
+		/*
 		//50Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(50);
@@ -660,7 +661,7 @@ int main(void)
 				mpu_set_sample_rate(50);
 		inv_set_gyro_sample_rate(20000L);
 		inv_set_accel_sample_rate(20000L);
-		
+		*/
 		
 		__enable_irq();
 		
@@ -676,8 +677,9 @@ int main(void)
 
 				millis(&timestamp);
 
-				new_compass = hal.new_gyro;
-				
+				//new_compass = hal.new_gyro;
+				new_compass=0;
+			
 				/*
         if ((timestamp > hal.next_compass_ms) && !hal.lp_accel_mode &&
             hal.new_gyro && (hal.sensors & COMPASS_ON)) {
@@ -686,7 +688,7 @@ int main(void)
         }
 				*/
 						
-				if (!hal.sensors || !hal.new_gyro || !new_compass) {
+				if (!hal.sensors || !hal.new_gyro) {
 						continue;
 				}    
 
@@ -732,6 +734,18 @@ int main(void)
 								inv_build_quat(quat, 0, sensor_timestamp);
 								new_data = 1;
 						}
+						//Debug for DMP quat output
+						double quat_print[4] = {0};
+						quat_print[0]= quat[0] * 1.0 / (1<<30);
+						quat_print[1]= quat[1] * 1.0 / (1<<30);			
+						quat_print[2]= quat[2] * 1.0 / (1<<30);
+						quat_print[3]= quat[3] * 1.0 / (1<<30);
+		
+						printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
+																													, 0.0, 0.0, 0.0);
+						
+						
+						
 				}
 
 				if (new_compass) {
@@ -764,7 +778,7 @@ int main(void)
 						 * in eMPL_outputs.c. This function only needs to be called at the
 						 * rate requested by the host.
 						 */
-						read_from_mpl();
+						//read_from_mpl();
 
 				}
 				
