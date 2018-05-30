@@ -17,7 +17,7 @@
 .\_build\inv_mpu_dmp_motion_driver.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\compiler_abstraction.h
 .\_build\inv_mpu_dmp_motion_driver.o: ..\..\..\..\..\..\components\libraries\util\sdk_os.h
 .\_build\inv_mpu_dmp_motion_driver.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\inv_mpu_dmp_motion_driver.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\inv_mpu_dmp_motion_driver.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\inv_mpu_dmp_motion_driver.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
 .\_build\inv_mpu_dmp_motion_driver.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf.h
 .\_build\inv_mpu_dmp_motion_driver.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf52840.h

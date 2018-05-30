@@ -20,7 +20,7 @@
 .\_build\inv_mpu.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf52_to_nrf52840.h
 .\_build\inv_mpu.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\compiler_abstraction.h
 .\_build\inv_mpu.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\inv_mpu.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\inv_mpu.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\inv_mpu.o: ..\config\sdk_config.h
 .\_build\inv_mpu.o: ..\..\..\..\..\..\components\libraries\util\nordic_common.h
 .\_build\inv_mpu.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h

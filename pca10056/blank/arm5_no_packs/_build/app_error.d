@@ -16,7 +16,7 @@
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\app_error.h
 .\_build\app_error.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\app_error.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\app_error.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\app_error.o: ..\config\sdk_config.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\nordic_common.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h
@@ -31,4 +31,8 @@
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\log\nrf_log_ctrl.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\log\src\nrf_log_ctrl_internal.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
+.\_build\app_error.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_soc.h
+.\_build\app_error.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_svc.h
+.\_build\app_error.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error_soc.h
+.\_build\app_error.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_nvic.h
 .\_build\app_error.o: ..\..\..\..\..\..\components\libraries\util\nrf_assert.h

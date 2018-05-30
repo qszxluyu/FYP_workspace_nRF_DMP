@@ -7,7 +7,7 @@
 #include "app_util.h"
 #include "nrf_delay.h"
 #include "nrf.h"
-#include "bsp.h"
+//#include "bsp.h"
 #include "app_mpu.h"
 #include "nrf_drv_twi.h"
 #include "nrf_log.h"

@@ -21,7 +21,7 @@
 .\_build\boards.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\_build\boards.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\boards.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\boards.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\boards.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\boards.o: ..\config\sdk_config.h
 .\_build\boards.o: ..\..\..\..\..\..\components\libraries\util\nordic_common.h
 .\_build\boards.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h

@@ -51,24 +51,27 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include "nordic_common.h"
 #include "app_uart.h"
 #include "app_error.h"
 #include "app_timer.h"
 #include "nrf_drv_clock.h"
 #include "nrf_delay.h"
 #include "nrf.h"
-#include "bsp.h"
 #include "app_mpu.h"
 #include "nrf_drv_twi.h"
 #include "nrf_drv_gpiote.h"
 #include "nrf_drv_common.h"
+
+#define NRF_LOG_MODULE_NAME "APP"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "boards.h"
-#include "nrf_drv_mpu.h"
 
 //#include "math.h"
 
+//files needed for mpu
+#include "nrf_drv_mpu.h"
 #include "dmpkey.h"
 #include "dmpmap.h"
 #include "inv_mpu.h"
@@ -83,9 +86,13 @@
 #include "mag_disturb.h"
 #include "hal_outputs.h"
 #include "mpl.h"
-
 #include "nrf_drv_inv_dmp.h"
 
+//file needed for ble
+#include "ble_db_discovery.h"
+#include "app_util.h"
+#include "bsp.h"
+#include "bsp_btn_ble.h"
 #include "ble.h"
 #include "ble_gap.h"
 #include "ble_hci.h"
@@ -93,9 +100,6 @@
 #include "nrf_ble_gatt.h"
 #include "ble_advdata.h"
 #include "ble_nus_c.h"
-
-
-//#define ENABLE_LOOPBACK_TEST  /**< if defined, then this example will be a loopback test, which means that TX should be connected to RX to get data loopback. */
 
 #define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
 #define UART_TX_BUF_SIZE 1024                         /**< UART TX buffer size. */
@@ -125,6 +129,35 @@
 #define PRINT_PEDO      (0x80)
 #define PRINT_LINEAR_ACCEL (0x100)
 #define PRINT_GRAVITY_VECTOR (0x200)
+
+//Parameters for BLE
+
+#define CENTRAL_LINK_COUNT      1                                       /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT   0                                       /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+#define CONN_CFG_TAG            1                                       /**< A tag that refers to the BLE stack configuration we set with @ref sd_ble_cfg_set. Default tag is @ref BLE_CONN_CFG_TAG_DEFAULT. */
+
+#define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
+
+#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
+
+#define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(20, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
+#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(75, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
+#define SLAVE_LATENCY           0                                       /**< Determines slave latency in counts of connection events. */
+#define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
+
+#define UUID16_SIZE             2                                       /**< Size of 16 bit UUID */
+#define UUID32_SIZE             4                                       /**< Size of 32 bit UUID */
+#define UUID128_SIZE            16                                      /**< Size of 128 bit UUID */
+
+#define ECHOBACK_BLE_UART_DATA  1                                       /**< Echo the UART data that is received over the Nordic UART Service back to the sender. */
+
+static ble_nus_c_t              m_ble_nus_c;                            /**< Instance of NUS service. Must be passed to all NUS_C API calls. */
+static nrf_ble_gatt_t           m_gatt;                                 /**< GATT module instance. */
+static ble_db_discovery_t       m_ble_db_discovery;                     /**< Instance of database discovery module. Must be passed to all db_discovert API calls */
+static uint16_t                 m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGTH - HANDLE_LENGTH; /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
+
 
 enum t_axisOrder {
 	X_AXIS, // 0
@@ -176,7 +209,7 @@ struct hal_s {
 };
 static struct hal_s hal = {0};
 
-void uart_error_handle(app_uart_evt_t * p_event)
+static void uart_error_handle(app_uart_evt_t * p_event)
 {
     if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
     {
@@ -188,11 +221,11 @@ void uart_error_handle(app_uart_evt_t * p_event)
     }
 }
 
-void uart_config(void)
+static void uart_config(void)
 {
 	  uint32_t err_code;
 
-    bsp_board_leds_init();
+    //bsp_board_leds_init();
 
     const app_uart_comm_params_t comm_params =
       {
@@ -215,7 +248,68 @@ void uart_config(void)
     APP_ERROR_CHECK(err_code);
 }
 
-void mpu_twi_setup(void)
+/**@brief Function for putting the chip into sleep mode.
+ *
+ * @note This function will not return.
+ */
+static void sleep_mode_enter(void)
+{
+    ret_code_t err_code;
+
+    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+    APP_ERROR_CHECK(err_code);
+
+    // Prepare wakeup buttons.
+    err_code = bsp_btn_ble_sleep_mode_prepare();
+    APP_ERROR_CHECK(err_code);
+
+    // Go to system-off mode (this function will not return; wakeup will cause a reset).
+    err_code = sd_power_system_off();
+    APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for handling events from the BSP module.
+ *
+ * @param[in] event  Event generated by button press.
+ */
+void bsp_event_handler(bsp_event_t event)
+{
+    ret_code_t err_code;
+
+    switch (event)
+    {
+        case BSP_EVENT_SLEEP:
+            sleep_mode_enter();
+            break;
+
+        case BSP_EVENT_DISCONNECT:
+            err_code = sd_ble_gap_disconnect(m_ble_nus_c.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            if (err_code != NRF_ERROR_INVALID_STATE)
+            {
+                APP_ERROR_CHECK(err_code);
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
+static void buttons_leds_init(void)
+{
+    ret_code_t err_code;
+    bsp_event_t startup_event;
+
+    err_code = bsp_init(BSP_INIT_LED, bsp_event_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = bsp_btn_ble_init(NULL, &startup_event);
+    APP_ERROR_CHECK(err_code);
+}
+
+
+static void mpu_twi_setup(void)
 {
 		//NRF_LOG_RAW_INFO("\r\nMPU setup start... \r\n");
 		
@@ -223,36 +317,10 @@ void mpu_twi_setup(void)
     // Initiate MPU driver
     ret_code = mpu_init();
     APP_ERROR_CHECK(ret_code); // Check for errors in return value
-    
-		/*
-    // Setup and configure the MPU with intial values
-    mpu_config_t p_mpu_config = MPU_DEFAULT_CONFIG(); // Load default values
-    p_mpu_config.smplrt_div = 19;   // Change sampelrate. Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV). 19 gives a sample rate of 50Hz
-    p_mpu_config.accel_config.afs_sel = AFS_2G; // Set accelerometer full scale range
-		p_mpu_config.gyro_config.fs_sel = GFS_2000DPS; //Set gyroscope full scale range 
-    ret_code = mpu_config(&p_mpu_config); // Configure the MPU with above values
-    APP_ERROR_CHECK(ret_code); // Check for errors in return value 
-		*/
-	
+    	
 		NRF_LOG_RAW_INFO("\r\nTWI starts! \r\n");
 	
 }
-
-/*
-void magn_setup()
-{
-		ret_code_t ret_code;
-	
-		// Setup and configure the MPU Magnetometer
-		mpu_magn_config_t p_mpu_magn_config;
-		p_mpu_magn_config.resolution = OUTPUT_RESOLUTION_16bit; // Set output resolution
-		p_mpu_magn_config.mode = CONTINUOUS_MEASUREMENT_100Hz_MODE;	//Set measurement mode
-		
-		ret_code = mpu_magnetometer_init(&p_mpu_magn_config);
-		APP_ERROR_CHECK(ret_code); // Check for errors in return value
-
-}
-*/
 
 // Function starting the internal LFCLK oscillator.
 // This is needed by RTC1 which is used by the application timer
@@ -375,14 +443,6 @@ static void android_orient_cb(unsigned char orientation)
 		//Do nothing
 }
 
-/*
-static void gyro_data_ready_cb(void)
-{
-    //hal.new_gyro = 1;
-		//Do nothing, pin_in_read() does the job of this part
-}
-*/
-
 static void GPIO_setup()
 {
 		uint32_t err_code = nrf_drv_gpiote_init();
@@ -457,15 +517,15 @@ int main(void)
 	
 		//set up NRF logger module
 		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
+		
+		//initializing buttons and leds
+		buttons_leds_init();
 	
 		//set up GPIOTE
 		GPIO_setup();
 		
 		//set up mpu acc & gyro
 		mpu_twi_setup();
-
-		//set up mpu magn
-		//magn_setup();
 		
 		//i2c r/w function test
 		/*

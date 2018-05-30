@@ -8,7 +8,7 @@
 .\_build\app_uart_fifo.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\compiler_abstraction.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\sdk_os.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
 .\_build\app_uart_fifo.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf.h
 .\_build\app_uart_fifo.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\nrf52840.h
@@ -24,6 +24,10 @@
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\sdk_macros.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\uart\app_uart.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
+.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_soc.h
+.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_svc.h
+.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error_soc.h
+.\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_nvic.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\nrf_assert.h
 .\_build\app_uart_fifo.o: ..\..\..\..\..\..\components\libraries\util\app_error.h
 .\_build\app_uart_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

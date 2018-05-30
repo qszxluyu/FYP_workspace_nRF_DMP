@@ -23,7 +23,7 @@
 .\_build\app_mpu.o: ..\..\..\..\..\..\components\libraries\util\app_error.h
 .\_build\app_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\_build\app_mpu.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\app_mpu.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\app_mpu.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\app_mpu.o: ..\config\sdk_config.h
 .\_build\app_mpu.o: ..\..\..\..\..\..\components\libraries\util\nordic_common.h
 .\_build\app_mpu.o: ..\..\..\..\..\..\components\libraries\util\app_error_weak.h

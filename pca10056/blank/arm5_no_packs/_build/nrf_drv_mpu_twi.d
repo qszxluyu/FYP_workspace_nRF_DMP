@@ -23,9 +23,13 @@
 .\_build\nrf_drv_mpu_twi.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.12.0\Device\Include\compiler_abstraction.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\drivers_nrf\hal\nrf_twim.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\sdk_errors.h
-.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_error.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\nrf_drv_mpu.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\app_util_platform.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_soc.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_svc.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_error_soc.h
+.\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\softdevice\s140\headers\nrf_nvic.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\nrf_assert.h
 .\_build\nrf_drv_mpu_twi.o: ..\..\..\..\..\..\components\libraries\util\app_error.h
 .\_build\nrf_drv_mpu_twi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
