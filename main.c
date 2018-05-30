@@ -311,6 +311,22 @@ static void uart_config(void)
 
 /******************funtions for ble******************/
 
+/**@brief Function for asserts in the SoftDevice.
+ *
+ * @details This function will be called in case of an assert in the SoftDevice.
+ *
+ * @warning This handler is an example only and does not fit a final product. You need to analyze
+ *          how your product is supposed to react in case of Assert.
+ * @warning On assert from the SoftDevice, the system can only recover on reset.
+ *
+ * @param[in] line_num     Line number of the failing ASSERT call.
+ * @param[in] p_file_name  File name of the failing ASSERT call.
+ */
+void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
+{
+    app_error_handler(0xDEADBEEF, line_num, p_file_name);
+}
+
 /**@brief Function to start scanning. */
 static void scan_start(void)
 {
@@ -321,6 +337,119 @@ static void scan_start(void)
 
     ret = bsp_indication_set(BSP_INDICATE_SCANNING);
     APP_ERROR_CHECK(ret);
+}
+
+/**@brief Function for handling database discovery events.
+ *
+ * @details This function is callback function to handle events from the database discovery module.
+ *          Depending on the UUIDs that are discovered, this function should forward the events
+ *          to their respective services.
+ *
+ * @param[in] p_event  Pointer to the database discovery event.
+ */
+static void db_disc_handler(ble_db_discovery_evt_t * p_evt)
+{
+    ble_nus_c_on_db_disc_evt(&m_ble_nus_c, p_evt);
+}
+
+/**@brief Function for handling characters received by the Nordic UART Service.
+ *
+ * @details This function takes a list of characters of length data_len and prints the characters out on UART.
+ *          If @ref ECHOBACK_BLE_UART_DATA is set, the data is sent back to sender.
+ */
+static void ble_nus_chars_received_uart_print(uint8_t * p_data, uint16_t data_len)
+{
+    ret_code_t ret_val;
+
+    NRF_LOG_DEBUG("Receiving data.\r\n");
+    NRF_LOG_HEXDUMP_DEBUG(p_data, data_len);
+
+    for (uint32_t i = 0; i < data_len; i++)
+    {
+        do
+        {
+            ret_val = app_uart_put(p_data[i]);
+            if ((ret_val != NRF_SUCCESS) && (ret_val != NRF_ERROR_BUSY))
+            {
+                NRF_LOG_ERROR("app_uart_put failed for index 0x%04x.\r\n", i);
+                APP_ERROR_CHECK(ret_val);
+            }
+        } while (ret_val == NRF_ERROR_BUSY);
+    }
+    if (p_data[data_len-1] == '\r')
+    {
+        while (app_uart_put('\n') == NRF_ERROR_BUSY);
+    }
+    if (ECHOBACK_BLE_UART_DATA)
+    {
+        // Send data back to peripheral.
+        do
+        {
+            ret_val = ble_nus_c_string_send(&m_ble_nus_c, p_data, data_len);
+            if ((ret_val != NRF_SUCCESS) && (ret_val != NRF_ERROR_BUSY))
+            {
+                NRF_LOG_ERROR("Failed sending NUS message. Error 0x%x. \r\n", ret_val);
+                APP_ERROR_CHECK(ret_val);
+            }
+        } while (ret_val == NRF_ERROR_BUSY);
+    }
+}
+
+/**@brief Callback handling NUS Client events.
+ *
+ * @details This function is called to notify the application of NUS client events.
+ *
+ * @param[in]   p_ble_nus_c   NUS Client Handle. This identifies the NUS client
+ * @param[in]   p_ble_nus_evt Pointer to the NUS Client event.
+ */
+
+/**@snippet [Handling events from the ble_nus_c module] */
+static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, const ble_nus_c_evt_t * p_ble_nus_evt)
+{
+    ret_code_t err_code;
+
+    switch (p_ble_nus_evt->evt_type)
+    {
+        case BLE_NUS_C_EVT_DISCOVERY_COMPLETE:
+            NRF_LOG_INFO("Discovery complete.\r\n");
+            err_code = ble_nus_c_handles_assign(p_ble_nus_c, p_ble_nus_evt->conn_handle, &p_ble_nus_evt->handles);
+            APP_ERROR_CHECK(err_code);
+
+            err_code = ble_nus_c_tx_notif_enable(p_ble_nus_c);
+            APP_ERROR_CHECK(err_code);
+            printf("Connected to device with Nordic UART Service.\r\n");
+            break;
+
+        case BLE_NUS_C_EVT_NUS_TX_EVT:
+            ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
+            break;
+
+        case BLE_NUS_C_EVT_DISCONNECTED:
+            NRF_LOG_INFO("Disconnected.\r\n");
+            scan_start();
+            break;
+    }
+}
+/**@snippet [Handling events from the ble_nus_c module] */
+
+/**@brief Function for putting the chip into sleep mode.
+ *
+ * @note This function will not return.
+ */
+static void sleep_mode_enter(void)
+{
+    ret_code_t err_code;
+
+    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+    APP_ERROR_CHECK(err_code);
+
+    // Prepare wakeup buttons.
+    err_code = bsp_btn_ble_sleep_mode_prepare();
+    APP_ERROR_CHECK(err_code);
+
+    // Go to system-off mode (this function will not return; wakeup will cause a reset).
+    err_code = sd_power_system_off();
+    APP_ERROR_CHECK(err_code);
 }
 
 /**@brief Reads an advertising report and checks if a UUID is present in the service list.
@@ -402,26 +531,6 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
         index += field_length + 1;
     }
     return false;
-}
-
-/**@brief Function for putting the chip into sleep mode.
- *
- * @note This function will not return.
- */
-static void sleep_mode_enter(void)
-{
-    ret_code_t err_code;
-
-    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-    APP_ERROR_CHECK(err_code);
-
-    // Prepare wakeup buttons.
-    err_code = bsp_btn_ble_sleep_mode_prepare();
-    APP_ERROR_CHECK(err_code);
-
-    // Go to system-off mode (this function will not return; wakeup will cause a reset).
-    err_code = sd_power_system_off();
-    APP_ERROR_CHECK(err_code);
 }
 
 /**@brief Function for handling the Application's BLE Stack events.
@@ -650,6 +759,18 @@ void bsp_event_handler(bsp_event_t event)
     }
 }
 
+/**@brief Function for initializing the NUS Client. */
+static void nus_c_init(void)
+{
+    ret_code_t       err_code;
+    ble_nus_c_init_t init;
+
+    init.evt_handler = ble_nus_c_evt_handler;
+
+    err_code = ble_nus_c_init(&m_ble_nus_c, &init);
+    APP_ERROR_CHECK(err_code);
+}
+
 static void buttons_leds_init(void)
 {
     ret_code_t err_code;
@@ -662,22 +783,9 @@ static void buttons_leds_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for handling database discovery events.
- *
- * @details This function is callback function to handle events from the database discovery module.
- *          Depending on the UUIDs that are discovered, this function should forward the events
- *          to their respective services.
- *
- * @param[in] p_event  Pointer to the database discovery event.
- */
-static void db_disc_handler(ble_db_discovery_evt_t * p_evt)
-{
-    ble_nus_c_on_db_disc_evt(&m_ble_nus_c, p_evt);
-}
 
 /** @brief Function for initializing the Database Discovery Module.
  */
-
 static void db_discovery_init(void)
 {
     ret_code_t err_code = ble_db_discovery_init(db_disc_handler);
@@ -694,9 +802,13 @@ static void ble_app_uart_c_setup(){
 		
 		//initializing the BLE stack
 		ble_stack_init();
-	
+		
+		//initializing the GATT library
 		gatt_init();
-
+		
+		//initializing the NUS Client
+		nus_c_init();
+	
 }
 
 static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
