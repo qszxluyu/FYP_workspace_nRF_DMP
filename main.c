@@ -130,7 +130,7 @@
 #define PRINT_LINEAR_ACCEL (0x100)
 #define PRINT_GRAVITY_VECTOR (0x200)
 
-//Parameters for BLE
+/************Parameters for BLE********************/
 
 #define CENTRAL_LINK_COUNT      1                                       /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT   0                                       /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
@@ -158,7 +158,39 @@ static nrf_ble_gatt_t           m_gatt;                                 /**< GAT
 static ble_db_discovery_t       m_ble_db_discovery;                     /**< Instance of database discovery module. Must be passed to all db_discovert API calls */
 static uint16_t                 m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGTH - HANDLE_LENGTH; /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
 
+/**@brief Connection parameters requested for connection. */
+static ble_gap_conn_params_t const m_connection_param =
+  {
+    (uint16_t)MIN_CONNECTION_INTERVAL,  // Minimum connection
+    (uint16_t)MAX_CONNECTION_INTERVAL,  // Maximum connection
+    (uint16_t)SLAVE_LATENCY,            // Slave latency
+    (uint16_t)SUPERVISION_TIMEOUT       // Supervision time-out
+  };
 
+/** @brief Parameters used when scanning. */
+static ble_gap_scan_params_t const m_scan_params =
+{
+    .active   = 1,
+    .interval = SCAN_INTERVAL,
+    .window   = SCAN_WINDOW,
+    .timeout  = SCAN_TIMEOUT,
+    #if (NRF_SD_BLE_API_VERSION <= 2)
+        .selective   = 0,
+        .p_whitelist = NULL,
+    #endif
+    #if (NRF_SD_BLE_API_VERSION >= 3)
+        .use_whitelist = 0,
+    #endif
+};
+
+/**@brief NUS uuid. */
+static ble_uuid_t const m_nus_uuid =
+{
+    .uuid = BLE_UUID_NUS_SERVICE,
+    .type = NUS_SERVICE_UUID_TYPE
+};
+
+/******************parameters for mpu*******************/
 enum t_axisOrder {
 	X_AXIS, // 0
 	Y_AXIS, // 1
@@ -209,6 +241,35 @@ struct hal_s {
 };
 static struct hal_s hal = {0};
 
+// Function starting the internal LFCLK oscillator.
+// This is needed by RTC1 which is used by the application timer
+// (When SoftDevice is enabled the LFCLK is always running and this is not needed).
+static void lfclk_request(void)
+{
+    uint32_t err_code = nrf_drv_clock_init();
+    APP_ERROR_CHECK(err_code);
+    nrf_drv_clock_lfclk_request(NULL);
+}
+
+// Timeout handler for the repeated timer
+static void timer_a_handler(void * p_context)
+{
+    //nrf_gpio_pin_toggle(LED_2);
+		//do nothing
+}
+
+// Create timers
+static void create_timers()
+{   
+    uint32_t err_code;
+
+    // Create timers
+    err_code = app_timer_create(&timer1,
+                                APP_TIMER_MODE_REPEATED,
+                                timer_a_handler);
+    APP_ERROR_CHECK(err_code);
+}
+
 static void uart_error_handle(app_uart_evt_t * p_event)
 {
     if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
@@ -248,6 +309,101 @@ static void uart_config(void)
     APP_ERROR_CHECK(err_code);
 }
 
+/******************funtions for ble******************/
+
+/**@brief Function to start scanning. */
+static void scan_start(void)
+{
+    ret_code_t ret;
+
+    ret = sd_ble_gap_scan_start(&m_scan_params);
+    APP_ERROR_CHECK(ret);
+
+    ret = bsp_indication_set(BSP_INDICATE_SCANNING);
+    APP_ERROR_CHECK(ret);
+}
+
+/**@brief Reads an advertising report and checks if a UUID is present in the service list.
+ *
+ * @details The function is able to search for 16-bit, 32-bit and 128-bit service UUIDs.
+ *          To see the format of a advertisement packet, see
+ *          https://www.bluetooth.org/Technical/AssignedNumbers/generic_access_profile.htm
+ *
+ * @param[in]   p_target_uuid The UUID to search for.
+ * @param[in]   p_adv_report  Pointer to the advertisement report.
+ *
+ * @retval      true if the UUID is present in the advertisement report. Otherwise false
+ */
+static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
+                            ble_gap_evt_adv_report_t const * p_adv_report)
+{
+    ret_code_t   err_code;
+    ble_uuid_t   extracted_uuid;
+    uint16_t     index  = 0;
+    uint8_t    * p_data = (uint8_t *)p_adv_report->data;
+
+    while (index < p_adv_report->dlen)
+    {
+        uint8_t field_length = p_data[index];
+        uint8_t field_type   = p_data[index + 1];
+
+        if (   (field_type == BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_MORE_AVAILABLE)
+            || (field_type == BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_COMPLETE))
+        {
+            for (uint32_t i = 0; i < (field_length / UUID16_SIZE); i++)
+            {
+                err_code = sd_ble_uuid_decode(UUID16_SIZE,
+                                              &p_data[i * UUID16_SIZE + index + 2],
+                                              &extracted_uuid);
+
+                if (err_code == NRF_SUCCESS)
+                {
+                    if ((extracted_uuid.uuid == p_target_uuid->uuid)
+                        && (extracted_uuid.type == p_target_uuid->type))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        else if (   (field_type == BLE_GAP_AD_TYPE_32BIT_SERVICE_UUID_MORE_AVAILABLE)
+                 || (field_type == BLE_GAP_AD_TYPE_32BIT_SERVICE_UUID_COMPLETE))
+        {
+            for (uint32_t i = 0; i < (field_length / UUID32_SIZE); i++)
+            {
+                err_code = sd_ble_uuid_decode(UUID32_SIZE,
+                                              &p_data[i * UUID32_SIZE + index + 2],
+                                              &extracted_uuid);
+
+                if (err_code == NRF_SUCCESS)
+                {
+                    if (   (extracted_uuid.uuid == p_target_uuid->uuid)
+                        && (extracted_uuid.type == p_target_uuid->type))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        else if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
+                 || (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE))
+        {
+            err_code = sd_ble_uuid_decode(UUID128_SIZE, &p_data[index + 2], &extracted_uuid);
+            if (err_code == NRF_SUCCESS)
+            {
+                if (   (extracted_uuid.uuid == p_target_uuid->uuid)
+                    && (extracted_uuid.type == p_target_uuid->type))
+                {
+                    return true;
+                }
+            }
+        }
+        index += field_length + 1;
+    }
+    return false;
+}
+
 /**@brief Function for putting the chip into sleep mode.
  *
  * @note This function will not return.
@@ -265,6 +421,204 @@ static void sleep_mode_enter(void)
 
     // Go to system-off mode (this function will not return; wakeup will cause a reset).
     err_code = sd_power_system_off();
+    APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for handling the Application's BLE Stack events.
+ *
+ * @param[in] p_ble_evt  Bluetooth stack event.
+ */
+static void on_ble_evt(ble_evt_t * p_ble_evt)
+{
+    ret_code_t            err_code;
+    const ble_gap_evt_t * p_gap_evt = &p_ble_evt->evt.gap_evt;
+
+    switch (p_ble_evt->header.evt_id)
+    {
+        case BLE_GAP_EVT_ADV_REPORT:
+        {
+            const ble_gap_evt_adv_report_t * p_adv_report = &p_gap_evt->params.adv_report;
+
+            if (is_uuid_present(&m_nus_uuid, p_adv_report))
+            {
+
+                err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
+                                              &m_scan_params,
+                                              &m_connection_param,
+                                              CONN_CFG_TAG);
+
+                if (err_code == NRF_SUCCESS)
+                {
+                    // scan is automatically stopped by the connect
+                    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+                    APP_ERROR_CHECK(err_code);
+                    NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x\r\n",
+                             p_adv_report->peer_addr.addr[0],
+                             p_adv_report->peer_addr.addr[1],
+                             p_adv_report->peer_addr.addr[2],
+                             p_adv_report->peer_addr.addr[3],
+                             p_adv_report->peer_addr.addr[4],
+                             p_adv_report->peer_addr.addr[5]
+                             );
+                }
+            }
+        }break; // BLE_GAP_EVT_ADV_REPORT
+
+        case BLE_GAP_EVT_CONNECTED:
+            NRF_LOG_INFO("Connected to target\r\n");
+            err_code = ble_nus_c_handles_assign(&m_ble_nus_c, p_ble_evt->evt.gap_evt.conn_handle, NULL);
+            APP_ERROR_CHECK(err_code);
+
+            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
+            APP_ERROR_CHECK(err_code);
+
+            // start discovery of services. The NUS Client waits for a discovery result
+            err_code = ble_db_discovery_start(&m_ble_db_discovery, p_ble_evt->evt.gap_evt.conn_handle);
+            APP_ERROR_CHECK(err_code);
+            break; // BLE_GAP_EVT_CONNECTED
+
+        case BLE_GAP_EVT_TIMEOUT:
+            if (p_gap_evt->params.timeout.src == BLE_GAP_TIMEOUT_SRC_SCAN)
+            {
+                NRF_LOG_INFO("Scan timed out.\r\n");
+                scan_start();
+            }
+            else if (p_gap_evt->params.timeout.src == BLE_GAP_TIMEOUT_SRC_CONN)
+            {
+                NRF_LOG_INFO("Connection Request timed out.\r\n");
+            }
+            break; // BLE_GAP_EVT_TIMEOUT
+
+        case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
+            // Pairing not supported
+            err_code = sd_ble_gap_sec_params_reply(p_ble_evt->evt.gap_evt.conn_handle, BLE_GAP_SEC_STATUS_PAIRING_NOT_SUPP, NULL, NULL);
+            APP_ERROR_CHECK(err_code);
+            break; // BLE_GAP_EVT_SEC_PARAMS_REQUEST
+
+        case BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST:
+            // Accepting parameters requested by peer.
+            err_code = sd_ble_gap_conn_param_update(p_gap_evt->conn_handle,
+                                                    &p_gap_evt->params.conn_param_update_request.conn_params);
+            APP_ERROR_CHECK(err_code);
+            break; // BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST
+
+        case BLE_GATTC_EVT_TIMEOUT:
+            // Disconnect on GATT Client timeout event.
+            NRF_LOG_DEBUG("GATT Client Timeout.\r\n");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gattc_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break; // BLE_GATTC_EVT_TIMEOUT
+
+        case BLE_GATTS_EVT_TIMEOUT:
+            // Disconnect on GATT Server timeout event.
+            NRF_LOG_DEBUG("GATT Server Timeout.\r\n");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gatts_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break; // BLE_GATTS_EVT_TIMEOUT
+
+        default:
+            break;
+    }
+}
+
+/**@brief Function for dispatching a BLE stack event to all modules with a BLE stack event handler.
+ *
+ * @details This function is called from the scheduler in the main loop after a BLE stack event has
+ *          been received.
+ *
+ * @param[in] p_ble_evt  Bluetooth stack event.
+ */
+static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
+{
+    on_ble_evt(p_ble_evt);
+    bsp_btn_ble_on_ble_evt(p_ble_evt);
+    nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
+    ble_db_discovery_on_ble_evt(&m_ble_db_discovery, p_ble_evt);
+    ble_nus_c_on_ble_evt(&m_ble_nus_c,p_ble_evt);
+}
+
+/**@brief Function for initializing the BLE stack.
+ *
+ * @details Initializes the SoftDevice and the BLE event interrupt.
+ */
+static void ble_stack_init(void)
+{
+    ret_code_t err_code;
+
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
+    // Initialize the SoftDevice handler module.
+    SOFTDEVICE_HANDLER_INIT(&clock_lf_cfg, NULL);
+
+    // Fetch the start address of the application RAM.
+    uint32_t ram_start = 0;
+    err_code = softdevice_app_ram_start_get(&ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Overwrite some of the default configurations for the BLE stack.
+    ble_cfg_t ble_cfg;
+
+    // Configure the maximum number of connections.
+    memset(&ble_cfg, 0, sizeof(ble_cfg));
+    ble_cfg.gap_cfg.role_count_cfg.periph_role_count  = PERIPHERAL_LINK_COUNT;
+    ble_cfg.gap_cfg.role_count_cfg.central_role_count = CENTRAL_LINK_COUNT;
+    ble_cfg.gap_cfg.role_count_cfg.central_sec_count  = 1;
+    err_code = sd_ble_cfg_set(BLE_GAP_CFG_ROLE_COUNT, &ble_cfg, ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Configure the maximum ATT MTU.
+    memset(&ble_cfg, 0x00, sizeof(ble_cfg));
+    ble_cfg.conn_cfg.conn_cfg_tag                 = CONN_CFG_TAG;
+    ble_cfg.conn_cfg.params.gatt_conn_cfg.att_mtu = NRF_BLE_GATT_MAX_MTU_SIZE;
+    err_code = sd_ble_cfg_set(BLE_CONN_CFG_GATT, &ble_cfg, ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Configure the maximum event length.
+    memset(&ble_cfg, 0x00, sizeof(ble_cfg));
+    ble_cfg.conn_cfg.conn_cfg_tag                     = CONN_CFG_TAG;
+    ble_cfg.conn_cfg.params.gap_conn_cfg.event_length = 320;
+    ble_cfg.conn_cfg.params.gap_conn_cfg.conn_count   = BLE_GAP_CONN_COUNT_DEFAULT;
+    err_code = sd_ble_cfg_set(BLE_CONN_CFG_GAP, &ble_cfg, ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Configure the ATT table size.
+    memset(&ble_cfg, 0, sizeof(ble_cfg));
+    ble_cfg.gatts_cfg.attr_tab_size.attr_tab_size = BLE_GATTS_ATTR_TAB_SIZE_MIN;
+    err_code = sd_ble_cfg_set(BLE_GATTS_CFG_ATTR_TAB_SIZE, &ble_cfg, ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ram_start);
+    APP_ERROR_CHECK(err_code);
+
+    // Register with the SoftDevice handler module for BLE events.
+    err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);
+    APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for handling events from the GATT library. */
+void gatt_evt_handler(nrf_ble_gatt_t * p_gatt, nrf_ble_gatt_evt_t const * p_evt)
+{
+    if (p_evt->evt_id == NRF_BLE_GATT_EVT_ATT_MTU_UPDATED)
+    {
+        NRF_LOG_INFO("ATT MTU exchange completed.\r\n");
+
+        m_ble_nus_max_data_len = p_evt->params.att_mtu_effective - OPCODE_LENGTH - HANDLE_LENGTH;
+        NRF_LOG_INFO("Ble NUS max data length set to 0x%X(%d)\r\n", m_ble_nus_max_data_len, m_ble_nus_max_data_len);
+    }
+}
+
+/**@brief Function for initializing the GATT library. */
+void gatt_init(void)
+{
+    ret_code_t err_code;
+
+    err_code = nrf_ble_gatt_init(&m_gatt, gatt_evt_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = nrf_ble_gatt_att_mtu_central_set(&m_gatt, NRF_BLE_GATT_MAX_MTU_SIZE);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -308,6 +662,63 @@ static void buttons_leds_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+/**@brief Function for handling database discovery events.
+ *
+ * @details This function is callback function to handle events from the database discovery module.
+ *          Depending on the UUIDs that are discovered, this function should forward the events
+ *          to their respective services.
+ *
+ * @param[in] p_event  Pointer to the database discovery event.
+ */
+static void db_disc_handler(ble_db_discovery_evt_t * p_evt)
+{
+    ble_nus_c_on_db_disc_evt(&m_ble_nus_c, p_evt);
+}
+
+/** @brief Function for initializing the Database Discovery Module.
+ */
+
+static void db_discovery_init(void)
+{
+    ret_code_t err_code = ble_db_discovery_init(db_disc_handler);
+    APP_ERROR_CHECK(err_code);
+}
+
+static void ble_app_uart_c_setup(){
+	
+		//initializing buttons and leds
+		buttons_leds_init();
+		
+		//initializing the Database Discovery Module
+		db_discovery_init();
+		
+		//initializing the BLE stack
+		ble_stack_init();
+	
+		gatt_init();
+
+}
+
+static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+		hal.new_gyro = 1;
+}
+
+static void GPIO_setup()
+{
+		uint32_t err_code = nrf_drv_gpiote_init();
+		APP_ERROR_CHECK(err_code);
+	
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
+	
+	  err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, pin_in_read);
+    APP_ERROR_CHECK(err_code);		
+
+		nrf_drv_gpiote_in_event_enable(PIN_IN, true);	
+}
+
+/******************functions for mpu******************/
 
 static void mpu_twi_setup(void)
 {
@@ -320,40 +731,6 @@ static void mpu_twi_setup(void)
     	
 		NRF_LOG_RAW_INFO("\r\nTWI starts! \r\n");
 	
-}
-
-// Function starting the internal LFCLK oscillator.
-// This is needed by RTC1 which is used by the application timer
-// (When SoftDevice is enabled the LFCLK is always running and this is not needed).
-static void lfclk_request(void)
-{
-    uint32_t err_code = nrf_drv_clock_init();
-    APP_ERROR_CHECK(err_code);
-    nrf_drv_clock_lfclk_request(NULL);
-}
-
-// Timeout handler for the repeated timer
-static void timer_a_handler(void * p_context)
-{
-    //nrf_gpio_pin_toggle(LED_2);
-		//do nothing
-}
-
-// Create timers
-static void create_timers()
-{   
-    uint32_t err_code;
-
-    // Create timers
-    err_code = app_timer_create(&timer1,
-                                APP_TIMER_MODE_REPEATED,
-                                timer_a_handler);
-    APP_ERROR_CHECK(err_code);
-}
-
-static void pin_in_read(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
-{
-		hal.new_gyro = 1;
 }
 
 static inline void run_self_test(void)
@@ -443,20 +820,6 @@ static void android_orient_cb(unsigned char orientation)
 		//Do nothing
 }
 
-static void GPIO_setup()
-{
-		uint32_t err_code = nrf_drv_gpiote_init();
-		APP_ERROR_CHECK(err_code);
-	
-    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
-    in_config.pull = NRF_GPIO_PIN_PULLUP;
-	
-	  err_code = nrf_drv_gpiote_in_init(PIN_IN, &in_config, pin_in_read);
-    APP_ERROR_CHECK(err_code);		
-
-		nrf_drv_gpiote_in_event_enable(PIN_IN, true);	
-}
-
 /* Get data from MPL.
  * TODO: Add return values to the inv_get_sensor_type_xxx APIs to differentiate
  * between new and stale data.
@@ -518,9 +881,9 @@ int main(void)
 		//set up NRF logger module
 		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
 		
-		//initializing buttons and leds
-		buttons_leds_init();
-	
+		/**************Set up ble**************/
+		ble_app_uart_c_setup();
+		
 		//set up GPIOTE
 		GPIO_setup();
 		
