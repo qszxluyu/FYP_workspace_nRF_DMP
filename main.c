@@ -151,7 +151,7 @@
 #define UUID32_SIZE             4                                       /**< Size of 32 bit UUID */
 #define UUID128_SIZE            16                                      /**< Size of 128 bit UUID */
 
-#define ECHOBACK_BLE_UART_DATA  1                                       /**< Echo the UART data that is received over the Nordic UART Service back to the sender. */
+#define ECHOBACK_BLE_UART_DATA  0                                       /**< Echo the UART data that is received over the Nordic UART Service back to the sender. */
 
 static ble_nus_c_t              m_ble_nus_c;                            /**< Instance of NUS service. Must be passed to all NUS_C API calls. */
 static nrf_ble_gatt_t           m_gatt;                                 /**< GATT module instance. */
@@ -742,7 +742,7 @@ void bsp_event_handler(bsp_event_t event)
     switch (event)
     {
         case BSP_EVENT_SLEEP:
-            sleep_mode_enter();
+            //sleep_mode_enter();
             break;
 
         case BSP_EVENT_DISCONNECT:
@@ -808,6 +808,9 @@ static void ble_app_uart_c_setup(){
 		
 		//initializing the NUS Client
 		nus_c_init();
+		
+		NRF_LOG_RAW_INFO("\r\nBLE UART central started! Scaning... \r\n");
+		scan_start();
 	
 }
 
@@ -943,6 +946,9 @@ static void read_from_mpl(void)
     unsigned long timestamp;
     float float_data[3] = {0};
 		double quat_print[4] = {0};
+		uint32_t err_code;
+		
+		uint8_t out[23];
 		
 		if (!inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
 				return;
@@ -952,14 +958,41 @@ static void read_from_mpl(void)
 				return;
 		}
 		
+    memset(out, 0, 23);
+    out[0] = '$';	//use to indicate the start
+    out[1] = '@';	//use @ standing for quat
+    out[3] = (data[0] >> 24);
+    out[4] = (data[0] >> 16);
+    out[5] = (data[0] >> 8);
+    out[6] = data[0];
+    out[7] = (data[1] >> 24);
+    out[8] = (data[1] >> 16);
+    out[9] = (data[1] >> 8);
+    out[10] = data[1];
+    out[11] = (data[2] >> 24);
+    out[12] = (data[2] >> 16);
+    out[13] = (data[2] >> 8);
+    out[14] = data[2];
+    out[15] = (data[3] >> 24);
+    out[16] = (data[3] >> 16);
+    out[17] = (data[3] >> 8);
+    out[18] = data[3];
+    out[21] = '\r';
+    out[22] = '\n';
+		
+		err_code = ble_nus_c_string_send(&m_ble_nus_c,out,23);
+		if(err_code == NRF_SUCCESS){
+				NRF_LOG_INFO("quat sent. \r\n");
+		}
+		/*
 		quat_print[0]= data[0] * 1.0 / (1<<30);
 		quat_print[1]= data[1] * 1.0 / (1<<30);			
 		quat_print[2]= data[2] * 1.0 / (1<<30);
 		quat_print[3]= data[3] * 1.0 / (1<<30);
-		
-		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
+		*/
+		//printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
 																													,float_data[0],float_data[1],float_data[2]);
-		//printf("%7.5f,%7.5f,%7.5f \r\n",float_data[0],float_data[1],float_data[2]);
+
 		
 }
 
@@ -1177,7 +1210,7 @@ int main(void)
     mpu_set_dmp_state(1);
     hal.dmp_on = 1;
 		
-		
+		/*
 		//100Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(100);
@@ -1186,8 +1219,9 @@ int main(void)
 				mpu_set_sample_rate(100);
 		inv_set_gyro_sample_rate(10000L);
 		inv_set_accel_sample_rate(10000L);
+		*/
 		
-		/*
+		
 		//50Hz
 		if (hal.dmp_on) {
 				dmp_set_fifo_rate(50);
@@ -1196,7 +1230,7 @@ int main(void)
 				mpu_set_sample_rate(50);
 		inv_set_gyro_sample_rate(20000L);
 		inv_set_accel_sample_rate(20000L);
-		*/
+		
 		
 		__enable_irq();
 		
