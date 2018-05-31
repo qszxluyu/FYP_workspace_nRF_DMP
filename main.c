@@ -145,7 +145,8 @@
 #define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(20, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
 #define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(75, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
 #define SLAVE_LATENCY           0                                       /**< Determines slave latency in counts of connection events. */
-#define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
+//#define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
+#define SUPERVISION_TIMEOUT     BLE_GAP_CP_CONN_SUP_TIMEOUT_MAX
 
 #define UUID16_SIZE             2                                       /**< Size of 16 bit UUID */
 #define UUID32_SIZE             4                                       /**< Size of 32 bit UUID */
@@ -432,10 +433,12 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, const ble_nus_c_evt
 }
 /**@snippet [Handling events from the ble_nus_c module] */
 
+
 /**@brief Function for putting the chip into sleep mode.
  *
  * @note This function will not return.
  */
+/*
 static void sleep_mode_enter(void)
 {
     ret_code_t err_code;
@@ -451,6 +454,7 @@ static void sleep_mode_enter(void)
     err_code = sd_power_system_off();
     APP_ERROR_CHECK(err_code);
 }
+*/
 
 /**@brief Reads an advertising report and checks if a UUID is present in the service list.
  *
@@ -945,10 +949,10 @@ static void read_from_mpl(void)
     int8_t accuracy;
     unsigned long timestamp;
     float float_data[3] = {0};
-		double quat_print[4] = {0};
+		//double quat_print[4] = {0};
 		uint32_t err_code;
 		
-		uint8_t out[23];
+		uint8_t out[40];
 		
 		if (!inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
 				return;
@@ -958,9 +962,9 @@ static void read_from_mpl(void)
 				return;
 		}
 		
-    memset(out, 0, 23);
+    memset(out, 0, 40);
     out[0] = '$';	//use to indicate the start
-    out[1] = '@';	//use @ standing for quat
+    out[1] = '@';	//use @ standing for quat start
     out[3] = (data[0] >> 24);
     out[4] = (data[0] >> 16);
     out[5] = (data[0] >> 8);
@@ -977,12 +981,29 @@ static void read_from_mpl(void)
     out[16] = (data[3] >> 16);
     out[17] = (data[3] >> 8);
     out[18] = data[3];
-    out[21] = '\r';
-    out[22] = '\n';
+    out[21] = '#';	//use # standing for quat end
+    out[24] = '%';	//use % standing for accel start
+		out[25] = ((int)float_data[0] & 0xFF000000) >> 24; 
+		out[26] = ((int)float_data[0] & 0x00FF0000) >> 16;
+		out[27] = ((int)float_data[0] & 0x0000FF00) >> 8;
+		out[28] = ((int)float_data[0] & 0x000000FF);
+		out[29] = ((int)float_data[1] & 0xFF000000) >> 24; 
+		out[30] = ((int)float_data[1] & 0x00FF0000) >> 16;
+		out[31] = ((int)float_data[1] & 0x0000FF00) >> 8;
+		out[32] = ((int)float_data[1] & 0x000000FF);
+		out[33] = ((int)float_data[2] & 0xFF000000) >> 24; 
+		out[34] = ((int)float_data[2] & 0x00FF0000) >> 16;
+		out[35] = ((int)float_data[2] & 0x0000FF00) >> 8;
+		out[36] = ((int)float_data[2] & 0x000000FF);
+		out[37] = '&';	//use & standing for accel end
+		out[38] = '\r';
+		out[39] = '\n';
 		
-		err_code = ble_nus_c_string_send(&m_ble_nus_c,out,23);
+		err_code = ble_nus_c_string_send(&m_ble_nus_c,out,40);
 		if(err_code == NRF_SUCCESS){
-				NRF_LOG_INFO("quat sent. \r\n");
+				NRF_LOG_INFO("data packet sent. \r\n");
+		} else{
+				//NRF_LOG_INFO("quat did not send. \r\n");
 		}
 		/*
 		quat_print[0]= data[0] * 1.0 / (1<<30);
