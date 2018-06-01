@@ -68,8 +68,6 @@
 #include "nrf_log_ctrl.h"
 #include "boards.h"
 
-//#include "math.h"
-
 //files needed for mpu
 #include "nrf_drv_mpu.h"
 #include "dmpkey.h"
@@ -131,6 +129,8 @@
 #define PRINT_GRAVITY_VECTOR (0x200)
 
 /************Parameters for BLE********************/
+//Enable to use ble
+#define USE_BLE
 
 #define CENTRAL_LINK_COUNT      1                                       /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT   0                                       /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
@@ -192,6 +192,11 @@ static ble_uuid_t const m_nus_uuid =
 };
 
 /******************parameters for mpu*******************/
+
+//Choose MPL output frequency:100Hz or 50Hz
+//100Hz while using ble will cause twi busy error
+int mpl_out_fre = 50;
+
 enum t_axisOrder {
 	X_AXIS, // 0
 	Y_AXIS, // 1
@@ -949,7 +954,7 @@ static void read_from_mpl(void)
     int8_t accuracy;
     unsigned long timestamp;
     float float_data[3] = {0};
-		//double quat_print[4] = {0};
+		double quat_print[4] = {0};
 		uint32_t err_code;
 		
 		uint8_t out[40];
@@ -961,7 +966,7 @@ static void read_from_mpl(void)
 		if (!inv_get_sensor_type_linear_acceleration(float_data, &accuracy, (inv_time_t*)&timestamp)){
 				return;
 		}
-		
+#ifdef USE_BLE
     memset(out, 0, 40);
     out[0] = '$';	//use to indicate the start
     out[1] = '@';	//use @ standing for quat start
@@ -983,7 +988,7 @@ static void read_from_mpl(void)
     out[18] = data[3];
     out[21] = '#';	//use # standing for quat end
     out[24] = '%';	//use % standing for accel start
-		out[25] = ((int)float_data[0] & 0xFF000000) >> 24; 
+		out[25] = ((unsigned char)float_data[0] & 0xFF000000) >> 24; 
 		out[26] = ((int)float_data[0] & 0x00FF0000) >> 16;
 		out[27] = ((int)float_data[0] & 0x0000FF00) >> 8;
 		out[28] = ((int)float_data[0] & 0x000000FF);
@@ -1005,15 +1010,15 @@ static void read_from_mpl(void)
 		} else{
 				//NRF_LOG_INFO("quat did not send. \r\n");
 		}
-		/*
+#else
 		quat_print[0]= data[0] * 1.0 / (1<<30);
 		quat_print[1]= data[1] * 1.0 / (1<<30);			
 		quat_print[2]= data[2] * 1.0 / (1<<30);
 		quat_print[3]= data[3] * 1.0 / (1<<30);
-		*/
-		//printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
+		
+		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
 																													,float_data[0],float_data[1],float_data[2]);
-
+#endif
 		
 }
 
@@ -1048,7 +1053,9 @@ int main(void)
 		APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
 		
 		/**************Set up ble**************/
+#ifdef USE_BLE
 		ble_app_uart_c_setup();
+#endif		
 		
 		//set up GPIOTE
 		GPIO_setup();
@@ -1231,26 +1238,26 @@ int main(void)
     mpu_set_dmp_state(1);
     hal.dmp_on = 1;
 		
-		/*
-		//100Hz
-		if (hal.dmp_on) {
-				dmp_set_fifo_rate(100);
-				inv_set_quat_sample_rate(10000L);
-		} else
-				mpu_set_sample_rate(100);
-		inv_set_gyro_sample_rate(10000L);
-		inv_set_accel_sample_rate(10000L);
-		*/
+		if(mpl_out_fre==100){
+				//100Hz
+				if (hal.dmp_on) {
+						dmp_set_fifo_rate(100);
+						inv_set_quat_sample_rate(10000L);
+				} else
+						mpu_set_sample_rate(100);
+				inv_set_gyro_sample_rate(10000L);
+				inv_set_accel_sample_rate(10000L);
+		} else{
+				//50Hz
+				if (hal.dmp_on) {
+						dmp_set_fifo_rate(50);
+						inv_set_quat_sample_rate(20000L);
+				} else
+						mpu_set_sample_rate(50);
+				inv_set_gyro_sample_rate(20000L);
+				inv_set_accel_sample_rate(20000L);
+		}
 		
-		
-		//50Hz
-		if (hal.dmp_on) {
-				dmp_set_fifo_rate(50);
-				inv_set_quat_sample_rate(20000L);
-		} else
-				mpu_set_sample_rate(50);
-		inv_set_gyro_sample_rate(20000L);
-		inv_set_accel_sample_rate(20000L);
 		
 		
 		__enable_irq();

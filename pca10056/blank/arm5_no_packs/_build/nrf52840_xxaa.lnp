@@ -1,7 +1,6 @@
 --cpu=Cortex-M4.fp
 ".\_build\main.o"
 "..\..\..\libmpllib.lib"
-"..\..\..\eMD-6.0\core\mpl\libmplmpu.lib"
 ".\_build\boards.o"
 ".\_build\bsp.o"
 ".\_build\bsp_btn_ble.o"

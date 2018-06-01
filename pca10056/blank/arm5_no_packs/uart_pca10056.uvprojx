@@ -394,11 +394,6 @@
               <FileType>4</FileType>
               <FilePath>..\..\..\libmpllib.lib</FilePath>
             </File>
-            <File>
-              <FileName>libmplmpu.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\..\..\eMD-6.0\core\mpl\libmplmpu.lib</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
