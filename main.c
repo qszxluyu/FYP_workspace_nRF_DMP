@@ -132,6 +132,10 @@
 //Enable to use ble
 #define USE_BLE
 
+//Enable to test bytes merge
+/****Must use with ble*****/
+#define virtual_receiver_test
+
 #define CENTRAL_LINK_COUNT      1                                       /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT   0                                       /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 #define CONN_CFG_TAG            1                                       /**< A tag that refers to the BLE stack configuration we set with @ref sd_ble_cfg_set. Default tag is @ref BLE_CONN_CFG_TAG_DEFAULT. */
@@ -944,6 +948,35 @@ static void android_orient_cb(unsigned char orientation)
 		//Do nothing
 }
 
+//Use for virtual receiver test
+static long bytes_to_long(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3)
+{
+		long result;
+
+		result = b0*(1<<24)+b1*(1<<16)+b2*(1<<8)+b3;
+		
+		return result;
+}
+
+typedef union
+{
+		float value;
+		unsigned long_value;
+}accel_data;
+
+static void bytes_to_float(float *float_result, uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3)
+{
+		accel_data result;
+	
+		result.long_value = 0;
+		result.long_value	= b0;
+		result.long_value = (result.long_value << 8)|b1;
+		result.long_value = (result.long_value << 8)|b2;
+		result.long_value = (result.long_value << 8)|b3;
+		
+		*float_result=result.value;
+}
+
 /* Get data from MPL.
  * TODO: Add return values to the inv_get_sensor_type_xxx APIs to differentiate
  * between new and stale data.
@@ -954,10 +987,6 @@ static void read_from_mpl(void)
     int8_t accuracy;
     unsigned long timestamp;
     float float_data[3] = {0};
-		double quat_print[4] = {0};
-		uint32_t err_code;
-		
-		uint8_t out[40];
 		
 		if (!inv_get_sensor_type_quat(data, &accuracy, (inv_time_t*)&timestamp)){
 				return;
@@ -967,6 +996,14 @@ static void read_from_mpl(void)
 				return;
 		}
 #ifdef USE_BLE
+		//Transmit data by ble
+		uint8_t out[40];
+		accel_data accel_reading[3];
+		uint32_t err_code;
+		accel_reading[0].value = float_data[0];
+		accel_reading[1].value = float_data[1];
+		accel_reading[2].value = float_data[2];
+		
     memset(out, 0, 40);
     out[0] = '$';	//use to indicate the start
     out[1] = '@';	//use @ standing for quat start
@@ -988,18 +1025,18 @@ static void read_from_mpl(void)
     out[18] = data[3];
     out[21] = '#';	//use # standing for quat end
     out[24] = '%';	//use % standing for accel start
-		out[25] = ((unsigned char)float_data[0] & 0xFF000000) >> 24; 
-		out[26] = ((int)float_data[0] & 0x00FF0000) >> 16;
-		out[27] = ((int)float_data[0] & 0x0000FF00) >> 8;
-		out[28] = ((int)float_data[0] & 0x000000FF);
-		out[29] = ((int)float_data[1] & 0xFF000000) >> 24; 
-		out[30] = ((int)float_data[1] & 0x00FF0000) >> 16;
-		out[31] = ((int)float_data[1] & 0x0000FF00) >> 8;
-		out[32] = ((int)float_data[1] & 0x000000FF);
-		out[33] = ((int)float_data[2] & 0xFF000000) >> 24; 
-		out[34] = ((int)float_data[2] & 0x00FF0000) >> 16;
-		out[35] = ((int)float_data[2] & 0x0000FF00) >> 8;
-		out[36] = ((int)float_data[2] & 0x000000FF);
+		out[25] = (accel_reading[0].long_value) >> 24;
+		out[26] = (accel_reading[0].long_value) >> 16;
+		out[27] = (accel_reading[0].long_value) >> 8;
+		out[28] = (accel_reading[0].long_value);
+		out[29] = (accel_reading[1].long_value) >> 24;
+		out[30] = (accel_reading[1].long_value)	>> 16;
+		out[31] = (accel_reading[1].long_value) >> 8;
+		out[32] = (accel_reading[1].long_value);
+		out[33] = (accel_reading[2].long_value) >> 24;
+		out[34] = (accel_reading[2].long_value) >> 16;
+		out[35] = (accel_reading[2].long_value)	>> 8;
+		out[36] = (accel_reading[2].long_value);
 		out[37] = '&';	//use & standing for accel end
 		out[38] = '\r';
 		out[39] = '\n';
@@ -1011,6 +1048,9 @@ static void read_from_mpl(void)
 				//NRF_LOG_INFO("quat did not send. \r\n");
 		}
 #else
+		//Print out data by uart to PC
+		float quat_print[4] = {0};
+		
 		quat_print[0]= data[0] * 1.0 / (1<<30);
 		quat_print[1]= data[1] * 1.0 / (1<<30);			
 		quat_print[2]= data[2] * 1.0 / (1<<30);
@@ -1019,6 +1059,31 @@ static void read_from_mpl(void)
 		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
 																													,float_data[0],float_data[1],float_data[2]);
 #endif
+		
+#ifdef virtual_receiver_test
+		long test_quat[4];
+		float quat_print[4] = {0};
+		float test_accel[3];
+			
+		test_quat[0] = bytes_to_long(out[3],out[4],out[5],out[6]);
+		test_quat[1] = bytes_to_long(out[7],out[8],out[9],out[10]);
+		test_quat[2] = bytes_to_long(out[11],out[12],out[13],out[14]);
+		test_quat[3] = bytes_to_long(out[15],out[16],out[17],out[18]);
+		
+		quat_print[0]= test_quat[0] * 1.0 / (1<<30);
+		quat_print[1]= test_quat[1] * 1.0 / (1<<30);			
+		quat_print[2]= test_quat[2] * 1.0 / (1<<30);
+		quat_print[3]= test_quat[3] * 1.0 / (1<<30);
+		
+		bytes_to_float(&test_accel[0],out[25],out[26],out[27],out[28]);
+		bytes_to_float(&test_accel[1],out[29],out[30],out[31],out[32]);
+		bytes_to_float(&test_accel[2],out[33],out[34],out[35],out[36]);
+		
+		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
+																													,test_accel[0],test_accel[1],test_accel[2]);
+
+#endif
+		
 		
 }
 
