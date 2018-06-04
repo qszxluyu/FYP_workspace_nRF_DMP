@@ -134,7 +134,7 @@
 
 //Enable to test bytes merge
 /****Must use with ble*****/
-#define virtual_receiver_test
+//#define virtual_receiver_test
 
 #define CENTRAL_LINK_COUNT      1                                       /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT   0                                       /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
@@ -997,51 +997,47 @@ static void read_from_mpl(void)
 		}
 #ifdef USE_BLE
 		//Transmit data by ble
-		uint8_t out[40];
+		uint8_t out[32];
 		accel_data accel_reading[3];
 		uint32_t err_code;
 		accel_reading[0].value = float_data[0];
 		accel_reading[1].value = float_data[1];
 		accel_reading[2].value = float_data[2];
 		
-    memset(out, 0, 40);
+    memset(out, 0, 32);
     out[0] = '$';	//use to indicate the start
-    out[1] = '@';	//use @ standing for quat start
-    out[3] = (data[0] >> 24);
-    out[4] = (data[0] >> 16);
-    out[5] = (data[0] >> 8);
-    out[6] = data[0];
-    out[7] = (data[1] >> 24);
-    out[8] = (data[1] >> 16);
-    out[9] = (data[1] >> 8);
-    out[10] = data[1];
-    out[11] = (data[2] >> 24);
-    out[12] = (data[2] >> 16);
-    out[13] = (data[2] >> 8);
-    out[14] = data[2];
-    out[15] = (data[3] >> 24);
-    out[16] = (data[3] >> 16);
-    out[17] = (data[3] >> 8);
-    out[18] = data[3];
-    out[21] = '#';	//use # standing for quat end
-    out[24] = '%';	//use % standing for accel start
-		out[25] = (accel_reading[0].long_value) >> 24;
-		out[26] = (accel_reading[0].long_value) >> 16;
-		out[27] = (accel_reading[0].long_value) >> 8;
-		out[28] = (accel_reading[0].long_value);
-		out[29] = (accel_reading[1].long_value) >> 24;
-		out[30] = (accel_reading[1].long_value)	>> 16;
-		out[31] = (accel_reading[1].long_value) >> 8;
-		out[32] = (accel_reading[1].long_value);
-		out[33] = (accel_reading[2].long_value) >> 24;
-		out[34] = (accel_reading[2].long_value) >> 16;
-		out[35] = (accel_reading[2].long_value)	>> 8;
-		out[36] = (accel_reading[2].long_value);
-		out[37] = '&';	//use & standing for accel end
-		out[38] = '\r';
-		out[39] = '\n';
+    out[1] = (data[0] >> 24);
+    out[2] = (data[0] >> 16);
+    out[3] = (data[0] >> 8);
+    out[4] = data[0];
+    out[5] = (data[1] >> 24);
+    out[6] = (data[1] >> 16);
+    out[7] = (data[1] >> 8);
+    out[8] = data[1];
+    out[9] = (data[2] >> 24);
+    out[10] = (data[2] >> 16);
+    out[11] = (data[2] >> 8);
+    out[12] = data[2];
+    out[13] = (data[3] >> 24);
+    out[14] = (data[3] >> 16);
+    out[15] = (data[3] >> 8);
+    out[16] = data[3];
+		out[17] = (accel_reading[0].long_value) >> 24;
+		out[18] = (accel_reading[0].long_value) >> 16;
+		out[19] = (accel_reading[0].long_value) >> 8;
+		out[20] = (accel_reading[0].long_value);
+		out[21] = (accel_reading[1].long_value) >> 24;
+		out[22] = (accel_reading[1].long_value)	>> 16;
+		out[23] = (accel_reading[1].long_value) >> 8;
+		out[24] = (accel_reading[1].long_value);
+		out[25] = (accel_reading[2].long_value) >> 24;
+		out[26] = (accel_reading[2].long_value) >> 16;
+		out[27] = (accel_reading[2].long_value)	>> 8;
+		out[28] = (accel_reading[2].long_value);
+		out[30] = '\r';
+		out[31] = '\n';
 		
-		err_code = ble_nus_c_string_send(&m_ble_nus_c,out,40);
+		err_code = ble_nus_c_string_send(&m_ble_nus_c,out,32);
 		if(err_code == NRF_SUCCESS){
 				NRF_LOG_INFO("data packet sent. \r\n");
 		} else{
@@ -1065,19 +1061,19 @@ static void read_from_mpl(void)
 		float quat_print[4] = {0};
 		float test_accel[3];
 			
-		test_quat[0] = bytes_to_long(out[3],out[4],out[5],out[6]);
-		test_quat[1] = bytes_to_long(out[7],out[8],out[9],out[10]);
-		test_quat[2] = bytes_to_long(out[11],out[12],out[13],out[14]);
-		test_quat[3] = bytes_to_long(out[15],out[16],out[17],out[18]);
+		test_quat[0] = bytes_to_long(out[1],out[2],out[3],out[4]);
+		test_quat[1] = bytes_to_long(out[5],out[6],out[7],out[8]);
+		test_quat[2] = bytes_to_long(out[9],out[10],out[11],out[12]);
+		test_quat[3] = bytes_to_long(out[13],out[14],out[15],out[16]);
 		
 		quat_print[0]= test_quat[0] * 1.0 / (1<<30);
 		quat_print[1]= test_quat[1] * 1.0 / (1<<30);			
 		quat_print[2]= test_quat[2] * 1.0 / (1<<30);
 		quat_print[3]= test_quat[3] * 1.0 / (1<<30);
 		
-		bytes_to_float(&test_accel[0],out[25],out[26],out[27],out[28]);
-		bytes_to_float(&test_accel[1],out[29],out[30],out[31],out[32]);
-		bytes_to_float(&test_accel[2],out[33],out[34],out[35],out[36]);
+		bytes_to_float(&test_accel[0],out[17],out[18],out[19],out[20]);
+		bytes_to_float(&test_accel[1],out[21],out[22],out[23],out[24]);
+		bytes_to_float(&test_accel[2],out[25],out[26],out[27],out[28]);
 		
 		printf("%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f,%7.5f \r\n",quat_print[0],quat_print[1],quat_print[2],quat_print[3]	\
 																													,test_accel[0],test_accel[1],test_accel[2]);
@@ -1168,7 +1164,10 @@ int main(void)
 		inv_enable_fast_nomot();
 		inv_enable_vector_compass_cal();
 		inv_enable_magnetic_disturbance();
-		//inv_enable_in_use_auto_calibration();
+		inv_enable_in_use_auto_calibration();
+		
+		/* Update gyro biases when temperature changes. */
+    inv_enable_gyro_tc();
 		
 		inv_err_code = inv_enable_eMPL_outputs();
 		if(inv_err_code){
@@ -1274,6 +1273,7 @@ int main(void)
 		if (inv_err_code != 0) {
 			NRF_LOG_RAW_INFO("Could not load DMP Image!!! Error Code: %d \r\n", inv_err_code);
     }else{
+			nrf_gpio_pin_toggle(LED_4);
 			NRF_LOG_RAW_INFO("DMP downloaded! \r\n");
 		}
 		

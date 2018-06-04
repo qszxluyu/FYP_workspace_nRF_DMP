@@ -28,10 +28,19 @@ Project File Date:  06/01/2018
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'nrf52840_xxaa'
 compiling main.c...
+..\..\..\main.c(1167): warning:  #223-D: function "inv_enable_in_use_auto_calibration" declared implicitly
+  		inv_enable_in_use_auto_calibration();
+..\..\..\main.c(1170): warning:  #223-D: function "inv_enable_gyro_tc" declared implicitly
+      inv_enable_gyro_tc();
+..\..\..\main.c(952): warning:  #177-D: function "bytes_to_long"  was declared but never referenced
+  static long bytes_to_long(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3)
+..\..\..\main.c(967): warning:  #177-D: function "bytes_to_float"  was declared but never referenced
+  static void bytes_to_float(float *float_result, uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3)
+..\..\..\main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=67092 RO-data=6628 RW-data=252 ZI-data=25796  
+Program Size: Code=67924 RO-data=6628 RW-data=252 ZI-data=26244  
 FromELF: creating hex file...
-".\_build\nrf52840_xxaa.axf" - 0 Error(s), 0 Warning(s).
+".\_build\nrf52840_xxaa.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,7 +70,7 @@ Package Vendor: NordicSemiconductor
       Source file:   Device\Source\arm\arm_startup_nrf52840.s
       Include file:  Device\Include\system_nrf52840.h
       Source file:   Device\Source\system_nrf52840.c
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:28
 </pre>
 </body>
 </html>
