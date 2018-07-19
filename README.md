@@ -14,4 +14,8 @@ Update May 29.2018:
   3.Use printf instead of logger module to print out the data. Deffered logger will cause some unpredictable bugs so it is disabled(I have no idea why I've chosen to use it at the beginning). 
   4.Modified the output format for use with the FYP_Unity3D_Project. The uart input is not supported yet so have to reset the nrf52840DK to run MPU9250 self test.
 
+Update July 19.2018
+I am pleased to say that I have finished this project as my final year project. This Repository will no longer updated. Final codes for my whole project can be found here: https://github.com/qszxluyu/FYP_yl18914 
+If you are trying to find using DMP of the MPU9250 with nRF52, I hope my work could help you.
+
 contact me: yl18914@ic.ac.uk
